@@ -1,0 +1,4 @@
+/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles/sim.dir
+/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles/Simulation.dir
+/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles/edit_cache.dir
+/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles/rebuild_cache.dir

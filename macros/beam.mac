@@ -1,0 +1,14 @@
+/gps/particle e-
+
+/gps/ene/type Mono
+/gps/ene/mono 10 GeV
+
+/gps/direction 0 0 1
+/gps/pos/type Beam
+/gps/pos/centre 0 0 -0.5 m
+/gps/pos/halfx 4. micrometer
+/gps/pos/halfy 4. micrometer
+
+/gps/number 1000
+
+/run/beamOn 100
