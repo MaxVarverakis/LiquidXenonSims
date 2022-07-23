@@ -8,9 +8,9 @@ LXe = 2.8720
 LTa = 0.4094
 L_RL = np.arange(.25, 4.25, .25)
 iterations = 1e5
-E0 = 1e10 # 10 GeV
+E0 = 1e4 # MeV
 
-mode = None
+mode = ''
 
 def plots(xlbl, ttlStr):
     # os.remove('build/out0_nt_e+.csv')
@@ -18,7 +18,7 @@ def plots(xlbl, ttlStr):
     # print(pYield)
     # print(L_RL)
 
-    EDep_RMS = [np.sqrt(np.mean(edep ** 2)) for edep in [edep0, edep1, edep2, edep3, edep4, edep5, edep6, edep7, edep8, 
+    EDep_RMS = [np.sqrt(np.mean(edep ** 2)) / E0 for edep in [edep0, edep1, edep2, edep3, edep4, edep5, edep6, edep7, edep8, 
                                                         edep9, edep10, edep11, edep12, edep13, edep14, edep15]]
     E_RMS = [np.sqrt(np.mean(df[:, 0] ** 2)) for df in [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]]
     TW_RMS = [np.sqrt(np.mean(df[:, 1] ** 2)) for df in [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]]
@@ -50,11 +50,12 @@ def plots(xlbl, ttlStr):
     # print(E)
 
     plt.scatter(L_RL, EDep_RMS, label = '__nolegend__')
-    plt.plot(L_RL[idx], EDep_RMS[idx], 'ro', label = f'Energy Deposition @ Max Yield: ~{EDep_RMS[idx]:.2f} MeV')
+    plt.plot(L_RL[idx], EDep_RMS[idx], 'ro', label = f'Fractional Energy Deposition @ Max Yield: ~{EDep_RMS[idx]:.2f}')
     plt.vlines(L_RL[idx], 0, EDep_RMS[idx], colors = 'r', ls = ':', label = '__nolegend__')
     plt.xlabel(xlbl)
-    plt.ylabel('RMS Energy Deposition [MeV]')
-    plt.ylim(0, 5.75e3)
+    plt.ylabel('RMS Fractional Energy Deposition [ / incident $e^-$ @ 10 GeV]')
+    # plt.ylabel('RMS Energy Deposition / incident $e^-$ [MeV]')
+    plt.ylim(0, 5.75e-1)
     plt.legend(loc = 'upper left')
     plt.title('Energy Deposition vs Radiation Length')
     plt.show()
@@ -296,22 +297,22 @@ else:
     pYield = [len(df[:, 0]) / iterations for df in [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]]
     idx = np.argmax(pYield)
 
-    XeEDep_RMS = [np.sqrt(np.mean(edep ** 2)) for edep in [xedep0, xedep1, xedep2, xedep3, xedep4, xedep5, xedep6, xedep7, xedep8, 
+    XeEDep_RMS = [np.sqrt(np.mean(edep ** 2)) / E0 for edep in [xedep0, xedep1, xedep2, xedep3, xedep4, xedep5, xedep6, xedep7, xedep8, 
                                                         xedep9, xedep10, xedep11, xedep12, xedep13, xedep14, xedep15]]
     
-    TaEDep_RMS = [np.sqrt(np.mean(edep ** 2)) for edep in [tadep0, tadep1, tadep2, tadep3, tadep4, tadep5, tadep6, tadep7, tadep8, 
+    TaEDep_RMS = [np.sqrt(np.mean(edep ** 2)) / E0 for edep in [tadep0, tadep1, tadep2, tadep3, tadep4, tadep5, tadep6, tadep7, tadep8, 
                                                         tadep9, tadep10, tadep11, tadep12, tadep13, tadep14, tadep15]]
 
     plt.scatter(L_RL, TaEDep_RMS, label = '__nolegend__')
     plt.scatter(L_RL, XeEDep_RMS, label = '__nolegend__')
-    plt.plot(L_RL[idx], XeEDep_RMS[idx], 'ro', label = f'Xenon Energy Deposition @ Max Yield: ~{XeEDep_RMS[idx]:.2f} MeV')
-    plt.plot(L_RL[idx], TaEDep_RMS[idx], 'bo', label = f'Tantalum Energy Deposition @ Max Yield: ~{TaEDep_RMS[idx]:.2f} MeV')
+    plt.plot(L_RL[idx], XeEDep_RMS[idx], 'ro', label = f'Fractional Xenon Energy Deposition @ Max Yield: ~{XeEDep_RMS[idx]:.2f}')
+    plt.plot(L_RL[idx], TaEDep_RMS[idx], 'bo', label = f' Fractional Tantalum Energy Deposition @ Max Yield: ~{TaEDep_RMS[idx]:.2f}')
     plt.vlines(L_RL[idx], 0, XeEDep_RMS[idx], colors = 'r', ls = ':', label = '__nolegend__')
     plt.vlines(L_RL[idx], 0, TaEDep_RMS[idx], colors = 'b', ls = ':', label = '__nolegend__')
     
     plt.xlabel('Radiation Lengths [$L_{RL}(Ta) = 0.4094$ cm | $L_{RL}(Xe) = 2.8720$ cm]')
-    plt.ylabel('RMS Energy Deposition [MeV]')
-    plt.ylim(0, 5.75e3)
+    plt.ylabel('RMS Fractional Energy Deposition [/ incident $e^-$ @ 10 GeV]')
+    plt.ylim(0, 5.75e-1)
     plt.legend(loc = 'upper left')
     plt.title('Energy Deposition vs Radiation Length')
     plt.show()

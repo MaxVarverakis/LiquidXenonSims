@@ -1,0 +1,270 @@
+% ****** Start of file apssamp.tex ******
+%
+%   This file is part of the APS files in the REVTeX 4.2 distribution.
+%   Version 4.2a of REVTeX, December 2014
+%
+%   Copyright (c) 2014 The American Physical Society.
+%
+%   See the REVTeX 4 README file for restrictions and more information.
+%
+% TeX'ing this file requires that you have AMS-LaTeX 2.0 installed
+% as well as the rest of the prerequisites for REVTeX 4.2
+%
+% See the REVTeX 4 README file
+% It also requires running BibTeX. The commands are as follows:
+%
+%  1)  latex apssamp.tex
+%  2)  bibtex apssamp
+%  3)  latex apssamp.tex
+%  4)  latex apssamp.tex
+%
+\documentclass[%
+reprint,
+%superscriptaddress,
+%groupedaddress,
+%unsortedaddress,
+%runinaddress,
+%frontmatterverbose, 
+%preprint,
+%preprintnumbers,
+%nofootinbib,
+%nobibnotes,
+%bibnotes,
+amsmath, amssymb,
+aps,
+%pra,
+%prb,
+%rmp,
+%prstab,
+%prstper,
+%floatfix,
+]{revtex4-2}
+
+\usepackage{graphicx}% Include figure files
+\usepackage{dcolumn}% Align table columns on decimal point
+\usepackage{bm}% bold math
+%\usepackage{hyperref}% add hypertext capabilities
+%\usepackage[mathlines]{lineno}% Enable numbering of text and display math
+%\linenumbers\relax % Commence numbering lines
+
+%\usepackage[showframe,%Uncomment any one of the following lines to test 
+%%scale=0.7, marginratio={1:1, 2:3}, ignoreall,% default settings
+%%text={7in,10in},centering,
+%%margin=1.5in,
+%%total={6.5in,8.75in}, top=1.2in, left=0.9in, includefoot,
+%%height=10in,a5paper,hmargin={3cm,0.8in},
+%]{geometry}
+
+\begin{document}
+
+\preprint{APS/123-QED}
+
+\title{Using a Liquid Xenon Positron Target}% Force line breaks with \\
+% \thanks{A footnote to the article title}%
+
+\author{Max Varverakis}
+\email{mvarvera@calpoly.edu}
+\affiliation{California Polytechnic State University, San Luis Obispo, CA 93407, USA}
+\author{Spencer Gessner}%
+\email{sgess@slac.stanford.edu}
+\affiliation{SLAC National Accelerator Laboratory, Menlo Park, California 94025, USA}%
+
+% \collaboration{MUSO Collaboration}%\noaffiliation
+
+% \author{Charlie Author}
+%  \homepage{http://www.Second.institution.edu/~Charlie.Author}
+% \affiliation{
+%  Second institution and/or address\\
+%  This line break forced% with \\
+% }%
+% \affiliation{
+%  Third institution, the second for Charlie Author
+% }%
+% \author{Delta Author}
+% \affiliation{%
+%  Authors' institution and/or address\\
+%  This line break forced with \textbackslash\textbackslash
+% }%
+
+% \collaboration{CLEO Collaboration}%\noaffiliation
+
+\date{\today}
+
+\begin{abstract}
+ABSTRACT
+\begin{description}
+\item[Usage]
+Secondary publications and information retrieval purposes.
+\item[Structure]
+You may use the \texttt{description} environment to structure your abstract;
+use the optional argument of the \verb+\item+ command to give the category of each item. 
+\end{description}
+\end{abstract}
+
+%\keywords{Suggested keywords}%Use showkeys class option if keyword display desired
+\maketitle
+
+%\tableofcontents
+
+\section{Outline}
+\begin{itemize}
+    \item Introduction
+    \begin{itemize}
+        \item What is the problem that we are trying to solve?
+        \item What are the issues with "traditional" positron targets?
+        \item What approaches have been tried already?
+        \item How many positrons-per-second are needed for Linear Collider applications?
+        \item Introduction is basically a literature survey/review.
+    \end{itemize}
+    \item Comparing Positron production in Xenon vs W or Ta
+    \begin{itemize}
+        \item This is where the GEANT simulations go.
+        \item How thick/dense does Xenon need to be to match positron production in W or Ta?
+    \end{itemize}
+    \item Cryo-cooled Xenon gas jets
+    \begin{itemize}
+        \item Does this exist?
+        \item Describe work with liquid Xenon and work with cryo-cooled gas jets at SLAC.
+        \item Vacuum challenges?
+    \end{itemize}
+    \item Conclusion
+    \begin{itemize}
+        \item Describe next steps. How would we actually build/implement this?
+    \end{itemize}
+    
+\end{itemize}
+
+\section{Introduction}
+A common scheme for producing positrons is by colliding high energy electrons into a high-Z target.
+The collision between an electron beam and a solid target generates an electromagnetic particle shower,
+in which positrons are produced.
+Because the collision is such high energy, a great deal of energy is deposited in the target in the form of
+thermal energy.  As a result, solid targets tend to degrade over time [].  Since positron yield increases as a
+function of radiation length [], a thicker the target implies a greater positron yield, but that also implies
+a greater energy will deposited into the target, leading to a quicker degredation of the target.
+
+There are various methods for increasing
+the life span of solid targets, such as using a cooling system [] and rotating the target so that the beam doesn't
+hit the same spot of the target every pulse [].
+
+Previous experiments have been carried out to explore alternatives to using solid targets, such as using liquid Mercury (Hg),
+but the apparent hazards that Hg presents are too dangerous to implement in any efficient manner.
+Other approaches include...
+
+For typical Linear Collider applications, around *** $e^+$ per second need to be produced [].
+
+In this paper, we explore the possibility of using a liquid Xenon (Xe) target to produce positrons.
+
+\section{Simulation Results}
+Comparison study between Tantalum (Ta) and liquid Xe because we have a reference study on Ta [].
+We used GEANT4 to simulate the collision between 10 GeV $e^-$ and a target.  We compare the results of using a
+Ta target and a liquid Xe target.
+
+See Table \ref{tab:G4Params} for parameters used in the simulation.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{||c|c|c|c||}
+        \hline
+        Material & Z & Density [$\textrm{g} \cdot \textrm{cm}^{-3} $] & Radiation Length [cm] \\
+        \hline \hline
+        Tantalum (Ta) & 73 & 16.654 & 0.4094 \\
+        \hline
+        Liquid Xe (Xe) & 54 & 2.953 & 2.872 \\
+        \hline
+    \end{tabular}
+    \caption{Parameters used in GEANT4 simulation.}
+    \label{tab:G4Params}
+\end{table}
+
+% \begin{figure}
+%     \includegraphics{../images/CompDeps.png}
+%     \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
+% \end{figure}
+
+% \begin{figure}
+%     \includegraphics{../images/}
+%     \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
+% \end{figure}
+
+As seen in Figure *ref*, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
+
+\section{Cryo-cooled Xenon Gas Jets/Liquid Xenon}
+
+\section{Conclusion}
+Source code for GEANT4 simulations can be found at https://github.com/MaxVarverakis/LiquidXenonSims.git.
+
+\pagebreak
+\begin{acknowledgments}
+We wish to acknowledge the support of the author community in using
+REV\TeX{}, offering suggestions and encouragement, testing new versions,
+\dots.
+\end{acknowledgments}
+
+\appendix
+
+\section{Appendixes}
+
+To start the appendixes, use the \verb+\appendix+ command.
+This signals that all following section commands refer to appendixes
+instead of regular sections. Therefore, the \verb+\appendix+ command
+should be used only once---to setup the section commands to act as
+appendixes. Thereafter normal section commands are used. The heading
+for a section can be left empty. For example,
+\begin{verbatim}
+\appendix
+\section{}
+\end{verbatim}
+will produce an appendix heading that says ``APPENDIX A'' and
+\begin{verbatim}
+\appendix
+\section{Background}
+\end{verbatim}
+will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
+(note that the colon is set automatically).
+
+If there is only one appendix, then the letter ``A'' should not
+appear. This is suppressed by using the star version of the appendix
+command (\verb+\appendix*+ in the place of \verb+\appendix+).
+
+\section{A little more on appendixes}
+
+Observe that this appendix was started by using
+\begin{verbatim}
+\section{A little more on appendixes}
+\end{verbatim}
+
+Note the equation number in an appendix:
+\begin{equation}
+E=mc^2.
+\end{equation}
+
+\subsection{\label{app:subsec}A subsection in an appendix}
+
+You can use a subsection or subsubsection in an appendix. Note the
+numbering: we are now in Appendix~\ref{app:subsec}.
+
+Note the equation numbers in this appendix, produced with the
+subequations environment:
+\begin{subequations}
+\begin{eqnarray}
+E&=&mc, \label{appa}
+\\
+E&=&mc^2, \label{appb}
+\\
+E&\agt& mc^3. \label{appc}
+\end{eqnarray}
+\end{subequations}
+They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
+
+% The \nocite command causes all entries in a bibliography to be printed out
+% whether or not they are actually referenced in the text. This is appropriate
+% for the sample file to show the different styles of references, but authors
+% most likely will not want to use it.
+\nocite{*}
+
+\bibliography{apssamp}% Produces the bibliography via BibTeX.
+
+\end{document}
+%
+% ****** End of file apssamp.tex ******
