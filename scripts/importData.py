@@ -303,6 +303,9 @@ else:
     TaEDep_RMS = [np.sqrt(np.mean(edep ** 2)) / E0 for edep in [tadep0, tadep1, tadep2, tadep3, tadep4, tadep5, tadep6, tadep7, tadep8, 
                                                         tadep9, tadep10, tadep11, tadep12, tadep13, tadep14, tadep15]]
 
+    print(f'Xe EDep @ Max Yield:  {XeEDep_RMS[idx] * E0 :.2f} MeV')
+    print(f'Ta EDep @ Max Yield: {TaEDep_RMS[idx] * E0 :.2f} MeV')
+
     plt.scatter(L_RL, TaEDep_RMS, label = '__nolegend__')
     plt.scatter(L_RL, XeEDep_RMS, label = '__nolegend__')
     plt.plot(L_RL[idx], XeEDep_RMS[idx], 'ro', label = f'Fractional Xenon Energy Deposition @ Max Yield: ~{XeEDep_RMS[idx]:.2f}')
