@@ -4,16 +4,27 @@ import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib as mpl
 
+# Cut all e+ over 1mm spot size
+# Beryllium on either side of Xe => min thickness of Be needed to suppord vac on one side and liquid density on other?
+# ask doug in slack
+# vacuum window
 LXe = 2.8720
 LTa = 0.4094
 L_RL = np.arange(.25, 4.25, .25)
 iterations = 1e5
 E0 = 1e4 # MeV
+w = 5 # mm
 
-mode = ''
+mode = 'Xe'
+cutoff = True
 
-def plots(xlbl, ttlStr):
+def plots(xlbl, ttlStr, ts2 = ''):
     # os.remove('build/out0_nt_e+.csv')
+    # count = 0
+    # if filterSpotSize:
+    #     for df in [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]:
+    #         df = df[df[:, 1] <= .1]
+
     pYield = [len(df[:, 0]) / iterations for df in [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]]
     # print(pYield)
     # print(L_RL)
@@ -55,7 +66,7 @@ def plots(xlbl, ttlStr):
     plt.xlabel(xlbl)
     plt.ylabel('RMS Fractional Energy Deposition [ / incident $e^-$ @ 10 GeV]')
     # plt.ylabel('RMS Energy Deposition / incident $e^-$ [MeV]')
-    plt.ylim(0, 5.75e-1)
+    # plt.ylim(0, 5.75e-1)
     plt.legend(loc = 'upper left')
     plt.title('Energy Deposition vs Radiation Length')
     plt.show()
@@ -125,6 +136,7 @@ def plots(xlbl, ttlStr):
     plt.legend()
     plt.title('RMS $e^+$ Energy vs Radiation Length')
 
+    plt.suptitle(ts2, fontsize = 14)
     plt.show()
 
     # E_filter = 0
@@ -160,6 +172,7 @@ def plots(xlbl, ttlStr):
     plt.legend()
     plt.title('RMS $e^+$ Angle vs Radiation Length')
 
+    plt.suptitle(ts2, fontsize = 14)
     plt.show()
 
 if mode == 'Xe':
@@ -184,6 +197,40 @@ if mode == 'Xe':
     edep14 = pd.read_csv('data/XeDep14.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
     edep15 = pd.read_csv('data/XeDep15.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
 
+    # edep0 = pd.read_csv('build/out0_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep1 = pd.read_csv('build/out1_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep2 = pd.read_csv('build/out2_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep3 = pd.read_csv('build/out3_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep4 = pd.read_csv('build/out4_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep5 = pd.read_csv('build/out5_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep6 = pd.read_csv('build/out6_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep7 = pd.read_csv('build/out7_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep8 = pd.read_csv('build/out8_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep9 = pd.read_csv('build/out9_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep10 = pd.read_csv('build/out10_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep11 = pd.read_csv('build/out11_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep12 = pd.read_csv('build/out12_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep13 = pd.read_csv('build/out13_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep14 = pd.read_csv('build/out14_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    # edep15 = pd.read_csv('build/out15_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+
+    # df0 = pd.read_csv('data/Xe_1mm_0.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df1 = pd.read_csv('data/Xe_1mm_1.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df2 = pd.read_csv('data/Xe_1mm_2.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df3 = pd.read_csv('data/Xe_1mm_3.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df4 = pd.read_csv('data/Xe_1mm_4.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df5 = pd.read_csv('data/Xe_1mm_5.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df6 = pd.read_csv('data/Xe_1mm_6.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df7 = pd.read_csv('data/Xe_1mm_7.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df8 = pd.read_csv('data/Xe_1mm_8.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df9 = pd.read_csv('data/Xe_1mm_9.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df10 = pd.read_csv('data/Xe_1mm_10.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df11 = pd.read_csv('data/Xe_1mm_11.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df12 = pd.read_csv('data/Xe_1mm_12.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df13 = pd.read_csv('data/Xe_1mm_13.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df14 = pd.read_csv('data/Xe_1mm_14.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+    # df15 = pd.read_csv('data/Xe_1mm_15.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
+
     df0 = pd.read_csv('data/Xe0.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
     df1 = pd.read_csv('data/Xe1.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
     df2 = pd.read_csv('data/Xe2.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
@@ -200,8 +247,30 @@ if mode == 'Xe':
     df13 = pd.read_csv('data/Xe13.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
     df14 = pd.read_csv('data/Xe14.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
     df15 = pd.read_csv('data/Xe15.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
-    
-    plots(pltStr, ttlStr)
+
+    if cutoff:
+        ts2 = f'Spot Size Cutoff : {w} mm'
+        
+        df0 = df0[df0[:, 1] <= w]
+        df1 = df1[df1[:, 1] <= w]
+        df2 = df2[df2[:, 1] <= w]
+        df3 = df3[df3[:, 1] <= w]
+        df4 = df4[df4[:, 1] <= w]
+        df5 = df5[df5[:, 1] <= w]
+        df6 = df6[df6[:, 1] <= w]
+        df7 = df7[df7[:, 1] <= w]
+        df8 = df8[df8[:, 1] <= w]
+        df9 = df9[df9[:, 1] <= w]
+        df10 = df10[df10[:, 1] <= w]
+        df11 = df11[df11[:, 1] <= w]
+        df12 = df12[df12[:, 1] <= w]
+        df13 = df13[df13[:, 1] <= w]
+        df14 = df14[df14[:, 1] <= w]
+        df15 = df15[df15[:, 1] <= w]
+        
+        plots(pltStr, ttlStr, ts2)
+    else:
+        plots(pltStr, ttlStr)
 elif mode == 'Ta':
     LTarget = LTa
     ttlStr = '$L_{RL}(Ta) = 0.4094 cm \\quad \\vert \\quad \\frac{d}{L_{LR}(Ta)} \\approx 2.75$ \n Energy Cutoff: 100 MeV'

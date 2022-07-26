@@ -53,13 +53,15 @@ G4bool MySensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *R0hist
             man -> FillNtupleDColumn(0, 0, energy);
             G4ThreeVector pos = postStepPoint -> GetPosition();
             G4double traverseWidth = pos.getRho();
-            G4double angle = pos.getTheta();
+            if (traverseWidth <= 1)
+            {
+                G4double angle = pos.getTheta();
 
-            man -> FillNtupleDColumn(0, 0, energy);
-            man -> FillNtupleDColumn(0, 1, traverseWidth);
-            man -> FillNtupleDColumn(0, 2, angle);
-            man -> AddNtupleRow(0);
-
+                man -> FillNtupleDColumn(0, 0, energy);
+                man -> FillNtupleDColumn(0, 1, traverseWidth);
+                man -> FillNtupleDColumn(0, 2, angle);
+                man -> AddNtupleRow(0);
+            }
             // std::ofstream outfile;
             // outfile.open("output.txt", std::ios::app);
             // outfile << radDistance << G4endl;

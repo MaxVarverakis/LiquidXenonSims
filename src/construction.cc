@@ -6,8 +6,8 @@ MyDetectorConstruction::MyDetectorConstruction()
 
     fMessenger -> DeclareProperty("radLengths", n, "Number of radiation lengths");
     
-    L_RL = 0.4094 * cm;
-    // L_RL = 2.872 * cm;
+    // L_RL = 0.4094 * cm;
+    L_RL = 2.872 * cm;
 
     n = 0.250;
 }
@@ -30,8 +30,8 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
     // G4Material *lXe = nist -> FindOrBuildMaterial("G4_lXe");
     G4Material *air = nist -> FindOrBuildMaterial("G4_Galactic");
-    G4Material *targetMaterial = nist -> FindOrBuildMaterial("G4_Ta");
-    // G4Material *targetMaterial = lqdXe;
+    // G4Material *targetMaterial = nist -> FindOrBuildMaterial("G4_Ta");
+    G4Material *targetMaterial = lqdXe;
 
     G4Box *solidWorld = new G4Box("solidWorld", 0.5 * m, 0.5 * m, 0.5 * m);
     G4LogicalVolume *logicWorld = new G4LogicalVolume(solidWorld, air, "logicWorld");
