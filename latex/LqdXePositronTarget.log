@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.26)  22 JUL 2022 18:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.26)  26 JUL 2022 18:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -194,96 +194,290 @@ Package: bm 2019/07/24 v1.2d Bold Symbol Support (DPC/FMi)
 \symboldsymbols=\mathgroup8
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 141.
 LaTeX Info: Redefining \bm on input line 209.
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count273
+\float@exts=\toks25
+\float@box=\box66
+\@float@everytoks=\toks26
+\@floatcapt=\box67
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/caption/subcaption.sty
+Package: subcaption 2020/10/07 v1.3j Sub-captions (AR)
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption.sty
+Package: caption 2020/10/26 v3.5g Customizing captions (AR)
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen151
+\captionmargin@=\dimen152
+\captionwidth=\dimen153
+\caption@tempdima=\dimen154
+\caption@indent=\dimen155
+\caption@parindent=\dimen156
+\caption@hangindent=\dimen157
+Package caption Info: Unknown document class (or package),
+(caption)             standard defaults will be used.
+Package caption Info: \@makecaption = \long macro:#1#2->\par \vskip \abovecaptionskip \begingroup \small \rmfamily \sbox \@tempboxa {\let \\\heading@cr \@make@capt@title {#1}{#2}}\@ifdim {\wd \@tempboxa >\hsize }{\begingroup \samepage \flushing \let \footnote \@footnotemark@gobble \@make@capt@title {#1}{#2}\par \endgroup }{\global \@minipagefalse \hb@xt@ \hsize {\hfil \unhbox \@tempboxa \hfil }}\endgroup \vskip \belowcaptionskip  on input line 1139.
 )
-Class revtex4-2 Info: Unrecognized array package. Please update this document class! (Proceeding with fingers crossed.) on input line 58.
-Class revtex4-2 Info: cite was not loaded (OK!) on input line 58.
-Class revtex4-2 Info: mcite was not loaded (OK!) on input line 58.
-Class revtex4-2 Info: multicol was not loaded (OK!) on input line 58.
- (/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+
+Package caption Warning: Unknown document class (or package),
+(caption)                standard defaults will be used.
+See the caption package documentation for explanation.
+
+\c@caption@flags=\count274
+\c@continuedfloat=\count275
+Package caption Info: float package is loaded.
+)
+\c@subfigure=\count276
+\c@subtable=\count277
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2020/08/10 v2.0s Standard LaTeX package
+) (/usr/local/texlive/2021/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2020/08/01 v1.3d Input encoding file
+\inpenc@prehook=\toks27
+\inpenc@posthook=\toks28
+) (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2021/03/24 3.56 The Babel package
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2021/03/24 3.56 Babel common definitions
+\babel@savecnt=\count278
+\U@D=\dimen158
+\l@babelnohyphens=\language87
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/txtbabel.def)
+\bbl@readstream=\read2
+)
+\bbl@dirlevel=\count279
+Package babel Info: You haven't specified a language. I'll use 'nil'
+(babel)             as the main language. Reported on input line 1160.
+ (/usr/local/texlive/2021/texmf-dist/tex/generic/babel/nil.ldf
+Language: nil 2021/03/24 3.56 Nil language
+\l@nil=\language88
+))
+Class revtex4-2 Info: Unrecognized array package. Please update this document class! (Proceeding with fingers crossed.) on input line 65.
+
+
+Class revtex4-2 Warning: Repair the float package.
+
+Class revtex4-2 Info: cite was not loaded (OK!) on input line 65.
+Class revtex4-2 Info: mcite was not loaded (OK!) on input line 65.
+Class revtex4-2 Info: multicol was not loaded (OK!) on input line 65.
+(/usr/local/texlive/2021/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2021-03-18 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count273
-\l__pdf_internal_box=\box66
+\l__color_backend_stack_int=\count280
+\l__pdf_internal_box=\box68
 ) (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.aux)
 \openout1 = `LqdXePositronTarget.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 58.
-LaTeX Font Info:    ... okay on input line 58.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
+LaTeX Font Info:    ... okay on input line 65.
  (/usr/local/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count274
-\scratchdimen=\dimen151
-\scratchbox=\box67
-\nofMPsegments=\count275
-\nofMParguments=\count276
-\everyMPshowfont=\toks25
-\MPscratchCnt=\count277
-\MPscratchDim=\dimen152
-\MPnumerator=\count278
-\makeMPintoPDFobject=\count279
-\everyMPtoPDFconversion=\toks26
+\scratchcounter=\count281
+\scratchdimen=\dimen159
+\scratchbox=\box69
+\nofMPsegments=\count282
+\nofMParguments=\count283
+\everyMPshowfont=\toks29
+\MPscratchCnt=\count284
+\MPscratchDim=\dimen160
+\MPnumerator=\count285
+\makeMPintoPDFobject=\count286
+\everyMPtoPDFconversion=\toks30
 ) (/usr/local/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
 ))
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: End \AtBeginDocument code.
 \openout3 = `LqdXePositronTargetNotes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 105.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 106.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
+File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 112.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 105.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 112.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 4739) in paragraph at lines 114--115
- []\OT1/cmr/m/n/10 What are the is-sues with "tra-di-tional"
+Underfull \hbox (badness 4752) in paragraph at lines 121--122
+ []\T1/cmr/m/n/10 What are the issues with "traditional"
  []
 
 
-Underfull \hbox (badness 1584) in paragraph at lines 117--118
- []\OT1/cmr/m/n/10 Introduction is ba-si-cally a lit-er-a-ture sur-
+Underfull \hbox (badness 10000) in paragraph at lines 124--125
+ []\T1/cmr/m/n/10 Introduction is basically a literature
  []
 
 
-Overfull \hbox (10.85803pt too wide) in paragraph at lines 167--176
+Overfull \hbox (4.00638pt too wide) in paragraph at lines 174--183
  []$[]$ 
  []
 
+<../images/CompDeps.png, id=1, 518.1759pt x 380.1402pt>
+File: ../images/CompDeps.png Graphic file (type png)
+<use ../images/CompDeps.png>
+Package pdftex.def Info: ../images/CompDeps.png  used on input line 187.
+(pdftex.def)             Requested size: 246.0pt x 180.46405pt.
 
-Overfull \hbox (7.4173pt too wide) in paragraph at lines 195--196
-\OT1/cmr/m/n/10 https://github.com/MaxVarverakis/LiquidXenonSims.git. 
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<../images/CompYield.png, id=3, 836.1639pt x 456.0237pt>
+File: ../images/CompYield.png Graphic file (type png)
+<use ../images/CompYield.png>
+Package pdftex.def Info: ../images/CompYield.png  used on input line 193.
+(pdftex.def)             Requested size: 233.7798pt x 127.5pt.
+<../images/CompATW.png, id=4, 844.8363pt x 476.982pt>
+File: ../images/CompATW.png Graphic file (type png)
+<use ../images/CompATW.png>
+Package pdftex.def Info: ../images/CompATW.png  used on input line 195.
+(pdftex.def)             Requested size: 225.82712pt x 127.5pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 192--198
+[]$[]$ 
  []
 
 [1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-No file LqdXePositronTarget.bbl.
-[2] (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.aux) ) 
+
+LaTeX Warning: A float is stuck (cannot be placed) on input line 200.
+
+
+LaTeX Warning: A float is stuck (cannot be placed) on input line 200.
+
+
+Class revtex4-2 Warning: Deferred float stuck during \clearpage processing.
+
+<../images/TaHists.png, id=25, 1040.688pt x 586.1097pt>
+File: ../images/TaHists.png Graphic file (type png)
+<use ../images/TaHists.png>
+Package pdftex.def Info: ../images/TaHists.png  used on input line 203.
+(pdftex.def)             Requested size: 226.37958pt x 127.5pt.
+<../images/XeHists.png, id=26, 1040.688pt x 586.1097pt>
+File: ../images/XeHists.png Graphic file (type png)
+<use ../images/XeHists.png>
+Package pdftex.def Info: ../images/XeHists.png  used on input line 205.
+(pdftex.def)             Requested size: 226.37958pt x 127.5pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 202--208
+[]$[]$ 
+ []
+
+
+Underfull \hbox (badness 1087) in paragraph at lines 209--209
+[]\T1/cmr/m/n/10 FIG. 3: |[]Traverse width and angular diffraction of
+ []
+
+<../images/XeYield1mmCutoff.png, id=27, 758.835pt x 351.9549pt>
+File: ../images/XeYield1mmCutoff.png Graphic file (type png)
+<use ../images/XeYield1mmCutoff.png>
+Package pdftex.def Info: ../images/XeYield1mmCutoff.png  used on input line 224.
+(pdftex.def)             Requested size: 274.89407pt x 127.5pt.
+
+Overfull \hbox (19.89407pt too wide) in paragraph at lines 224--225
+[][] 
+ []
+
+<../images/XeYield5mmCutoff.png, id=28, 750.8853pt x 352.6776pt>
+File: ../images/XeYield5mmCutoff.png Graphic file (type png)
+<use ../images/XeYield5mmCutoff.png>
+Package pdftex.def Info: ../images/XeYield5mmCutoff.png  used on input line 226.
+(pdftex.def)             Requested size: 271.4528pt x 127.5pt.
+
+Overfull \hbox (16.4528pt too wide) in paragraph at lines 226--227
+[][] 
+ []
+
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 223--229
+[]$[]$ 
+ []
+
+[2 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompDeps.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompYield.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompATW.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/TaHists.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeHists.png>]
+<../images/XeATW1mmCutoff.png, id=37, 728.4816pt x 303.534pt>
+File: ../images/XeATW1mmCutoff.png Graphic file (type png)
+<use ../images/XeATW1mmCutoff.png>
+Package pdftex.def Info: ../images/XeATW1mmCutoff.png  used on input line 235.
+(pdftex.def)             Requested size: 278.4599pt x 116.02547pt.
+
+Overfull \hbox (23.4599pt too wide) in paragraph at lines 235--236
+[][] 
+ []
+
+<../images/XeATW5mmCutoff.png, id=38, 851.3406pt x 398.9304pt>
+File: ../images/XeATW5mmCutoff.png Graphic file (type png)
+<use ../images/XeATW5mmCutoff.png>
+Package pdftex.def Info: ../images/XeATW5mmCutoff.png  used on input line 237.
+(pdftex.def)             Requested size: 272.0968pt x 127.5pt.
+
+Overfull \hbox (17.0968pt too wide) in paragraph at lines 237--238
+[][] 
+ []
+
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 234--240
+[]$[]$ 
+ []
+
+<../images/Schematic.png, id=39, 771.88374pt x 407.5225pt>
+File: ../images/Schematic.png Graphic file (type png)
+<use ../images/Schematic.png>
+Package pdftex.def Info: ../images/Schematic.png  used on input line 247.
+(pdftex.def)             Requested size: 255.0pt x 134.62585pt.
+
+Overfull \hbox (9.0pt too wide) in paragraph at lines 247--248
+[][] 
+ []
+
+
+Overfull \hbox (1.08157pt too wide) in paragraph at lines 257--281
+ []$[]$ 
+ []
+
+[3 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeYield1mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeYield5mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeATW1mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeATW5mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/Schematic.png>]
+Underfull \hbox (badness 2608) in paragraph at lines 311--313
+[]\T1/cmr/m/n/10 We can calculate the max yield and strain of
+ []
+
+
+Underfull \hbox (badness 3219) in paragraph at lines 357--359
+\T1/cmr/m/n/10 A: BACKGROUND'' (note that the colon is set
+ []
+
+
+Underfull \hbox (badness 1742) in paragraph at lines 378--380
+\T1/cmr/m/n/10 appendix. Note the numbering: we are now in
+ []
+
+[4] (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.bbl) [5] (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.aux) ) 
 Here is how much of TeX's memory you used:
- 4520 strings out of 478994
- 60273 string characters out of 5858184
- 373733 words of memory out of 5000000
- 21951 multiletter control sequences out of 15000+600000
- 416921 words of font info for 77 fonts, out of 8000000 for 9000
+ 6980 strings out of 478994
+ 101497 string characters out of 5858184
+ 429387 words of memory out of 5000000
+ 24348 multiletter control sequences out of 15000+600000
+ 424632 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,10n,88p,358b,263s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb>
-Output written on "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.pdf" (2 pages, 186254 bytes).
+ 82i,12n,88p,405b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.pdf" (5 pages, 786579 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
- 58 compressed objects within 1 object stream
+ 137 PDF objects out of 1000 (max. 8388607)
+ 86 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 51 words of extra memory for PDF output out of 10000 (max. 10000000)
 

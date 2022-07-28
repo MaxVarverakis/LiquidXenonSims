@@ -37,12 +37,19 @@ aps,
 %rmp,
 %prstab,
 %prstper,
-%floatfix,
+floatfix,
 ]{revtex4-2}
 
 \usepackage{graphicx}% Include figure files
 \usepackage{dcolumn}% Align table columns on decimal point
 \usepackage{bm}% bold math
+\usepackage{float}
+\usepackage{subcaption}% Subcaption for figures
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{babel}
+
 %\usepackage{hyperref}% add hypertext capabilities
 %\usepackage[mathlines]{lineno}% Enable numbering of text and display math
 %\linenumbers\relax % Commence numbering lines
@@ -156,45 +163,173 @@ For typical Linear Collider applications, around *** $e^+$ per second need to be
 In this paper, we explore the possibility of using a liquid Xenon (Xe) target to produce positrons.
 
 \section{Simulation Results}
+\subsection{Comparing Liquid Xe and Ta Targets}
 Comparison study between Tantalum (Ta) and liquid Xe because we have a reference study on Ta [].
 We used GEANT4 to simulate the collision between 10 GeV $e^-$ and a target.  We compare the results of using a
 Ta target and a liquid Xe target.
 
 See Table \ref{tab:G4Params} for parameters used in the simulation.
-
 \begin{table}[h]
     \centering
-    \begin{tabular}{||c|c|c|c||}
-        \hline
-        Material & Z & Density [$\textrm{g} \cdot \textrm{cm}^{-3} $] & Radiation Length [cm] \\
+    \begin{tabular}{cccc}
         \hline \hline
+        Material & Z & Density [$\textrm{g} \cdot \textrm{cm}^{-3} $] & Radiation Length [cm] \\
+        \hline
         Tantalum (Ta) & 73 & 16.654 & 0.4094 \\
-        \hline
+        % \hline
         Liquid Xe (Xe) & 54 & 2.953 & 2.872 \\
-        \hline
+        \hline \hline
     \end{tabular}
-    \caption{Parameters used in GEANT4 simulation.}
-    \label{tab:G4Params}
+    \caption{\label{tab:G4Params}Parameters used in GEANT4 simulation when comparing targets.}
 \end{table}
 
-% \begin{figure}
-%     \includegraphics{../images/CompDeps.png}
-%     \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
-% \end{figure}
+\begin{figure}[h]
+    \includegraphics[width = \linewidth]{../images/CompDeps.png}
+    \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
+\end{figure}
 
-% \begin{figure}
-%     \includegraphics{../images/}
-%     \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
-% \end{figure}
+\begin{figure}[H]
+    \begin{subfigure}{.5\textwidth}
+        \includegraphics[height = .5\linewidth]{../images/CompYield.png}
+        \caption{\label{fig:Yield} Positron yield per incident electron at 10 GeV.}
+        \includegraphics[height = .5\linewidth]{../images/CompATW.png}
+        \caption{\label{fig:ATW}Positron spot size and diffraction angle at the exit of the target.}
+    \end{subfigure}
+    \caption{\label{fig:Comps}}
+\end{figure}
 
-As seen in Figure *ref*, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
+\begin{figure}[H]
+    \begin{subfigure}{.5\textwidth}
+        \includegraphics[height = .5\linewidth]{../images/TaHists.png}
+        \caption{\label{fig:TaHists}Tantalum target.}
+        \includegraphics[height = .5\linewidth]{../images/XeHists.png}
+        \caption{\label{fig:XeHists}Liquid Xenon target.}
+    \end{subfigure}
+    \caption{\label{fig:Hists}Traverse width and angular diffraction of positrons as a function
+    of their energy upon production.  Data is shown for widths of 2.75 radiation lengths (max e$^+$ yield).}
+\end{figure}
+
+As seen in Figure \ref{fig:Yield}, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
+
+\subsection{Setting a Cutoff Energy and Traverse Width}
+Although the max yield for liquid Xenon is on par with that of the Tantalum target,
+according to Figures \ref{fig:ATW} and \ref{fig:Hists}, the physical spread of positrons produced
+from the liquid Xenon target is much larger than that of the Tantalum target.  As a result, only a small
+fraction of the positrons that exit the target will have the correct parameters to make it down the rest of
+the accelerator.  In order to accurately assess the plausibility of using a liquid Xenon positron target,
+we set cutoffs for the traverse width of positrons created during the collision.
+
+\begin{figure}[H]
+    \begin{subfigure}{.5\textwidth}
+        \includegraphics[height = .5\linewidth]{../images/XeYield1mmCutoff.png}
+        \caption{\label{fig:XeY1}1 mm cutoff}
+        \includegraphics[height = .5\linewidth]{../images/XeYield5mmCutoff.png}
+        \caption{\label{fig:XeY5}5 mm cutoff}
+    \end{subfigure}
+    \caption{\label{fig:YieldCut}Positron yield and energy using 
+    a liquid Xenon target with a 1 mm cutoff and 5 mm traverse width cutoff.}
+\end{figure}
+
+\begin{figure}[H]
+    \begin{subfigure}{.5\textwidth}
+        \includegraphics[height = .455\linewidth]{../images/XeATW1mmCutoff.png}
+        \caption{\label{fig:XeATW1}1 mm cutoff}
+        \includegraphics[height = .5\linewidth]{../images/XeATW5mmCutoff.png}
+        \caption{\label{fig:XeATW5}5 mm cutoff}
+    \end{subfigure}
+    \caption{\label{fig:ATWCut}Positron spot size and angular diffraction using 
+    a liquid Xenon target with a 1 mm cutoff and 5 mm traverse width cutoff.}
+\end{figure}
 
 \section{Cryo-cooled Xenon Gas Jets/Liquid Xenon}
+Below is a basic schematic of how the liquid Xenon chamber will interact with the beam.
+\begin{figure}[H]
+    \includegraphics[width = .5\textwidth]{../images/Schematic.png}
+    \caption{\label{fig:schem}Schematic of liquid Xenon setup}
+\end{figure}
+
+\subsection{Calculating the Liquid Xenon Flow Rate}
+To calculate the flow rate of the liquid Xenon, we first calculate preliminary
+values using the information given in the table below.
+
+\begin{table}[H]
+    \centering
+    \begin{tabular}{lccc}
+        \hline \hline
+        \textbf{Quantity} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
+        % Quantity & Symbol & Value & Units \\
+        \hline
+        % $\textrm{g}\cdot\textrm{mol}^{-1}$
+        Molar Mass & \textrm{M} & 131.293 & u \\
+        Heat of Vaporization & $\Delta \textrm{H}$ & 12.636 & kJ$\cdot$mol$^{-1}$ \\
+        Radiation Length & $\textrm{L}_{\textrm{RL}}$ & 2.872 & cm \\
+        Target Width & $\frac{\textrm{d}}{\textrm{L}_{\textrm{RL}}}$ & 2.25 & $\textrm{L}_{\textrm{RL}}$ \\
+        Energy Deposition per e$^-$ & E$_{\textrm{dep}}$ & .66581 & GeV \\
+        Beam Rep Rate & $f$ & 10.0 & Hz \\
+        Beam Charge & $q$ & 2.0 & nC \\
+        Target Density & $\rho$ & 2.953 & $\textrm{g} \cdot \textrm{cm}^{-3}$ \\
+        \hline \hline
+        % & \textbf{Calculated Quantities} & & \\
+        \textbf{Calculated Quantities} \\
+        \hline
+        Number of e$^-$ & n & $1.248 \times 10^{10}$ & \\
+        Energy Deposit per Bunch & $\varepsilon$ & 1.33162 & J \\
+        Heat of Vap. per Volume & $\Delta \textrm{H}_{\textrm{vol}}$ & 284.205 & J$\cdot \textrm{cm}^{-3}$ \\
+        Flow Rate & Q & $4.685 \times 10^{-2}$ & cm$^3\cdot \textrm{s}^{-1}$ \\
+        \hline \hline
+    \end{tabular}
+    \caption{\label{tab:XeInfo}Important parameters associated with liquid Xenon target.}
+\end{table}
+We first convert the heat of vaporization to units of Joules per unit volume (J$\cdot \textrm{cm}^{-3}$),
+which is given by Eq.~(\ref{subeq:HoV}).
+We then calculate the number of electrons per beam bunch (SLAC), by comparing the 
+total charge of the beam bunch to the charge of an electron
+($e \approx 1.602 \times 10^{-10}$ nC), as follows from Eq.~(\ref{subeq:n}).
+From this, we calculate the total energy deposited in the liquid Xenon target, 
+as seen in Eq.~(\ref{subeq:Etot}).
+\begin{subequations}
+    \begin{eqnarray}
+        \Delta \textrm{H}_\textrm{vol} &=& \frac{\Delta \textrm{H}\cdot \rho}{\textrm{M}}, \label{subeq:HoV} \\
+        n &=& \frac{q}{e}, \label{subeq:n} \\
+        \varepsilon &=& n \cdot E_{\textrm{dep}} \label{subeq:Etot}.
+    \end{eqnarray}
+\end{subequations}
+    
+Now we have everything we need in order to calculate the flow rate of liquid Xenon
+required to replace the vaporized Xenon due to the energy deposited by the beam,
+\begin{equation}
+    Q = \frac{\varepsilon \cdot f}{\Delta \textrm{H}_{\textrm{vol}}}.
+\label{eq:Q}
+\end{equation}
+
+\subsection{Using Beryllium Windows to the Target Chamber}
+We explore using Beryllium windows for the beam to enter the target chamber.
+Below is a table of useful information about Beryllium.
+
+***Table??***
+
+We can calculate the max yield and strain of Beryllium windows based on a piece
+of Beryllium that is ***Dimensions??***
+
+***Equations??***
+
 
 \section{Conclusion}
-Source code for GEANT4 simulations can be found at https://github.com/MaxVarverakis/LiquidXenonSims.git.
+\subsection{Design of Liquid Xenon Chamber}
+Here we explore how one could design a chamber for the liquid Xenon target.
 
-\pagebreak
+Source code and sample data for GEANT4 simulations can be found at 
+\url{https://github.com/MaxVarverakis/LiquidXenonSims.git}.
+
+
+
+
+
+
+
+
+
+
 \begin{acknowledgments}
 We wish to acknowledge the support of the author community in using
 REV\TeX{}, offering suggestions and encouragement, testing new versions,
@@ -202,7 +337,6 @@ REV\TeX{}, offering suggestions and encouragement, testing new versions,
 \end{acknowledgments}
 
 \appendix
-
 \section{Appendixes}
 
 To start the appendixes, use the \verb+\appendix+ command.
@@ -263,7 +397,7 @@ They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
 % most likely will not want to use it.
 \nocite{*}
 
-\bibliography{apssamp}% Produces the bibliography via BibTeX.
+% \bibliography{apssamp}% Produces the bibliography via BibTeX.
 
 \end{document}
 %

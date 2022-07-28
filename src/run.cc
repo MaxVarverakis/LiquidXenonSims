@@ -13,13 +13,21 @@ MyRunAction::MyRunAction()
     man -> CreateNtuple("e+", "Hits");
     man -> CreateNtupleDColumn("fEnergy");
     man -> CreateNtupleDColumn("fTraverseWidth");
-    man -> CreateNtupleDColumn("fAngle");
+    man -> CreateNtupleDColumn("fTheta");
+    man -> CreateNtupleDColumn("fPhi");
     man -> FinishNtuple(0);
 
     // Energy Deposition
     man -> CreateNtuple("Data", "Edep");
     man -> CreateNtupleDColumn("fEdep");
     man -> FinishNtuple(1);
+
+    man -> CreateNtuple("M4V", "p4");
+    man -> CreateNtupleDColumn("fX");
+    man -> CreateNtupleDColumn("fY");
+    man -> CreateNtupleDColumn("fZ");
+    man -> CreateNtupleDColumn("fME");
+    man -> FinishNtuple(2);
 }
 
 MyRunAction::~MyRunAction()

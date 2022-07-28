@@ -1,6 +1,6 @@
 import numpy as np
 
-def flow(H = 12.636, p = 2.953, M = 131.293, q = 2, f = 10, Edep = 2.912):
+def flow(H = 12.636, p = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
     '''
     Calculate the required flow rate due to energy deposition from electron beam pulse
 
