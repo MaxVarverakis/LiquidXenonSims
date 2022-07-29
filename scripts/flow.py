@@ -36,5 +36,9 @@ def flow(H = 12.636, p = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
 
     return Q
 
+def force(args):
+    'bernoullis principle on wikipedia ignore v^2 term and'
+    pass
+
 if __name__ == '__main__':
     flow()

@@ -15,6 +15,11 @@ MyRunAction::MyRunAction()
     man -> CreateNtupleDColumn("fTraverseWidth");
     man -> CreateNtupleDColumn("fTheta");
     man -> CreateNtupleDColumn("fPhi");
+    man -> CreateNtupleDColumn("fX");
+    man -> CreateNtupleDColumn("fY");
+    man -> CreateNtupleDColumn("fZ");
+    man -> CreateNtupleDColumn("fME");
+    man -> CreateNtupleDColumn("fMinkowski");
     man -> FinishNtuple(0);
 
     // Energy Deposition
@@ -22,12 +27,13 @@ MyRunAction::MyRunAction()
     man -> CreateNtupleDColumn("fEdep");
     man -> FinishNtuple(1);
 
-    man -> CreateNtuple("M4V", "p4");
-    man -> CreateNtupleDColumn("fX");
-    man -> CreateNtupleDColumn("fY");
-    man -> CreateNtupleDColumn("fZ");
-    man -> CreateNtupleDColumn("fME");
-    man -> FinishNtuple(2);
+    // man -> CreateNtuple("M4V", "p4");
+    // man -> CreateNtupleDColumn("fX");
+    // man -> CreateNtupleDColumn("fY");
+    // man -> CreateNtupleDColumn("fZ");
+    // man -> CreateNtupleDColumn("fME");
+    // man -> CreateNtupleDColumn("fMinkowski");
+    // man -> FinishNtuple(2);
 }
 
 MyRunAction::~MyRunAction()

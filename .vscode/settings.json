@@ -1,6 +1,22 @@
 {
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "files.associations": {
-        "*.icc": "cpp"
+        "*.icc": "cpp",
+        "atomic": "cpp",
+        "chrono": "cpp",
+        "map": "cpp",
+        "mutex": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "regex": "cpp",
+        "shared_mutex": "cpp",
+        "__debug": "cpp",
+        "algorithm": "cpp",
+        "*.tcc": "cpp",
+        "variant": "cpp",
+        "dps": "cpp",
+        "hplot": "cpp",
+        "aidas": "cpp",
+        "line": "cpp"
     }
 }

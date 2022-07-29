@@ -58,33 +58,53 @@ G4bool MySensitiveDetector::ProcessHits(G4Step *step, G4TouchableHistory *R0hist
             G4double azimuthal = pos.getTheta();
             G4double angle = pos.getPhi();
 
-            // G4ThreeVector p = track -> GetMomentum();
-            G4ThreeVector momentumDir = track -> GetMomentumDirection();
-            G4double mass = postStepPoint -> GetMass();
-            G4double momentum = std::sqrt(energy * energy + 2.0 * mass * energy);
-            // G4LorentzVector    p4( theMomentumDirection.x()*momentum,
-            //                         theMomentumDirection.y()*momentum,
-            //                         theMomentumDirection.z()*momentum,
-            //                         energy+mass);
-            G4LorentzVector p4 = G4LorentzVector(momentumDir.x() * momentum,
-                                                    momentumDir.y() * momentum, 
-                                                    momentumDir.z() * momentum, 
-                                                    energy + mass);
+            G4LorentzVector p4 = track -> GetDynamicParticle() -> Get4Momentum();
+            G4double invariant = p4.m();
+
+            // G4cout << "Invariant: " << G4BestUnit(invariant, "Energy") << G4endl;
+            // G4cout << p4.m() << G4endl;
+            // G4cout << p4.px() << ' ' << p4[0] << ' ' << p4.e() << ' ' << p4[3] << G4endl;
+            // G4ThreeVector momentumDir = postStepPoint -> GetMomentumDirection();
+            // G4double mass = postStepPoint -> GetMass();
+            // G4cout << mass << G4endl;
+            // G4cout << energy << p4[3] << G4endl;
+            // G4double momentum = std::sqrt(energy * energy + 2.0 * mass * energy);
+            // G4LorentzVector p4 = G4LorentzVector(momentumDir.x() * momentum,
+            //                                         momentumDir.y() * momentum, 
+            //                                         momentumDir.z() * momentum, 
+            //                                         energy + mass);
+            // G4cout << p4.m() << G4endl;
             // G4cout << "Momentum Four Vector: " << p4 << ", Mass: " << mass 
             // << ", Energy: " << energy << G4endl;
             // G4LorentzVector fourVec = postStepPoint -> Get4Momentum();
+            
+            // G4cout << p4[0] << G4endl;
+            // G4cout << G4BestUnit(p4[0], "Momentum") << G4endl;
+            // G4cout << G4BestUnit(p4[1], "Momentum") << G4endl;
+            // G4cout << G4BestUnit(p4[2], "Momentum") << G4endl;
+            // G4cout << G4BestUnit(p4[3], "Energy") << G4endl;
+            // G4cout << p4[3] << G4endl;
+            
+            // G4cout << p4 << G4endl;
+            // G4cout << P << G4endl;
 
             man -> FillNtupleDColumn(0, 0, energy);
             man -> FillNtupleDColumn(0, 1, traverseWidth);
             man -> FillNtupleDColumn(0, 2, azimuthal);
             man -> FillNtupleDColumn(0, 3, angle);
+            man -> FillNtupleDColumn(0, 4, p4.px());
+            man -> FillNtupleDColumn(0, 5, p4.py());
+            man -> FillNtupleDColumn(0, 6, p4.pz());
+            man -> FillNtupleDColumn(0, 7, p4.e());
+            man -> FillNtupleDColumn(0, 8, invariant);
             man -> AddNtupleRow(0);
 
-            man -> FillNtupleDColumn(2, 0, p4[0]);
-            man -> FillNtupleDColumn(2, 1, p4[1]);
-            man -> FillNtupleDColumn(2, 2, p4[2]);
-            man -> FillNtupleDColumn(2, 3, p4[3]);
-            man -> AddNtupleRow(2);
+            // man -> FillNtupleDColumn(2, 0, p4.px());
+            // man -> FillNtupleDColumn(2, 1, p4.py());
+            // man -> FillNtupleDColumn(2, 2, p4.pz());
+            // man -> FillNtupleDColumn(2, 3, p4.e());
+            // man -> FillNtupleDColumn(2, 4, invariant);
+            // man -> AddNtupleRow(2);
 
             // std::ofstream outfile;
             // outfile.open("output.txt", std::ios::app);
