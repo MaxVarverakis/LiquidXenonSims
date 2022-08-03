@@ -113,33 +113,33 @@ use the optional argument of the \verb+\item+ command to give the category of ea
 
 %\tableofcontents
 
-\section{Outline}
-\begin{itemize}
-    \item Introduction
-    \begin{itemize}
-        \item What is the problem that we are trying to solve?
-        \item What are the issues with "traditional" positron targets?
-        \item What approaches have been tried already?
-        \item How many positrons-per-second are needed for Linear Collider applications?
-        \item Introduction is basically a literature survey/review.
-    \end{itemize}
-    \item Comparing Positron production in Xenon vs W or Ta
-    \begin{itemize}
-        \item This is where the GEANT simulations go.
-        \item How thick/dense does Xenon need to be to match positron production in W or Ta?
-    \end{itemize}
-    \item Cryo-cooled Xenon gas jets
-    \begin{itemize}
-        \item Does this exist?
-        \item Describe work with liquid Xenon and work with cryo-cooled gas jets at SLAC.
-        \item Vacuum challenges?
-    \end{itemize}
-    \item Conclusion
-    \begin{itemize}
-        \item Describe next steps. How would we actually build/implement this?
-    \end{itemize}
+% \section{Outline}
+% \begin{itemize}
+%     \item Introduction
+%     \begin{itemize}
+%         \item What is the problem that we are trying to solve?
+%         \item What are the issues with "traditional" positron targets?
+%         \item What approaches have been tried already?
+%         \item How many positrons-per-second are needed for Linear Collider applications?
+%         \item Introduction is basically a literature survey/review.
+%     \end{itemize}
+%     \item Comparing Positron production in Xenon vs W or Ta
+%     \begin{itemize}
+%         \item This is where the GEANT simulations go.
+%         \item How thick/dense does Xenon need to be to match positron production in W or Ta?
+%     \end{itemize}
+%     \item Cryo-cooled Xenon gas jets
+%     \begin{itemize}
+%         \item Does this exist?
+%         \item Describe work with liquid Xenon and work with cryo-cooled gas jets at SLAC.
+%         \item Vacuum challenges?
+%     \end{itemize}
+%     \item Conclusion
+%     \begin{itemize}
+%         \item Describe next steps. How would we actually build/implement this?
+%     \end{itemize}
     
-\end{itemize}
+% \end{itemize}
 
 \section{Introduction}
 A common scheme for producing positrons is by colliding high energy electrons into a high-Z target.
@@ -188,64 +188,106 @@ See Table \ref{tab:G4Params} for parameters used in the simulation.
     \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
 \end{figure}
 
+\subsubsection{Calculating Positron Emittance}
+To calculate the RMS emittance of the positrons generated in pair production, we utilize the following sets
+of equations []
+\begin{subequations}
+    \begin{eqnarray}
+        \left\langle x^2 \right\rangle &= \frac{\sum x^2}{n} - \left( \frac{\sum x}{n} \right)^2, \label{subeq:x2} \\
+        \left\langle p_x^2 \right\rangle &= \frac{\sum p_x^2}{n} - \left( \frac{\sum p_x}{n} \right)^2, \label{subeq:p2} \\ 
+        \left\langle xp_x \right\rangle &= \frac{\sum xp_x}{n} - \frac{\sum x \sum p_x}{n^2}, \label{subeq:xp}
+    \end{eqnarray}
+\end{subequations}
+which gives us
+\begin{equation}
+    \varepsilon_{n,rms} = \frac{1}{m_0c}\sqrt[]{\left\langle x^2 \right\rangle \left\langle p_x^2 \right\rangle - \left\langle xp_x \right\rangle}. \label{eq:Emittance}
+\end{equation}
+Using these equations, we generate a plot of the x- and y-emittance of the positrons against target width for both
+Tantalum and liquid Xenon targets.  As seen in Figure \ref{fig:Emittance}, both the x- and y-emittance of the positrons
+are lower in the Tantalum target than in the liquid Xenon target.  According to [], the emittance values associated
+with liquid Xenon are still comparable for use in linear colliders.
+\begin{figure}[h]
+    \includegraphics[width = .825\linewidth]{../images/CompEmittance.png}
+    \caption{\label{fig:Emittance}Normalized RMS positron emittance in a Tantalum and liquid Xenon target for differing target widths.
+    The positron energy cutoff was set to 100 MeV.}
+\end{figure}
+% \begin{figure}[h]
+%     \includegraphics[width = \linewidth]{../images/XCompEmittance.png}
+%     \caption{\label{fig:Emittance}RMS positron x-emittance in a Tantalum and liquid Xenon target for differing target widths.
+%     The positron energy cutoff was set to 100 MeV.}
+% \end{figure}
+% \begin{figure}[h]
+%     \includegraphics[width = \linewidth]{../images/YCompEmittance.png}
+%     \caption{\label{fig:Emittance}RMS positron y-emittance in a Tantalum and liquid Xenon target for differing target widths.
+%     The positron energy cutoff was set to 100 MeV.}
+% \end{figure}
+
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
         \includegraphics[height = .5\linewidth]{../images/CompYield.png}
         \caption{\label{fig:Yield} Positron yield per incident electron at 10 GeV.}
         \includegraphics[height = .5\linewidth]{../images/CompATW.png}
-        \caption{\label{fig:ATW}Positron spot size and diffraction angle at the exit of the target.}
+        \caption{\label{fig:ATW}Positron shower spot size and diffraction angle at the exit of the target.}
     \end{subfigure}
-    \caption{\label{fig:Comps}}
+    \caption{\label{fig:Comps}Positron yield per incident $e^-$ at 10 GeV, 
+    shower spot size, and angular divergence of positrons upon exiting the target.}
 \end{figure}
+From Figure \ref{fig:Yield}, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
+Despite having different radiation lengths, the energy of the positrons exiting the
+target at a given width are relatively equal for both target materials.
 
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .5\linewidth]{../images/TaHists.png}
+        \includegraphics[height = .65\linewidth]{../images/TaHists.png}
         \caption{\label{fig:TaHists}Tantalum target.}
-        \includegraphics[height = .5\linewidth]{../images/XeHists.png}
+        \includegraphics[height = .65\linewidth]{../images/XeHists.png}
         \caption{\label{fig:XeHists}Liquid Xenon target.}
     \end{subfigure}
     \caption{\label{fig:Hists}Traverse width and angular diffraction of positrons as a function
     of their energy upon production.  Data is shown for widths of 2.75 radiation lengths (max e$^+$ yield).}
 \end{figure}
 
-As seen in Figure \ref{fig:Yield}, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
-
-\subsection{Setting a Cutoff Energy and Traverse Width}
-Although the max yield for liquid Xenon is on par with that of the Tantalum target,
+Notice that in Figure \ref{fig:Hists}, the angular divergence of positrons is roughly the same for both targets,
+yet the traverse widths are more broadly distributed for the liquid Xenon target.  This can be explained by the 
+fact that the radiation length of liquid Xenon is roughly seven times that of Tantalum.
+\subsection{Setting a Cutoff Traverse Width}
+Although the max yield for liquid Xenon is on par with that of the Tantalum target
 according to Figures \ref{fig:ATW} and \ref{fig:Hists}, the physical spread of positrons produced
-from the liquid Xenon target is much larger than that of the Tantalum target.  As a result, only a small
-fraction of the positrons that exit the target will have the correct parameters to make it down the rest of
+from the liquid Xenon target is much larger than that of the Tantalum target.  As a result, only a
+fraction of the positrons that exit the target will have the right characteristics to make it down the rest of
 the accelerator.  In order to accurately assess the plausibility of using a liquid Xenon positron target,
 we set cutoffs for the traverse width of positrons created during the collision.
 
 \begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .5\linewidth]{../images/XeYield1mmCutoff.png}
+    \begin{subfigure}{.45\textwidth}
+        \includegraphics[height = .43\linewidth]{../images/XeYield1mmCutoff.png}
         \caption{\label{fig:XeY1}1 mm cutoff}
-        \includegraphics[height = .5\linewidth]{../images/XeYield5mmCutoff.png}
+        \includegraphics[height = .43\linewidth]{../images/XeYield5mmCutoff.png}
         \caption{\label{fig:XeY5}5 mm cutoff}
     \end{subfigure}
     \caption{\label{fig:YieldCut}Positron yield and energy using 
-    a liquid Xenon target with a 1 mm cutoff and 5 mm traverse width cutoff.}
+    a liquid Xenon target with a 1 mm and 5 mm traverse width cutoff.}
 \end{figure}
 
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .455\linewidth]{../images/XeATW1mmCutoff.png}
+        \includegraphics[height = .445\linewidth]{../images/XeATW1mmCutoff.png}
         \caption{\label{fig:XeATW1}1 mm cutoff}
         \includegraphics[height = .5\linewidth]{../images/XeATW5mmCutoff.png}
         \caption{\label{fig:XeATW5}5 mm cutoff}
     \end{subfigure}
     \caption{\label{fig:ATWCut}Positron spot size and angular diffraction using 
-    a liquid Xenon target with a 1 mm cutoff and 5 mm traverse width cutoff.}
+    a liquid Xenon target with a 1 mm and 5 mm traverse width cutoff.}
 \end{figure}
+It is reassuring to see that even after removing the positrons from the dataset 
+with large transverse distances from the beam path, there are still a comparable number
+of positrons that we predict will be able to make it to the next stage of the accelerator [].
 
-\section{Cryo-cooled Xenon Gas Jets/Liquid Xenon}
-Below is a basic schematic of how the liquid Xenon chamber will interact with the beam.
+\section{Cryo-cooled Liquid Xenon Chamber}
+Figure \ref{fig:schem}, a basic schematic of how the liquid Xenon chamber will interact with the beam.
 \begin{figure}[H]
-    \includegraphics[width = .5\textwidth]{../images/Schematic.png}
-    \caption{\label{fig:schem}Schematic of liquid Xenon setup}
+    \includegraphics[width = .5\textwidth]{../images/Schematic3.png}
+    \caption{\label{fig:schem}Schematic of liquid Xenon setup.}
 \end{figure}
 
 \subsection{Calculating the Liquid Xenon Flow Rate}
@@ -278,7 +320,7 @@ values using the information given in the table below.
         Flow Rate & Q & $4.685 \times 10^{-2}$ & cm$^3\cdot \textrm{s}^{-1}$ \\
         \hline \hline
     \end{tabular}
-    \caption{\label{tab:XeInfo}Important parameters associated with liquid Xenon target.}
+    \caption{\label{tab:XeInfo}Important parameters associated with liquid Xenon target chamber.}
 \end{table}
 We first convert the heat of vaporization to units of Joules per unit volume (J$\cdot \textrm{cm}^{-3}$),
 which is given by Eq.~(\ref{subeq:HoV}).
@@ -304,14 +346,64 @@ required to replace the vaporized Xenon due to the energy deposited by the beam,
 
 \subsection{Using Beryllium Windows to the Target Chamber}
 We explore using Beryllium windows for the beam to enter the target chamber.
-Below is a table of useful information about Beryllium.
+Below is some useful information about Beryllium.
 
-***Table??***
+\begin{table}[h]
+    \centering
+    \begin{tabular}{lccc}
+        \hline \hline
+        \textbf{Properties} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
+        \hline
+        Atomic Number & Z & 4 & \\
+        Density & $\rho$ & 1.844 & g$\cdot$cm$^{-3}$ \\
+        Yield Strength & $\sigma_\textrm{y}$ & 240 & MPa \\
+        Tensile Strength & $\sigma_\textrm{t}$ & 370 & MPa \\
+        Shear Strength & $\sigma$ & 1234 & MPa \\
+        Thermal Conductivity & $\kappa$ & 216 & W$\cdot$m$^{-1}$$\cdot$K$^{-1}$ \\
+        \hline \hline
+        \textbf{Quantities} \\
+        \hline
+        Height & $h$ & 1.0 & m \\
+        Radius & $r$ & 10.00 & mm \\
+        Contact Area & $A$ & $\pi r^2$ & mm$^2$ \\
+        CrossSectional Area & $A_c$ & $2\pi r t$ & mm$^2$ \\
+        Pressure & $P$ & 28.968 & kPa \\
+        Force & $F$ & 9.100 & N \\
+        \hline \hline
+    \end{tabular}
+    \caption{\label{tab:BeInfo}Useful quantities and properties of solid Beryllium.
+    The quantities are specific to a 10mm radius Beryllium disk.}
+\end{table}
 
-We can calculate the max yield and strain of Beryllium windows based on a piece
-of Beryllium that is ***Dimensions??***
+Utilizing Bernoulli's Equation for conservative force fields [], we can calculate the total
+pressure on a Beryllium window, which
+is of the form
+\begin{equation}
+    P = \frac{1}{2} \rho v^2 + \rho g h + p,
+\label{eq:Bern}
+\end{equation}
+where $v$ is the fluid flow rate, $g$ is acceleration due to gravity, $h$ is the height of the Xenon chamber
+relative to the height of the window,
+and $p$ is the additionaly pressure from, say, the atmosphere.
+However, as seen in Table \ref{tab:XeInfo}, the flow rate for the liquid Xenon is quite small.  Additionally,
+the liquid Xenon chamber is in vacuum, and we are comparing differences in total pressures,
+so we can ignore $p$ as well.  Therefore,
+we can ignore the second order term and the point-pressure term to further simplify our approximation to
+\begin{equation}
+    P = \rho g h.
+    \label{eq:BernSimp}
+\end{equation}
 
-***Equations??***
+From Eq.~(\ref{eq:BernSimp}), we can calculate the force on a Beryllium window with contact area $A$ by 
+multiplying the area by the pressure: $F = P\cdot A$.
+
+By varying the thickness of the Beryllium window, we can also vary the
+point at which the Beryllium will deform both plasticly and elasticly.
+This relationship is
+\begin{equation}
+    \sum_\textrm{don't look}^\textrm{at me,}\textrm{I'm just a placeholder}
+    \label{eq:Thickness}
+\end{equation}
 
 
 \section{Conclusion}

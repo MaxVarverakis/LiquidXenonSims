@@ -24,7 +24,9 @@ MyRunAction::MyRunAction()
 
     // Energy Deposition
     man -> CreateNtuple("Data", "Edep");
-    man -> CreateNtupleDColumn("fEdep");
+    man -> CreateNtupleDColumn("TargetEdep");
+    man -> CreateNtupleDColumn("BeInEdep");
+    man -> CreateNtupleDColumn("BeOutEdep");
     man -> FinishNtuple(1);
 
     // man -> CreateNtuple("M4V", "p4");

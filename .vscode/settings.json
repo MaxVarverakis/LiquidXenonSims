@@ -17,6 +17,19 @@
         "dps": "cpp",
         "hplot": "cpp",
         "aidas": "cpp",
-        "line": "cpp"
+        "line": "cpp",
+        "numbers": "cpp",
+        "mathd": "cpp",
+        "functional": "cpp",
+        "future": "cpp",
+        "list": "cpp",
+        "memory": "cpp",
+        "queue": "cpp",
+        "stack": "cpp",
+        "tuple": "cpp",
+        "unordered_map": "cpp",
+        "unordered_set": "cpp",
+        "array": "cpp",
+        "iostream": "cpp"
     }
 }

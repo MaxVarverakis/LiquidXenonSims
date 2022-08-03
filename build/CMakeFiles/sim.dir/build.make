@@ -111,24 +111,10 @@ CMakeFiles/sim.dir/src/construction.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/construction.cc.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/construction.cc" -o CMakeFiles/sim.dir/src/construction.cc.s
 
-CMakeFiles/sim.dir/src/detector.cc.o: CMakeFiles/sim.dir/flags.make
-CMakeFiles/sim.dir/src/detector.cc.o: ../src/detector.cc
-CMakeFiles/sim.dir/src/detector.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sim.dir/src/detector.cc.o"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/detector.cc.o -MF CMakeFiles/sim.dir/src/detector.cc.o.d -o CMakeFiles/sim.dir/src/detector.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/detector.cc"
-
-CMakeFiles/sim.dir/src/detector.cc.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/detector.cc.i"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/detector.cc" > CMakeFiles/sim.dir/src/detector.cc.i
-
-CMakeFiles/sim.dir/src/detector.cc.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/detector.cc.s"
-	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/detector.cc" -o CMakeFiles/sim.dir/src/detector.cc.s
-
 CMakeFiles/sim.dir/src/event.cc.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/event.cc.o: ../src/event.cc
 CMakeFiles/sim.dir/src/event.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sim.dir/src/event.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/sim.dir/src/event.cc.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/event.cc.o -MF CMakeFiles/sim.dir/src/event.cc.o.d -o CMakeFiles/sim.dir/src/event.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/event.cc"
 
 CMakeFiles/sim.dir/src/event.cc.i: cmake_force
@@ -142,7 +128,7 @@ CMakeFiles/sim.dir/src/event.cc.s: cmake_force
 CMakeFiles/sim.dir/src/generator.cc.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/generator.cc.o: ../src/generator.cc
 CMakeFiles/sim.dir/src/generator.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sim.dir/src/generator.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/sim.dir/src/generator.cc.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/generator.cc.o -MF CMakeFiles/sim.dir/src/generator.cc.o.d -o CMakeFiles/sim.dir/src/generator.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/generator.cc"
 
 CMakeFiles/sim.dir/src/generator.cc.i: cmake_force
@@ -156,7 +142,7 @@ CMakeFiles/sim.dir/src/generator.cc.s: cmake_force
 CMakeFiles/sim.dir/src/physics.cc.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/physics.cc.o: ../src/physics.cc
 CMakeFiles/sim.dir/src/physics.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sim.dir/src/physics.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/sim.dir/src/physics.cc.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/physics.cc.o -MF CMakeFiles/sim.dir/src/physics.cc.o.d -o CMakeFiles/sim.dir/src/physics.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/physics.cc"
 
 CMakeFiles/sim.dir/src/physics.cc.i: cmake_force
@@ -170,7 +156,7 @@ CMakeFiles/sim.dir/src/physics.cc.s: cmake_force
 CMakeFiles/sim.dir/src/run.cc.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/run.cc.o: ../src/run.cc
 CMakeFiles/sim.dir/src/run.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sim.dir/src/run.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/sim.dir/src/run.cc.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/run.cc.o -MF CMakeFiles/sim.dir/src/run.cc.o.d -o CMakeFiles/sim.dir/src/run.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/run.cc"
 
 CMakeFiles/sim.dir/src/run.cc.i: cmake_force
@@ -184,7 +170,7 @@ CMakeFiles/sim.dir/src/run.cc.s: cmake_force
 CMakeFiles/sim.dir/src/stepping.cc.o: CMakeFiles/sim.dir/flags.make
 CMakeFiles/sim.dir/src/stepping.cc.o: ../src/stepping.cc
 CMakeFiles/sim.dir/src/stepping.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/sim.dir/src/stepping.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/sim.dir/src/stepping.cc.o"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/stepping.cc.o -MF CMakeFiles/sim.dir/src/stepping.cc.o.d -o CMakeFiles/sim.dir/src/stepping.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/stepping.cc"
 
 CMakeFiles/sim.dir/src/stepping.cc.i: cmake_force
@@ -195,17 +181,76 @@ CMakeFiles/sim.dir/src/stepping.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/stepping.cc.s"
 	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/stepping.cc" -o CMakeFiles/sim.dir/src/stepping.cc.s
 
+CMakeFiles/sim.dir/src/target.cc.o: CMakeFiles/sim.dir/flags.make
+CMakeFiles/sim.dir/src/target.cc.o: ../src/target.cc
+CMakeFiles/sim.dir/src/target.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/sim.dir/src/target.cc.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/target.cc.o -MF CMakeFiles/sim.dir/src/target.cc.o.d -o CMakeFiles/sim.dir/src/target.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/target.cc"
+
+CMakeFiles/sim.dir/src/target.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/target.cc.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/target.cc" > CMakeFiles/sim.dir/src/target.cc.i
+
+CMakeFiles/sim.dir/src/target.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/target.cc.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/target.cc" -o CMakeFiles/sim.dir/src/target.cc.s
+
+CMakeFiles/sim.dir/src/targetHit.cc.o: CMakeFiles/sim.dir/flags.make
+CMakeFiles/sim.dir/src/targetHit.cc.o: ../src/targetHit.cc
+CMakeFiles/sim.dir/src/targetHit.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/sim.dir/src/targetHit.cc.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/targetHit.cc.o -MF CMakeFiles/sim.dir/src/targetHit.cc.o.d -o CMakeFiles/sim.dir/src/targetHit.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/targetHit.cc"
+
+CMakeFiles/sim.dir/src/targetHit.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/targetHit.cc.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/targetHit.cc" > CMakeFiles/sim.dir/src/targetHit.cc.i
+
+CMakeFiles/sim.dir/src/targetHit.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/targetHit.cc.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/targetHit.cc" -o CMakeFiles/sim.dir/src/targetHit.cc.s
+
+CMakeFiles/sim.dir/src/window.cc.o: CMakeFiles/sim.dir/flags.make
+CMakeFiles/sim.dir/src/window.cc.o: ../src/window.cc
+CMakeFiles/sim.dir/src/window.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/sim.dir/src/window.cc.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/window.cc.o -MF CMakeFiles/sim.dir/src/window.cc.o.d -o CMakeFiles/sim.dir/src/window.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/window.cc"
+
+CMakeFiles/sim.dir/src/window.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/window.cc.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/window.cc" > CMakeFiles/sim.dir/src/window.cc.i
+
+CMakeFiles/sim.dir/src/window.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/window.cc.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/window.cc" -o CMakeFiles/sim.dir/src/window.cc.s
+
+CMakeFiles/sim.dir/src/windowHit.cc.o: CMakeFiles/sim.dir/flags.make
+CMakeFiles/sim.dir/src/windowHit.cc.o: ../src/windowHit.cc
+CMakeFiles/sim.dir/src/windowHit.cc.o: CMakeFiles/sim.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/sim.dir/src/windowHit.cc.o"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/sim.dir/src/windowHit.cc.o -MF CMakeFiles/sim.dir/src/windowHit.cc.o.d -o CMakeFiles/sim.dir/src/windowHit.cc.o -c "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/windowHit.cc"
+
+CMakeFiles/sim.dir/src/windowHit.cc.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/sim.dir/src/windowHit.cc.i"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/windowHit.cc" > CMakeFiles/sim.dir/src/windowHit.cc.i
+
+CMakeFiles/sim.dir/src/windowHit.cc.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/sim.dir/src/windowHit.cc.s"
+	/usr/bin/clang++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/src/windowHit.cc" -o CMakeFiles/sim.dir/src/windowHit.cc.s
+
 # Object files for target sim
 sim_OBJECTS = \
 "CMakeFiles/sim.dir/sim.cc.o" \
 "CMakeFiles/sim.dir/src/action.cc.o" \
 "CMakeFiles/sim.dir/src/construction.cc.o" \
-"CMakeFiles/sim.dir/src/detector.cc.o" \
 "CMakeFiles/sim.dir/src/event.cc.o" \
 "CMakeFiles/sim.dir/src/generator.cc.o" \
 "CMakeFiles/sim.dir/src/physics.cc.o" \
 "CMakeFiles/sim.dir/src/run.cc.o" \
-"CMakeFiles/sim.dir/src/stepping.cc.o"
+"CMakeFiles/sim.dir/src/stepping.cc.o" \
+"CMakeFiles/sim.dir/src/target.cc.o" \
+"CMakeFiles/sim.dir/src/targetHit.cc.o" \
+"CMakeFiles/sim.dir/src/window.cc.o" \
+"CMakeFiles/sim.dir/src/windowHit.cc.o"
 
 # External object files for target sim
 sim_EXTERNAL_OBJECTS =
@@ -213,12 +258,15 @@ sim_EXTERNAL_OBJECTS =
 sim: CMakeFiles/sim.dir/sim.cc.o
 sim: CMakeFiles/sim.dir/src/action.cc.o
 sim: CMakeFiles/sim.dir/src/construction.cc.o
-sim: CMakeFiles/sim.dir/src/detector.cc.o
 sim: CMakeFiles/sim.dir/src/event.cc.o
 sim: CMakeFiles/sim.dir/src/generator.cc.o
 sim: CMakeFiles/sim.dir/src/physics.cc.o
 sim: CMakeFiles/sim.dir/src/run.cc.o
 sim: CMakeFiles/sim.dir/src/stepping.cc.o
+sim: CMakeFiles/sim.dir/src/target.cc.o
+sim: CMakeFiles/sim.dir/src/targetHit.cc.o
+sim: CMakeFiles/sim.dir/src/window.cc.o
+sim: CMakeFiles/sim.dir/src/windowHit.cc.o
 sim: CMakeFiles/sim.dir/build.make
 sim: /opt/homebrew/lib/libG4Tree.dylib
 sim: /opt/homebrew/lib/libG4FR.dylib
@@ -271,7 +319,7 @@ sim: /opt/homebrew/lib/libG4global.dylib
 sim: /opt/homebrew/lib/libG4clhep.dylib
 sim: /opt/homebrew/lib/libG4ptl.0.0.2.dylib
 sim: CMakeFiles/sim.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable sim"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/build/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable sim"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/sim.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

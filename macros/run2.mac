@@ -11,6 +11,6 @@
 
 /gps/number 1000
 
-/detector/radLengths 4
+/target/radLengths 4
 /run/reinitializeGeometry
 /run/beamOn 1

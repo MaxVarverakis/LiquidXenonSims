@@ -1,4 +1,4 @@
-/detector/radLengths {rad}
+/target/radLengths {rad}
 /run/reinitializeGeometry
 
 /run/beamOn 10000

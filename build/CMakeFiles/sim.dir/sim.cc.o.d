@@ -774,6 +774,8 @@ CMakeFiles/sim.dir/sim.cc.o: \
   /opt/homebrew/include/Geant4/CLHEP/Vector/TwoVector.h \
   /opt/homebrew/include/Geant4/CLHEP/Vector/TwoVector.icc \
   /opt/homebrew/include/Geant4/G4Box.icc \
+  /opt/homebrew/include/Geant4/G4Tubs.hh \
+  /opt/homebrew/include/Geant4/G4Tubs.icc \
   /opt/homebrew/include/Geant4/G4PVPlacement.hh \
   /opt/homebrew/include/Geant4/G4NistManager.hh \
   /opt/homebrew/include/Geant4/G4NistElementBuilder.hh \
@@ -783,7 +785,8 @@ CMakeFiles/sim.dir/sim.cc.o: \
   /opt/homebrew/include/Geant4/G4GenericMessenger.hh \
   /opt/homebrew/include/Geant4/G4AnyType.hh \
   /opt/homebrew/include/Geant4/G4AnyMethod.hh \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/detector.hh \
+  /opt/homebrew/include/Geant4/G4PhysicalConstants.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/target.hh \
   /opt/homebrew/include/Geant4/G4VSensitiveDetector.hh \
   /opt/homebrew/include/Geant4/G4VReadOutGeometry.hh \
   /opt/homebrew/include/Geant4/G4SensitiveVolumeList.hh \
@@ -851,6 +854,12 @@ CMakeFiles/sim.dir/sim.cc.o: \
   /opt/homebrew/include/Geant4/G4GenericFileManager.icc \
   /opt/homebrew/include/Geant4/G4UnitsTable.hh \
   /opt/homebrew/include/Geant4/G4UnitsTable.icc \
+  /opt/homebrew/include/Geant4/G4SDManager.hh \
+  /opt/homebrew/include/Geant4/G4SDStructure.hh \
+  /opt/homebrew/include/Geant4/G4HCtable.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/targetHit.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/window.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/windowHit.hh \
   /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/physics.hh \
   /opt/homebrew/include/Geant4/G4VModularPhysicsList.hh \
   /opt/homebrew/include/Geant4/G4VPhysicsConstructor.hh \
@@ -914,5 +923,4 @@ CMakeFiles/sim.dir/sim.cc.o: \
   /opt/homebrew/include/Geant4/G4UserRunAction.hh \
   /opt/homebrew/include/Geant4/G4Run.hh \
   /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/event.hh \
-  /opt/homebrew/include/Geant4/G4UserEventAction.hh \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/stepping.hh
+  /opt/homebrew/include/Geant4/G4UserEventAction.hh

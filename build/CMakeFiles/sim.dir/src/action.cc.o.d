@@ -663,8 +663,10 @@ CMakeFiles/sim.dir/src/action.cc.o: \
   /opt/homebrew/include/Geant4/G4UserEventAction.hh \
   /opt/homebrew/include/Geant4/G4UnitsTable.hh \
   /opt/homebrew/include/Geant4/G4UnitsTable.icc \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/stepping.hh \
-  /opt/homebrew/include/Geant4/G4UserSteppingAction.hh \
+  /opt/homebrew/include/Geant4/G4SDManager.hh \
+  /opt/homebrew/include/Geant4/G4SDStructure.hh \
+  /opt/homebrew/include/Geant4/G4VSensitiveDetector.hh \
+  /opt/homebrew/include/Geant4/G4VHit.hh \
   /opt/homebrew/include/Geant4/G4Step.hh \
   /opt/homebrew/include/Geant4/G4StepPoint.hh \
   /opt/homebrew/include/Geant4/G4SteppingControl.hh \
@@ -699,36 +701,12 @@ CMakeFiles/sim.dir/src/action.cc.o: \
   /opt/homebrew/include/Geant4/G4VUserTrackInformation.hh \
   /opt/homebrew/include/Geant4/G4PhysicsModelCatalog.hh \
   /opt/homebrew/include/Geant4/G4Track.icc \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/construction.hh \
-  /opt/homebrew/include/Geant4/G4VUserDetectorConstruction.hh \
-  /opt/homebrew/include/Geant4/G4VPhysicalvolume.hh \
-  /opt/homebrew/include/Geant4/G4Box.hh \
-  /opt/homebrew/include/Geant4/G4GeomTypes.hh \
-  /opt/homebrew/include/Geant4/G4GeomConfig.hh \
-  /opt/homebrew/include/Geant4/G4CSGSolid.hh \
-  /opt/homebrew/include/Geant4/G4Polyhedron.hh \
-  /opt/homebrew/include/Geant4/HepPolyhedron.h \
-  /opt/homebrew/include/Geant4/G4TwoVector.hh \
-  /opt/homebrew/include/Geant4/CLHEP/Vector/TwoVector.h \
-  /opt/homebrew/include/Geant4/CLHEP/Vector/TwoVector.icc \
-  /opt/homebrew/include/Geant4/G4Point3D.hh \
-  /opt/homebrew/include/Geant4/G4Normal3D.hh \
-  /opt/homebrew/include/Geant4/G4Visible.hh \
-  /opt/homebrew/include/Geant4/G4Visible.icc \
-  /opt/homebrew/include/Geant4/G4Box.icc \
-  /opt/homebrew/include/Geant4/G4PVPlacement.hh \
-  /opt/homebrew/include/Geant4/G4NistManager.hh \
-  /opt/homebrew/include/Geant4/G4NistElementBuilder.hh \
-  /opt/homebrew/include/Geant4/G4NistMaterialBuilder.hh \
-  /opt/homebrew/include/Geant4/G4ICRU90StoppingData.hh \
-  /opt/homebrew/include/Geant4/G4Pow.hh \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/detector.hh \
-  /opt/homebrew/include/Geant4/G4VSensitiveDetector.hh \
-  /opt/homebrew/include/Geant4/G4VHit.hh \
   /opt/homebrew/include/Geant4/G4VReadOutGeometry.hh \
   /opt/homebrew/include/Geant4/G4SensitiveVolumeList.hh \
   /opt/homebrew/include/Geant4/G4CollectionNameVector.hh \
   /opt/homebrew/include/Geant4/G4VSDFilter.hh \
+  /opt/homebrew/include/Geant4/G4HCtable.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/target.hh \
   /opt/homebrew/include/Geant4/G4RunManager.hh \
   /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk/usr/include/c++/v1/list \
   /opt/homebrew/include/Geant4/rundefs.hh \
@@ -806,8 +784,13 @@ CMakeFiles/sim.dir/src/action.cc.o: \
   /opt/homebrew/include/Geant4/G4ProcessVector.icc \
   /opt/homebrew/include/Geant4/G4ProcessManager.icc \
   /opt/homebrew/include/Geant4/G4NoProcess.hh \
+  /opt/homebrew/include/Geant4/G4UserSteppingAction.hh \
   /opt/homebrew/include/Geant4/G4VSteppingVerbose.hh \
   /opt/homebrew/include/Geant4/trkgdefs.hh \
   /opt/homebrew/include/Geant4/G4TrackingMessenger.hh \
   /opt/homebrew/include/Geant4/G4UserTrackingAction.hh \
-  /opt/homebrew/include/Geant4/G4RunManagerKernel.hh
+  /opt/homebrew/include/Geant4/G4RunManagerKernel.hh \
+  /opt/homebrew/include/Geant4/G4THitsCollection.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/targetHit.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/window.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/windowHit.hh

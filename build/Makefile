@@ -214,30 +214,6 @@ src/construction.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/construction.cc.s
 .PHONY : src/construction.cc.s
 
-src/detector.o: src/detector.cc.o
-.PHONY : src/detector.o
-
-# target to build an object file
-src/detector.cc.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/detector.cc.o
-.PHONY : src/detector.cc.o
-
-src/detector.i: src/detector.cc.i
-.PHONY : src/detector.i
-
-# target to preprocess a source file
-src/detector.cc.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/detector.cc.i
-.PHONY : src/detector.cc.i
-
-src/detector.s: src/detector.cc.s
-.PHONY : src/detector.s
-
-# target to generate assembly for a file
-src/detector.cc.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/detector.cc.s
-.PHONY : src/detector.cc.s
-
 src/event.o: src/event.cc.o
 .PHONY : src/event.o
 
@@ -358,6 +334,102 @@ src/stepping.cc.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/stepping.cc.s
 .PHONY : src/stepping.cc.s
 
+src/target.o: src/target.cc.o
+.PHONY : src/target.o
+
+# target to build an object file
+src/target.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/target.cc.o
+.PHONY : src/target.cc.o
+
+src/target.i: src/target.cc.i
+.PHONY : src/target.i
+
+# target to preprocess a source file
+src/target.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/target.cc.i
+.PHONY : src/target.cc.i
+
+src/target.s: src/target.cc.s
+.PHONY : src/target.s
+
+# target to generate assembly for a file
+src/target.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/target.cc.s
+.PHONY : src/target.cc.s
+
+src/targetHit.o: src/targetHit.cc.o
+.PHONY : src/targetHit.o
+
+# target to build an object file
+src/targetHit.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/targetHit.cc.o
+.PHONY : src/targetHit.cc.o
+
+src/targetHit.i: src/targetHit.cc.i
+.PHONY : src/targetHit.i
+
+# target to preprocess a source file
+src/targetHit.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/targetHit.cc.i
+.PHONY : src/targetHit.cc.i
+
+src/targetHit.s: src/targetHit.cc.s
+.PHONY : src/targetHit.s
+
+# target to generate assembly for a file
+src/targetHit.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/targetHit.cc.s
+.PHONY : src/targetHit.cc.s
+
+src/window.o: src/window.cc.o
+.PHONY : src/window.o
+
+# target to build an object file
+src/window.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/window.cc.o
+.PHONY : src/window.cc.o
+
+src/window.i: src/window.cc.i
+.PHONY : src/window.i
+
+# target to preprocess a source file
+src/window.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/window.cc.i
+.PHONY : src/window.cc.i
+
+src/window.s: src/window.cc.s
+.PHONY : src/window.s
+
+# target to generate assembly for a file
+src/window.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/window.cc.s
+.PHONY : src/window.cc.s
+
+src/windowHit.o: src/windowHit.cc.o
+.PHONY : src/windowHit.o
+
+# target to build an object file
+src/windowHit.cc.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/windowHit.cc.o
+.PHONY : src/windowHit.cc.o
+
+src/windowHit.i: src/windowHit.cc.i
+.PHONY : src/windowHit.i
+
+# target to preprocess a source file
+src/windowHit.cc.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/windowHit.cc.i
+.PHONY : src/windowHit.cc.i
+
+src/windowHit.s: src/windowHit.cc.s
+.PHONY : src/windowHit.s
+
+# target to generate assembly for a file
+src/windowHit.cc.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/sim.dir/build.make CMakeFiles/sim.dir/src/windowHit.cc.s
+.PHONY : src/windowHit.cc.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -377,9 +449,6 @@ help:
 	@echo "... src/construction.o"
 	@echo "... src/construction.i"
 	@echo "... src/construction.s"
-	@echo "... src/detector.o"
-	@echo "... src/detector.i"
-	@echo "... src/detector.s"
 	@echo "... src/event.o"
 	@echo "... src/event.i"
 	@echo "... src/event.s"
@@ -395,6 +464,18 @@ help:
 	@echo "... src/stepping.o"
 	@echo "... src/stepping.i"
 	@echo "... src/stepping.s"
+	@echo "... src/target.o"
+	@echo "... src/target.i"
+	@echo "... src/target.s"
+	@echo "... src/targetHit.o"
+	@echo "... src/targetHit.i"
+	@echo "... src/targetHit.s"
+	@echo "... src/window.o"
+	@echo "... src/window.i"
+	@echo "... src/window.s"
+	@echo "... src/windowHit.o"
+	@echo "... src/windowHit.i"
+	@echo "... src/windowHit.s"
 .PHONY : help
 
 

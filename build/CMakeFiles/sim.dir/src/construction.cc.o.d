@@ -501,6 +501,8 @@ CMakeFiles/sim.dir/src/construction.cc.o: \
   /opt/homebrew/include/Geant4/G4Visible.hh \
   /opt/homebrew/include/Geant4/G4Visible.icc \
   /opt/homebrew/include/Geant4/G4Box.icc \
+  /opt/homebrew/include/Geant4/G4Tubs.hh \
+  /opt/homebrew/include/Geant4/G4Tubs.icc \
   /opt/homebrew/include/Geant4/G4PVPlacement.hh \
   /opt/homebrew/include/Geant4/G4NistManager.hh \
   /opt/homebrew/include/Geant4/G4Material.hh \
@@ -542,7 +544,8 @@ CMakeFiles/sim.dir/src/construction.cc.o: \
   /opt/homebrew/include/Geant4/G4ApplicationState.hh \
   /opt/homebrew/include/Geant4/G4AnyType.hh \
   /opt/homebrew/include/Geant4/G4AnyMethod.hh \
-  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/detector.hh \
+  /opt/homebrew/include/Geant4/G4PhysicalConstants.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/target.hh \
   /opt/homebrew/include/Geant4/G4VSensitiveDetector.hh \
   /opt/homebrew/include/Geant4/G4VHit.hh \
   /opt/homebrew/include/Geant4/G4Step.hh \
@@ -783,4 +786,11 @@ CMakeFiles/sim.dir/src/construction.cc.o: \
   /opt/homebrew/include/Geant4/G4UserTrackingAction.hh \
   /opt/homebrew/include/Geant4/G4RunManagerKernel.hh \
   /opt/homebrew/include/Geant4/G4UnitsTable.hh \
-  /opt/homebrew/include/Geant4/G4UnitsTable.icc
+  /opt/homebrew/include/Geant4/G4UnitsTable.icc \
+  /opt/homebrew/include/Geant4/G4THitsCollection.hh \
+  /opt/homebrew/include/Geant4/G4SDManager.hh \
+  /opt/homebrew/include/Geant4/G4SDStructure.hh \
+  /opt/homebrew/include/Geant4/G4HCtable.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/targetHit.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/window.hh \
+  /Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320\ Summer\ 2022\ Max/LiquidXenonSims/include/windowHit.hh
