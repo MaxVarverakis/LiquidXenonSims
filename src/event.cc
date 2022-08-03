@@ -59,7 +59,7 @@ void MyEventAction::EndOfEventAction(const G4Event* event)
 {
     G4AnalysisManager *man = G4AnalysisManager::Instance();
     
-    G4cout << "-------------------\n\tWindow Hits\t\n-------------------" << G4endl;
+    // G4cout << "-------------------\n\tWindow Hits\t\n-------------------" << G4endl;
 
     // first window hits
     auto ihc = GetHC(event, fWindowInHCID);
@@ -72,7 +72,7 @@ void MyEventAction::EndOfEventAction(const G4Event* event)
         fWindowInEdep = ihit -> GetEdep();
     }
     man -> FillNtupleDColumn(1, 1, fWindowInEdep);
-    G4cout << fWindowInEdep << G4endl;
+    // G4cout << fWindowInEdep << G4endl;
 
     // target hits
     auto thc = GetHC(event, fTargetHCID);
@@ -85,7 +85,7 @@ void MyEventAction::EndOfEventAction(const G4Event* event)
         fTargetEdep = thit -> GetEdep();
     }
     man -> FillNtupleDColumn(1, 0, fTargetEdep);
-    G4cout << fTargetEdep << G4endl;
+    // G4cout << fTargetEdep << G4endl;
 
     // last window hits
     auto ohc = GetHC(event, fWindowOutHCID);
@@ -98,7 +98,7 @@ void MyEventAction::EndOfEventAction(const G4Event* event)
         fWindowOutEdep = ohit -> GetEdep();
     }
     man -> FillNtupleDColumn(1, 2, fWindowOutEdep);
-    G4cout << fWindowOutEdep << G4endl;
+    // G4cout << fWindowOutEdep << G4endl;
 
     man -> AddNtupleRow(1);
 }

@@ -41,7 +41,7 @@ def calc_emittance(p, data, comp):
 
     return emittance
 
-def plotArgs():
+def plotArgs(windows = False):
     dfs = [df0, df1, df2, df3, df4, df5, df6, df7, df8, df9, df10, df11, df12, df13, df14, df15]
     ps = [p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15]
     edeps = [edep0, edep1, edep2, edep3, edep4, edep5, edep6, edep7, edep8, edep9, edep10, edep11, edep12, edep13, edep14, edep15]
@@ -49,7 +49,13 @@ def plotArgs():
     pYield = [len(df[:, 0]) / iterations for df in dfs]
     # print(pYield)
 
-    EDep_RMS = [np.sqrt(np.mean(edep ** 2)) / E_i for edep in edeps]
+    EDep_RMS = [np.sqrt(np.mean(edep[:, 0] ** 2)) / E_i for edep in edeps]
+    if windows:
+        WInEDep_RMS = [np.sqrt(np.mean(edep[:, 1] ** 2)) for edep in edeps]
+        WOutEDep_RMS = [np.sqrt(np.mean(edep[:, 2] ** 2)) for edep in edeps]
+    else:
+        WInEDep_RMS = np.zeros(len(EDep_RMS))
+        WOutEDep_RMS = np.zeros(len(EDep_RMS))
     E_RMS = [np.sqrt(np.mean(df[:, 0] ** 2)) for df in dfs]
     TW_RMS = [np.sqrt(np.mean(df[:, 1] ** 2)) for df in dfs]
     A_RMS = [np.sqrt(np.mean(df[:, 2] ** 2)) for df in dfs]
@@ -115,7 +121,7 @@ def plotArgs():
     emittance = [calc_emittance(p, data, component) for p, data in zip(ps, dfs)]
     # print(emittance)
 
-    return dfs, ps, edeps, pYield, EDep_RMS, E_RMS, TW_RMS, A_RMS, idx, data, P, include_bool, pX, pY, pZ, pE, E, TW, A, R, ttlStr, xlbl, cm, bn, scale, emittance
+    return dfs, ps, edeps, pYield, EDep_RMS, WInEDep_RMS, WOutEDep_RMS, E_RMS, TW_RMS, A_RMS, idx, data, P, include_bool, pX, pY, pZ, pE, E, TW, A, R, ttlStr, xlbl, cm, bn, scale, emittance
 
 def compare(ts2 = ''):
     xlbl = 'Radiation Lengths [$L_{RL}(Ta) = 0.4094$ cm | $L_{RL}(Xe) = 2.8720$ cm]'
@@ -294,9 +300,32 @@ def compare(ts2 = ''):
     plt.suptitle(ts2, fontsize = 14)
     plt.show()
 
-def plots(ts2 = '', spot = 'upper left'):
+def plots(ts2 = '', spot = 'upper left', windows = False):
 
-    dfs, ps, edeps, pYield, EDep_RMS, E_RMS, TW_RMS, A_RMS, idx, data, P, include_bool, pX, pY, pZ, pE, E, TW, A, R, ttlStr, xlbl, cm, bn, scale, emittance = plotArgs()
+    _, _, _, pYield, EDep_RMS, WInEDep_RMS, WOutEDep_RMS, E_RMS, TW_RMS, A_RMS, idx, _, _, _, _, _, _, _, E, TW, A, _, ttlStr, xlbl, cm, bn, scale, emittance = plotArgs(windows)
+
+    if windows:
+        # print(f'Target E-Dep @ Max Yield:  {EDep_RMS[idx] * E_i :.2f} MeV')
+        print(f'First Window E-Dep @ Max Yield:  {WInEDep_RMS[idx]:.2f} MeV')
+        print(f'Last Window E-Dep @ Max Yield:  {WOutEDep_RMS[idx]:.2f} MeV')
+        # plt.scatter(L_RL, EDep_RMS, label = '__nolegend__')
+        plt.scatter(L_RL, WInEDep_RMS, label = '__nolegend__')
+        plt.scatter(L_RL, WOutEDep_RMS, label = '__nolegend__')
+        # plt.plot(L_RL[idx], EDep_RMS[idx], 'bo', label = f'Target @ Max Yield: ~{EDep_RMS[idx]:.2f}')
+        plt.plot(L_RL[idx], WOutEDep_RMS[idx], 'ro', label = f'Last Window @ Max Yield: ~{WOutEDep_RMS[idx]:.2f} MeV')
+        plt.plot(L_RL[idx], WInEDep_RMS[idx], 'bo', label = f'First Window @ Max Yield: ~{WInEDep_RMS[idx]:.2f} MeV')
+        # plt.vlines(L_RL[idx], 0, EDep_RMS[idx], colors = 'b', ls = ':', label = '__nolegend__')
+        plt.vlines(L_RL[idx], 0, WInEDep_RMS[idx], colors = 'b', ls = ':', label = '__nolegend__')
+        plt.vlines(L_RL[idx], 0, WOutEDep_RMS[idx], colors = 'r', ls = ':', label = '__nolegend__')
+        plt.xlabel(xlbl)
+        plt.ylabel('RMS Energy Deposition [MeV / incident $e^-$ @ 10 GeV]')
+        # plt.ylabel('RMS Energy Deposition / incident $e^-$ [MeV]')
+        # plt.ylim(0, 5.75e-1)
+        plt.legend(loc = 'upper left')
+        plt.suptitle(ts2, fontsize = 14)
+        
+        plt.title('Energy Deposition in Beryllium Windows vs Width of Target')
+        plt.show()
 
     plt.scatter(L_RL, emittance, label = '__nolegend__')
     plt.plot(L_RL[idx], emittance[idx], 'ro', label = f'Emittance @ Max Yield: ~{emittance[idx]:.2f} mm$\cdot$rad')
@@ -465,6 +494,7 @@ def plots(ts2 = '', spot = 'upper left'):
 
 if mode == 'Xe':
     LTarget = LXe
+    wBool = True
 
     # edep0 = pd.read_csv('data/XeDep0.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
     # edep1 = pd.read_csv('data/XeDep1.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
@@ -483,22 +513,22 @@ if mode == 'Xe':
     # edep14 = pd.read_csv('data/XeDep14.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
     # edep15 = pd.read_csv('data/XeDep15.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
 
-    edep0 = pd.read_csv('build/out0_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep1 = pd.read_csv('build/out1_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep2 = pd.read_csv('build/out2_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep3 = pd.read_csv('build/out3_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep4 = pd.read_csv('build/out4_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep5 = pd.read_csv('build/out5_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep6 = pd.read_csv('build/out6_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep7 = pd.read_csv('build/out7_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep8 = pd.read_csv('build/out8_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep9 = pd.read_csv('build/out9_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep10 = pd.read_csv('build/out10_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep11 = pd.read_csv('build/out11_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep12 = pd.read_csv('build/out12_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep13 = pd.read_csv('build/out13_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep14 = pd.read_csv('build/out14_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
-    edep15 = pd.read_csv('build/out15_nt_Data.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
+    edep0 = pd.read_csv('build/out0_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep1 = pd.read_csv('build/out1_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep2 = pd.read_csv('build/out2_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep3 = pd.read_csv('build/out3_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep4 = pd.read_csv('build/out4_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep5 = pd.read_csv('build/out5_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep6 = pd.read_csv('build/out6_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep7 = pd.read_csv('build/out7_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep8 = pd.read_csv('build/out8_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep9 = pd.read_csv('build/out9_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep10 = pd.read_csv('build/out10_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep11 = pd.read_csv('build/out11_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep12 = pd.read_csv('build/out12_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep13 = pd.read_csv('build/out13_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep14 = pd.read_csv('build/out14_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+    edep15 = pd.read_csv('build/out15_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
 
     # df0 = pd.read_csv('data/Xe_1mm_0.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
     # df1 = pd.read_csv('data/Xe_1mm_1.csv', header = 6, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]']).to_numpy()
@@ -643,11 +673,11 @@ if mode == 'Xe':
             df14 = df14[df14[:, 1] <= w]
             df15 = df15[df15[:, 1] <= w]
             
-            plots(ts2)
+            plots(ts2, windows = wBool)
         else:
-            plots()
+            plots(windows = wBool)
     else:
-        plotArgs()
+        plotArgs(windows = wBool)
 elif mode == 'Ta':
     LTarget = LTa
     ttlStr = '$L_{RL}(Ta) = 0.4094 cm \\quad \\vert \\quad \\frac{d}{L_{LR}(Ta)} \\approx 2.75$ \n Energy Cutoff: 100 MeV'
