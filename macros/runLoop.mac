@@ -1,1 +1,1 @@
-/control/loop ../macros/run.mac rad 0.25 4 0.25
+/control/loop ../macros/run2.mac rad 0.25 4 0.25

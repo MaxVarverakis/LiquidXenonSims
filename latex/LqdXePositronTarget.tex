@@ -27,7 +27,7 @@ reprint,
 %frontmatterverbose, 
 %preprint,
 %preprintnumbers,
-%nofootinbib,
+% nofootinbib,
 %nobibnotes,
 %bibnotes,
 amsmath, amssymb,
@@ -286,7 +286,7 @@ of positrons that we predict will be able to make it to the next stage of the ac
 \section{Cryo-cooled Liquid Xenon Chamber}
 Figure \ref{fig:schem}, a basic schematic of how the liquid Xenon chamber will interact with the beam.
 \begin{figure}[H]
-    \includegraphics[width = .5\textwidth]{../images/Schematic3.png}
+    \includegraphics[width = .5\textwidth]{../images/Schematic4.png}
     \caption{\label{fig:schem}Schematic of liquid Xenon setup.}
 \end{figure}
 
@@ -298,30 +298,46 @@ values using the information given in the table below.
     \centering
     \begin{tabular}{lccc}
         \hline \hline
-        \textbf{Quantity} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
+        \textbf{Liquid Xenon} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
         % Quantity & Symbol & Value & Units \\
         \hline
         % $\textrm{g}\cdot\textrm{mol}^{-1}$
-        Molar Mass & \textrm{M} & 131.293 & u \\
+        Molar Mass & M & 131.293 & u \\
+        Density & $\rho$ & 2.953 & $\textrm{g} \cdot \textrm{cm}^{-3}$ \\
         Heat of Vaporization & $\Delta \textrm{H}$ & 12.636 & kJ$\cdot$mol$^{-1}$ \\
+        Heat of Vap./Volume & $\Delta \textrm{H}_{\textrm{vol}}$ & 284.205 & J$\cdot \textrm{cm}^{-3}$ \\
         Radiation Length & $\textrm{L}_{\textrm{RL}}$ & 2.872 & cm \\
-        Target Width & $\frac{\textrm{d}}{\textrm{L}_{\textrm{RL}}}$ & 2.25 & $\textrm{L}_{\textrm{RL}}$ \\
-        Energy Deposition per e$^-$ & E$_{\textrm{dep}}$ & .66581 & GeV \\
-        Beam Rep Rate & $f$ & 10.0 & Hz \\
-        Beam Charge & $q$ & 2.0 & nC \\
-        Target Density & $\rho$ & 2.953 & $\textrm{g} \cdot \textrm{cm}^{-3}$ \\
-        \hline \hline
-        % & \textbf{Calculated Quantities} & & \\
-        \textbf{Calculated Quantities} \\
-        \hline
-        Number of e$^-$ & n & $1.248 \times 10^{10}$ & \\
-        Energy Deposit per Bunch & $\varepsilon$ & 1.33162 & J \\
-        Heat of Vap. per Volume & $\Delta \textrm{H}_{\textrm{vol}}$ & 284.205 & J$\cdot \textrm{cm}^{-3}$ \\
-        Flow Rate & Q & $4.685 \times 10^{-2}$ & cm$^3\cdot \textrm{s}^{-1}$ \\
+        Width & $\frac{\textrm{d}}{\textrm{L}_{\textrm{RL}}}$ & 5.5 & $\textrm{L}_{\textrm{RL}}$ \\
+        % Volume & V & & cm$^3$ \\
         \hline \hline
     \end{tabular}
     \caption{\label{tab:XeInfo}Important parameters associated with liquid Xenon target chamber.}
 \end{table}
+
+\begin{table*}
+    \centering
+    \begin{tabular}{lcccc}
+        \hline \hline
+        \textbf{Beam Parameters} & \textbf{Symbol} & \textbf{FACET-II} & \textbf{ILC} & \textbf{Units} \\
+        \hline
+        Energy & $E$ & 10.0 & 6.0 & GeV \\
+        Repetition Rate & $f$ & 10 & 300 & Hz \\
+        Charge & $q$ & 2 & 3.204 & nC \\
+        Number of $e^-$ & n & 1.248 & 2.0 & $10^{10}$ \\
+        \hline \hline
+        \textbf{Resultant Quantities} \\
+        \hline
+        Energy Deposition/e$^-$ & E$_{\textrm{dep}}$ & .66581 & & GeV \\
+        Energy Deposit/Pulse & $\epsilon$ & 1.332 & 735.9 & J \\
+        Energy Deposit Density & $\epsilon_\rho$ & $1.63\times 10^{-3}$ & 3.10 & J$\cdot\textrm{g}^{-1}$ \\
+        Power Deposit & $P_\textrm{dep}$ & $3.86$ & $7.359\times 10^8$ & W \\
+        Flow Rate due to Vaporization & Q & $4.685 \times 10^{-2}$ & 776.8 & cm$^3\cdot \textrm{s}^{-1}$ \\
+        Main Shower Path Flow Rate & $Q_\textrm{vol}$ & 0.6318 & 18.96 & L$\cdot \textrm{s}^{-1}$ \\
+        \hline \hline
+    \end{tabular}
+    \caption{\label{tab:BeamInfo}Linear collider electron beam parameters and associated target quantities [].}
+\end{table*}
+
 We first convert the heat of vaporization to units of Joules per unit volume (J$\cdot \textrm{cm}^{-3}$),
 which is given by Eq.~(\ref{subeq:HoV}).
 We then calculate the number of electrons per beam bunch (SLAC), by comparing the 
@@ -333,16 +349,23 @@ as seen in Eq.~(\ref{subeq:Etot}).
     \begin{eqnarray}
         \Delta \textrm{H}_\textrm{vol} &=& \frac{\Delta \textrm{H}\cdot \rho}{\textrm{M}}, \label{subeq:HoV} \\
         n &=& \frac{q}{e}, \label{subeq:n} \\
-        \varepsilon &=& n \cdot E_{\textrm{dep}} \label{subeq:Etot}.
+        \epsilon &=& n \cdot E_{\textrm{dep}} \label{subeq:Etot}.
     \end{eqnarray}
 \end{subequations}
     
 Now we have everything we need in order to calculate the flow rate of liquid Xenon
 required to replace the vaporized Xenon due to the energy deposited by the beam,
 \begin{equation}
-    Q = \frac{\varepsilon \cdot f}{\Delta \textrm{H}_{\textrm{vol}}}.
+    Q = \frac{\epsilon \cdot f}{\Delta \textrm{H}_{\textrm{vol}}}.
 \label{eq:Q}
 \end{equation}
+
+In case one wants to calculate the flow rate required to move the entire volume encompassing the main
+part of the EM shower, one can approximate the volume with a rectangular prism with target width and other
+side lengths equal to the diameter of the Beryllium windows (see next section).  At max positron yield,
+this gives $\textrm{V} = (2 \textrm{ cm})^2 \cdot 5.5\textrm{L}_{\textrm{RL}} \approx 63.18 \textrm{ cm}^3$.
+As a result, the required flow rate to move volume V in the amount of time between beam pulses is
+shown in Table \ref{tab:BeamInfo} as $Q_\textrm{vol}$.
 
 \subsection{Using Beryllium Windows to the Target Chamber}
 We explore using Beryllium windows for the beam to enter the target chamber.
@@ -352,23 +375,29 @@ Below is some useful information about Beryllium.
     \centering
     \begin{tabular}{lccc}
         \hline \hline
-        \textbf{Properties} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
+        \textbf{Beryllium} & \textbf{Symbol} & \textbf{Value} & \textbf{Units} \\
         \hline
         Atomic Number & Z & 4 & \\
         Density & $\rho$ & 1.844 & g$\cdot$cm$^{-3}$ \\
-        Yield Strength & $\sigma_\textrm{y}$ & 240 & MPa \\
-        Tensile Strength & $\sigma_\textrm{t}$ & 370 & MPa \\
-        Shear Strength & $\sigma$ & 1234 & MPa \\
-        Thermal Conductivity & $\kappa$ & 216 & W$\cdot$m$^{-1}$$\cdot$K$^{-1}$ \\
+        Rupture Modulus & $F_a$ & 400 & MPa \\
+        % Yield Strength & $\sigma_\textrm{y}$ & 240 & MPa \\
+        % Tensile Strength & $\sigma_\textrm{t}$ & 370 & MPa \\
+        % Shear Strength & $\sigma$ & 1234 & MPa \\
+        % Thermal Conductivity & $\kappa$ & 216 & W$\cdot$m$^{-1}$$\cdot$K$^{-1}$ \\
         \hline \hline
         \textbf{Quantities} \\
         \hline
-        Height & $h$ & 1.0 & m \\
+        Height 
+        \footnote{Difference in height between the Beryllium window and the top of the liquid Xenon chamber.} 
+        & $h$ & 1.0 & m \\
         Radius & $r$ & 10.00 & mm \\
-        Contact Area & $A$ & $\pi r^2$ & mm$^2$ \\
-        CrossSectional Area & $A_c$ & $2\pi r t$ & mm$^2$ \\
+        Contact Area & $A$ & $100\pi$ & mm$^2$ \\
+        % Cross Sectional Area & $A_c$ & $2\pi r t$ & mm$^2$ \\
         Pressure & $P$ & 28.968 & kPa \\
         Force & $F$ & 9.100 & N \\
+        Safety Factor & $S_F$ & 4 \\
+        Empirical Constant & $K$ & 0.75 \\
+        Thickness & $T$ & 147.395 & $\mu$m \\
         \hline \hline
     \end{tabular}
     \caption{\label{tab:BeInfo}Useful quantities and properties of solid Beryllium.
@@ -384,8 +413,8 @@ is of the form
 \end{equation}
 where $v$ is the fluid flow rate, $g$ is acceleration due to gravity, $h$ is the height of the Xenon chamber
 relative to the height of the window,
-and $p$ is the additionaly pressure from, say, the atmosphere.
-However, as seen in Table \ref{tab:XeInfo}, the flow rate for the liquid Xenon is quite small.  Additionally,
+and $p$ is the additional pressure from, say, the atmosphere.
+However, as seen in Table \ref{tab:BeamInfo}, the flow rate for the liquid Xenon is quite small.  Additionally,
 the liquid Xenon chamber is in vacuum, and we are comparing differences in total pressures,
 so we can ignore $p$ as well.  Therefore,
 we can ignore the second order term and the point-pressure term to further simplify our approximation to
@@ -397,14 +426,20 @@ we can ignore the second order term and the point-pressure term to further simpl
 From Eq.~(\ref{eq:BernSimp}), we can calculate the force on a Beryllium window with contact area $A$ by 
 multiplying the area by the pressure: $F = P\cdot A$.
 
-By varying the thickness of the Beryllium window, we can also vary the
-point at which the Beryllium will deform both plasticly and elasticly.
-This relationship is
+In order to determine the required thickness of the Beryllium window, we utilize the following [].
+First we calculate a constant related to the safety factor of our thickness, which takes into account
+the method with which the Beryllium window is inserted into the target chamber.
+An empirical constant $K = 0.75$ is chosen if the window is clamped into the target chamber, and
+$K = 1.125$ if the window is unclamped in the target chamber.  For a given safety factor ($S_F$),
+we have a thickness of
 \begin{equation}
-    \sum_\textrm{don't look}^\textrm{at me,}\textrm{I'm just a placeholder}
-    \label{eq:Thickness}
+    T = r\cdot\sqrt{\frac{S_F\cdot K\cdot P}{F_a}}.
 \end{equation}
 
+\begin{figure}[H]
+    \includegraphics[width = .5\textwidth]{../images/WindowDeps.png}
+    \caption{\label{fig:WinDeps}Energy deposition on incident and exit Beryllium windows.}
+\end{figure}
 
 \section{Conclusion}
 \subsection{Design of Liquid Xenon Chamber}

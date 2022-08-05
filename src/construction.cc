@@ -88,7 +88,7 @@ void MyDetectorConstruction::ConstructTarget()
     // G4cout << "L_RL: " << L_RL / cm << " cm" << G4endl;
     dLRL = n * L_RL;
 
-    solidTarget = new G4Box("solidTarget", 0.25 * m, 0.25 * m, dLRL);
+    solidTarget = new G4Box("solidTarget", 5. * cm, 5. * cm, dLRL);
     logicTarget = new G4LogicalVolume(solidTarget, targetMaterial, "logicTarget");
     physTarget = new G4PVPlacement(0, targetPos, logicTarget, "physTarget", logicWorld, false, 0, true);
 

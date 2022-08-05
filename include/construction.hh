@@ -32,7 +32,7 @@ private:
     G4Tubs *solidWindowIn, *solidWindowOut;
     G4Box *solidWorld, *solidTarget;
     G4LogicalVolume *logicWindowIn, *logicWindowOut, *logicTarget, *logicWorld;
-    G4VPhysicalVolume *physWindowIn, *physWindowOut, *physWorld, *physTarget;
+    G4VPhysicalVolume *physWorld, *physTarget;
     G4GenericMessenger *target;
 
     G4bool liquidXenon, windows;

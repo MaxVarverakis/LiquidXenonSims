@@ -21,7 +21,7 @@ public:
 private:
     // Messenger doesn't really do anything, need to restart sim to change beam distribution (change from here)
     G4GenericMessenger *fMessenger;
-    G4bool isBeamDist = false;
+    G4bool isBeamDist = true;
 
     G4GeneralParticleSource *fBeamGun;
     G4ParticleGun *fParticleGun;

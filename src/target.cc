@@ -26,6 +26,8 @@ G4bool SensitiveTarget::ProcessHits(G4Step *step, G4TouchableHistory *R0history)
     G4Track *track = step -> GetTrack();
     // track -> SetTrackStatus(fStopAndKill);
 
+    // G4double targetMass = track -> GetVolume() -> GetLogicalVolume() -> GetMass();
+    // G4cout << "Target mass: " << targetMass / g << " g" << G4endl;
     G4String particleName = track -> GetDefinition() -> GetParticleName();
 
     G4StepPoint *preStepPoint = step -> GetPreStepPoint();

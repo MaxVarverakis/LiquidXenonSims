@@ -1,16 +1,15 @@
-/gps/particle e-
+/gps/particle e- # particle type
 
-/gps/ene/type Mono
-/gps/ene/mono {energy} GeV
+/gps/ene/type Mono # energy distribution (Mono = all particles have same energy)
+/gps/ene/mono 10 GeV # energy
 
-/gps/direction 0 0 1
-/gps/pos/type Beam
-/gps/pos/centre 0 0 -0.5 m
-/gps/pos/halfx 2.5 cm
-/gps/pos/halfy 2.5 cm
+/gps/direction 0 0 1 # beam direction
+/gps/pos/type Beam # beam type
+/gps/pos/centre 0 0 -0.5 m # beam source location
+/gps/pos/radius 1. mm # beam radius
 
-/gps/number 1000
+/gps/number 10000 # particles per beam pulse
 
-/target/radLengths 4
-/run/reinitializeGeometry
-/run/beamOn 1
+/target/radLengths {rad} # this is for changing the width of the target in another macro loop
+/run/reinitializeGeometry # reload geometry after changing target width
+/run/beamOn 1 # run one beam pulse
