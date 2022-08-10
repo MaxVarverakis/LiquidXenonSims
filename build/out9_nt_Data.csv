@@ -1,8 +1,0 @@
-#class tools::wcsv::ntuple
-#title Edep
-#separator 44
-#vector_separator 59
-#column double TargetEdep
-#column double BeInEdep
-#column double BeOutEdep
-2.19254e+07,384.216,19797.4

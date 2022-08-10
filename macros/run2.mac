@@ -6,7 +6,8 @@
 /gps/direction 0 0 1 # beam direction
 /gps/pos/type Beam # beam type
 /gps/pos/centre 0 0 -0.5 m # beam source location
-/gps/pos/radius 1. mm # beam radius
+#/gps/pos/radius 1. mm # beam radius
+/gps/pos/sigma_r 1. mm # beam radius std deviation
 
 /gps/number 10000 # particles per beam pulse
 

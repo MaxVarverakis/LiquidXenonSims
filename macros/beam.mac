@@ -9,6 +9,6 @@
 /gps/pos/halfx 4. micrometer
 /gps/pos/halfy 4. micrometer
 
-/gps/number 1000
+/gps/number 1
 
 /run/beamOn 100

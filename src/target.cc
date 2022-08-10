@@ -74,6 +74,12 @@ G4bool SensitiveTarget::ProcessHits(G4Step *step, G4TouchableHistory *R0history)
         {
             // man -> FillNtupleDColumn(0, 0, energy);
             G4ThreeVector pos = postStepPoint -> GetPosition();
+
+            // man -> FillNtupleDColumn(2, 0, pos.x());
+            // man -> FillNtupleDColumn(2, 1, pos.y());
+            // man -> FillNtupleDColumn(2, 2, pos.z());
+            // man -> AddNtupleRow(2);
+
             G4double traverseWidth = pos.getRho();
             G4double azimuthal = pos.getTheta();
             G4double angle = pos.getPhi();

@@ -76,6 +76,14 @@ floatfix,
 \email{sgess@slac.stanford.edu}
 \affiliation{SLAC National Accelerator Laboratory, Menlo Park, California 94025, USA}%
 
+\author{Robert Holtzapple}
+\email{rholtzap@calpoly.edu}
+\affiliation{California Polytechnic State University, San Luis Obispo, CA 93407, USA}
+
+\author{Hiroki Fujii}
+\email{hiroki.fujii@riken.jp}
+\affiliation{Nishina Center, RIKEN, 2-1 Hirosawa, Wako, Saitama, 351-0198, Japan}
+
 % \collaboration{MUSO Collaboration}%\noaffiliation
 
 % \author{Charlie Author}
@@ -98,14 +106,18 @@ floatfix,
 \date{\today}
 
 \begin{abstract}
-ABSTRACT
-\begin{description}
-\item[Usage]
-Secondary publications and information retrieval purposes.
-\item[Structure]
-You may use the \texttt{description} environment to structure your abstract;
-use the optional argument of the \verb+\item+ command to give the category of each item. 
-\end{description}
+Colliding high energy electrons with a high-Z material -- known as a positron target -- 
+is a common method for producing positrons for particle accelerator applications.  The 
+main consequence of using a solid positron target involves material degradation due
+to energy deposition from the beam, in which preventative measures require 
+various techniques to dissipate 
+thermal gains in the material.  Rather than investigating the techniques to obviate
+the solid target problems, we explore the use a liquid Xenon positron target as an
+alternative to using solid targets.  From simulations in GEANT4, we find that a 
+liquid Xenon target has positron yields on the order of currently implemented 
+solid targets while also maintaining comparable positron emittances and energies.  
+With thoughtful design of a liquid Xenon chamber, we argue that one can more easily
+account for the energy deposits from the beam as compared to currently used solid targets.
 \end{abstract}
 
 %\keywords{Suggested keywords}%Use showkeys class option if keyword display desired
@@ -148,7 +160,7 @@ in which positrons are produced.
 Because the collision is such high energy, a great deal of energy is deposited in the target in the form of
 thermal energy.  As a result, solid targets tend to degrade over time [].  Since positron yield increases as a
 function of radiation length [], a thicker the target implies a greater positron yield, but that also implies
-a greater energy will deposited into the target, leading to a quicker degredation of the target.
+a greater energy will deposited into the target, leading to a quicker degradation of the target.
 
 There are various methods for increasing
 the life span of solid targets, such as using a cooling system [] and rotating the target so that the beam doesn't
@@ -163,10 +175,10 @@ For typical Linear Collider applications, around *** $e^+$ per second need to be
 In this paper, we explore the possibility of using a liquid Xenon (Xe) target to produce positrons.
 
 \section{Simulation Results}
-\subsection{Comparing Liquid Xe and Ta Targets}
-Comparison study between Tantalum (Ta) and liquid Xe because we have a reference study on Ta [].
+\subsection{Comparing Liquid Xenon and Tantalum Targets}
+Comparison study between Tantalum (Ta) and liquid Xenon (lXe) because we have a reference study on Ta [].
 We used GEANT4 to simulate the collision between 10 GeV $e^-$ and a target.  We compare the results of using a
-Ta target and a liquid Xe target.
+Ta target and a lXe target.
 
 See Table \ref{tab:G4Params} for parameters used in the simulation.
 \begin{table}[h]
@@ -177,7 +189,7 @@ See Table \ref{tab:G4Params} for parameters used in the simulation.
         \hline
         Tantalum (Ta) & 73 & 16.654 & 0.4094 \\
         % \hline
-        Liquid Xe (Xe) & 54 & 2.953 & 2.872 \\
+        Liquid Xe (lXe) & 54 & 2.953 & 2.872 \\
         \hline \hline
     \end{tabular}
     \caption{\label{tab:G4Params}Parameters used in GEANT4 simulation when comparing targets.}
@@ -185,7 +197,7 @@ See Table \ref{tab:G4Params} for parameters used in the simulation.
 
 \begin{figure}[h]
     \includegraphics[width = \linewidth]{../images/CompDeps.png}
-    \caption{\label{fig:EDep}Energy deposition in Ta and liquid Xe targets per incident electron at 10 GeV.}
+    \caption{\label{fig:EDep}Energy deposition in Ta and lXe targets per incident electron at 10 GeV.}
 \end{figure}
 
 \subsubsection{Calculating Positron Emittance}
@@ -232,15 +244,15 @@ with liquid Xenon are still comparable for use in linear colliders.
     \caption{\label{fig:Comps}Positron yield per incident $e^-$ at 10 GeV, 
     shower spot size, and angular divergence of positrons upon exiting the target.}
 \end{figure}
-From Figure \ref{fig:Yield}, the max positron yield for both Ta and liquid Xe occurs at around 2.75 radiation lengths.
+From Figure \ref{fig:Yield}, the max positron yield for both Ta and lXe occurs at around 2.75 radiation lengths.
 Despite having different radiation lengths, the energy of the positrons exiting the
 target at a given width are relatively equal for both target materials.
 
 \begin{figure}[H]
     \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .65\linewidth]{../images/TaHists.png}
+        \includegraphics[height = .6\linewidth]{../images/TaHists.png}
         \caption{\label{fig:TaHists}Tantalum target.}
-        \includegraphics[height = .65\linewidth]{../images/XeHists.png}
+        \includegraphics[height = .6\linewidth]{../images/XeHists.png}
         \caption{\label{fig:XeHists}Liquid Xenon target.}
     \end{subfigure}
     \caption{\label{fig:Hists}Traverse width and angular diffraction of positrons as a function

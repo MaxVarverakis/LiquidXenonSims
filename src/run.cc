@@ -29,6 +29,13 @@ MyRunAction::MyRunAction()
     man -> CreateNtupleDColumn("BeOutEdep");
     man -> FinishNtuple(1);
 
+    // Position
+    // man -> CreateNtuple("Position", "Position");
+    // man -> CreateNtupleDColumn("X");
+    // man -> CreateNtupleDColumn("Y");
+    // man -> CreateNtupleDColumn("Z");
+    // man -> FinishNtuple(2);
+
     // man -> CreateNtuple("M4V", "p4");
     // man -> CreateNtupleDColumn("fX");
     // man -> CreateNtupleDColumn("fY");
