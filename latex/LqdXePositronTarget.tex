@@ -27,7 +27,7 @@ reprint,
 %frontmatterverbose, 
 %preprint,
 %preprintnumbers,
-% nofootinbib,
+nofootinbib,
 %nobibnotes,
 %bibnotes,
 amsmath, amssymb,
@@ -106,18 +106,16 @@ floatfix,
 \date{\today}
 
 \begin{abstract}
-Colliding high energy electrons with a high-Z material -- known as a positron target -- 
-is a common method for producing positrons for particle accelerator applications.  The 
-main consequence of using a solid positron target involves material degradation due
-to energy deposition from the beam, in which preventative measures require 
-various techniques to dissipate 
-thermal gains in the material.  Rather than investigating the techniques to obviate
-the solid target problems, we explore the use a liquid Xenon positron target as an
-alternative to using solid targets.  From simulations in GEANT4, we find that a 
-liquid Xenon target has positron yields on the order of currently implemented 
-solid targets while also maintaining comparable positron emittances and energies.  
-With thoughtful design of a liquid Xenon chamber, we argue that one can more easily
-account for the energy deposits from the beam as compared to currently used solid targets.
+Positron targets are a critical component of future Linear Colliders.
+%Colliding high energy electrons with a high-Z material -- known as a positron target -- is a common method for producing positrons for particle accelerator applications.
+Traditional targets are composed of high-Z metals and become brittle over time due to constant bombardment by high-power electron beams.
+%The main consequence of using a solid positron target involves material degradation due to energy deposition from the beam, in which preventative measures require various techniques to dissipate thermal gains in the material.
+We explore the possibility of a liquid Xenon target which is constantly refreshed and therefore not susceptible to the damage mechanisms of traditional solid targets.
+%Rather than investigating the techniques to obviate the solid target problems, we explore the use a liquid Xenon positron target as an alternative to using solid targets.  
+Using the GEANT4 simulation code, we examine the performance of the liquid Xenon target and show that the positron yield and divergence are comparable to solid targets when normalizing by radiation length.
+%From simulations in GEANT4, we find that a liquid Xenon target has positron yields on the order of currently implemented solid targets while also maintaining comparable positron emittances and energies.
+We develop parameter sets for a demonstration application at FACET-II and an ILC-type positron source. 
+%With thoughtful design of a liquid Xenon chamber, we argue that one can more easily account for the energy deposits from the beam as compared to currently used solid targets.
 \end{abstract}
 
 %\keywords{Suggested keywords}%Use showkeys class option if keyword display desired
@@ -154,75 +152,144 @@ account for the energy deposits from the beam as compared to currently used soli
 % \end{itemize}
 
 \section{Introduction}
-A common scheme for producing positrons is by colliding high energy electrons into a high-Z target.
-The collision between an electron beam and a solid target generates an electromagnetic particle shower,
-in which positrons are produced.
-Because the collision is such high energy, a great deal of energy is deposited in the target in the form of
-thermal energy.  As a result, solid targets tend to degrade over time [].  Since positron yield increases as a
-function of radiation length [], a thicker the target implies a greater positron yield, but that also implies
-a greater energy will deposited into the target, leading to a quicker degradation of the target.
 
-There are various methods for increasing
-the life span of solid targets, such as using a cooling system [] and rotating the target so that the beam doesn't
-hit the same spot of the target every pulse [].
+% start with positron needs (cite ILC doc) lead into issue
 
-Previous experiments have been carried out to explore alternatives to using solid targets, such as using liquid Mercury (Hg),
-but the apparent hazards that Hg presents are too dangerous to implement in any efficient manner.
-Other approaches include...
+For future Linear Collider applications, around $10^{14}$ $e^+$ per second need to be produced~\cite{Seimiya2015}.
+In addition to the quantity of positrons, they generally need to have a minimum energy based off
+of the design of the accelerator.
 
-For typical Linear Collider applications, around *** $e^+$ per second need to be produced [].
+The traditional scheme for producing positrons is by colliding high energy electrons into a high-Z target.
+The collision between an electron beam and a target generates an electromagnetic particle shower
+producing positrons.
+% through bremsstrahlung radiation in which positrons are produced [?].
 
-In this paper, we explore the possibility of using a liquid Xenon (Xe) target to produce positrons.
+% high power beams are required to generate required number of positrons => lots of power deposited in material
+In order to generate $10^{14}$ $e^+$ per second, an extremely high-powered electron beam is required,
+which results in large power deposits in the target. 
+% Because the collision is such high energy, a great deal of energy is deposited in the target in the form of
+% thermal energy.  
+Hence, solid targets tend to degrade over time~\cite{Bharadwaj2001}.
+% move this 
+% Starting from thicknesses less than one 
+% radiation length, positron yield increases as a
+% function of target width until achieving a maximum yield thickness [?].
+% Therefore, a thicker target implies a greater positron yield to some extent, but that also results in
+% a greater energy deposited into the target leading to a quicker degradation of the target.
+
+% \subsection{Positron Production Methods}
+% The conventional method for producing positrons is the scheme described above, where high energy electrons
+% passing through a high-Z material produces positrons through bremsstrahlung radiation.  
+% Another common method involves using an undulator on the electron beam to produce synchrotron radiation~\cite{Clarke2004}
+% which is then collided with a much thinner target to produce the positrons.  The undulator scheme
+% is the current approach for the ILC~\cite{Seimiya2015}.  In both cases, 
+% there are concerns with target longevity due to energy deposits into the material.
+% Two other approaches are known in literature but less popular as of now, one of which involving Compton scattering which results
+% in high energy gamma rays that spontaneously produce $e^-e^+$ pairs when in a strong EM field~\cite{Kuriki2008}, 
+% and the other approach involving a crystal target that is used to produce the photons that then
+% produce $e^-e^+$ pairs upon future collision with an amorphous target~\cite{Dadoun2009}.
+% For the sake of this paper, we explore a target alternative within the realm of the conventional approach.
+
+% prob not necessary
+% \subsection{Reducing Conventional Target Damage}
+% In the conventional scheme for positron production, the main method for increasing
+% the life span of a solid target involes a cooling system and rotating the target at high speeds in vacuum so that
+% the target can more easily dissipate heat~\cite{Bailey2006}.
+% In order to capture the positrons on the exit of the target, often magnetic fields are used to concentrate the shower.
+% A common issue with rotating targets is that eddy currents are produced by the rotation when present in these magnetic fields,
+% which can lead to power losses~\cite{Bailey2006}.  Even with these preventative measures, solid targets
+% still have a finite life span (see Table I of~\cite{Bailey2006}).
+
+Previous experiments have been carried out to explore alternatives to using solid targets, such as using 
+liquid Mercury (Hg), but the apparent hazards that Hg presents limits its applications~\cite{Mikhailichenko2006}.
+Other liquid targets have been investigated in the undulator scheme for ILC, such as Bi-Pb~\cite{Mikhailichenko2006} and Pb~\cite{Sheppard2002}.
+Related studies include using liquid Lithium to generate neutrons from a proton beam~\cite{Feinberg2011}, as well as using a gaseous deuterium
+target and positron beam for muon production~\cite{Okita2020}.
+
+% move around stuff
+% \subsection{Target Alternatives}
+
+% The use of liquid Lithium for conventional positron production
+% fails in the respect that effective positron targets
+% need to have a high number of protons per atom (i.e., a short radiation length), as bremsstrahlung radiation is the
+% mechanism that leads to positron production.
+
+In this paper, we explore the use of a liquid Xenon (LXe) target to produce positrons
+under the hypothesis that the liquid flow will be able to account for the power deposits
+discussed above.
+Figure~\ref{fig:schem}, a basic schematic of the LXe target and beam interaction.
+
+\begin{figure}[H]
+    \includegraphics[width = \linewidth]{../images/Schematic4.png}
+    \caption{\label{fig:schem}Liquid Xenon target setup.}
+\end{figure}
 
 \section{Simulation Results}
-\subsection{Comparing Liquid Xenon and Tantalum Targets}
-Comparison study between Tantalum (Ta) and liquid Xenon (lXe) because we have a reference study on Ta [].
-We used GEANT4 to simulate the collision between 10 GeV $e^-$ and a target.  We compare the results of using a
-Ta target and a lXe target.
+% \subsection{Comparing Liquid Xenon and Tantalum Targets}
+% discuss Hiroki's paper and why we are comparing to Ta
+% state some form of prediction
 
-See Table \ref{tab:G4Params} for parameters used in the simulation.
+% do sim on W target
+
+% We compare our liquid Xenon target simulations in GEANT4 with simulations on Tantalum targets because FACET experience
+
+% Since we are familiar with Tantalum positron targets from~\cite{Fujii2019}, we decide to use Tantalum as a comparison
+% to the liquid Xenon target in simulation. We use GEANT4~\cite{Geant4} to simulate the positron production for both targets.
+
+Using GEANT4~\cite{Geant4}, we compare our LXe target to a Tantalum (Ta) target due to previous
+experience with Tantalum positron targets at FACET-II\footnote{We also simulated a Tungsten (W) target, but the results were similar enough to 
+Ta that we did not include it in the comparison.}~\cite{Fujii2019}.
+An incident electron energy of 10 GeV was chosen.
+We expect to see similar positron yields for both targets when normalizing by radiation lengths.
+Since the radiation length of liquid Xenon is around 7 times greater than that of Tantalum, 
+the transverse spread of the positron shower
+should be larger in the liquid Xenon target.  For practical purposes, other than for energy deposition considerations,
+we do not consider positrons on the exit of the target under 20 MeV and over 10 mm transverse displacement,
+which is based off of similar positron acceptances in~\cite{Tang1995, Sheppard2003}.
+% Comparison study between Tantalum (Ta) and liquid Xenon (LXe) because we have a reference study on Ta [].
+% We used GEANT4 to simulate the collision between 10 GeV $e^-$ and a target.  We compare the results of using a
+% Ta target and a LXe target.
+See Table~\ref{tab:G4Params} for parameters used in the simulation.
 \begin{table}[h]
     \centering
-    \begin{tabular}{cccc}
+    \begin{tabular}{lcccc}
         \hline \hline
-        Material & Z & Density [$\textrm{g} \cdot \textrm{cm}^{-3} $] & Radiation Length [cm] \\
+        \textbf{Material} & \textbf{Symbol} & \textbf{Z} & \textbf{Density} [$\textrm{g} \cdot \textrm{cm}^{-3} $] & \textbf{Rad Length} [cm] \\
         \hline
-        Tantalum (Ta) & 73 & 16.654 & 0.4094 \\
+        Tantalum & Ta & 73 & 16.654 & 0.4094 \\
         % \hline
-        Liquid Xe (lXe) & 54 & 2.953 & 2.872 \\
+        Liquid Xe & LXe & 54 & 2.953 & 2.872 \\
         \hline \hline
     \end{tabular}
     \caption{\label{tab:G4Params}Parameters used in GEANT4 simulation when comparing targets.}
 \end{table}
 
-\begin{figure}[h]
-    \includegraphics[width = \linewidth]{../images/CompDeps.png}
-    \caption{\label{fig:EDep}Energy deposition in Ta and lXe targets per incident electron at 10 GeV.}
-\end{figure}
+% \subsubsection{Calculating Positron Emittance}
+% \pagebreak
+To calculate the normalized RMS emittance of the positrons generated in pair production, 
+we utilize the following~\cite{Floettmann2003}
+% \begin{subequations}
+%     \begin{eqnarray}
+%         \left\langle x^2 \right\rangle &= \frac{\sum x^2}{n} - \left( \frac{\sum x}{n} \right)^2, \label{subeq:x2} \\
+%         \left\langle p_x^2 \right\rangle &= \frac{\sum p_x^2}{n} - \left( \frac{\sum p_x}{n} \right)^2, \label{subeq:p2} \\ 
+%         \left\langle xp_x \right\rangle &= \frac{\sum xp_x}{n} - \frac{\sum x \sum p_x}{n^2}, \label{subeq:xp}
+%     \end{eqnarray}
+% \end{subequations}
+% which gives us
 
-\subsubsection{Calculating Positron Emittance}
-To calculate the RMS emittance of the positrons generated in pair production, we utilize the following sets
-of equations []
-\begin{subequations}
-    \begin{eqnarray}
-        \left\langle x^2 \right\rangle &= \frac{\sum x^2}{n} - \left( \frac{\sum x}{n} \right)^2, \label{subeq:x2} \\
-        \left\langle p_x^2 \right\rangle &= \frac{\sum p_x^2}{n} - \left( \frac{\sum p_x}{n} \right)^2, \label{subeq:p2} \\ 
-        \left\langle xp_x \right\rangle &= \frac{\sum xp_x}{n} - \frac{\sum x \sum p_x}{n^2}, \label{subeq:xp}
-    \end{eqnarray}
-\end{subequations}
-which gives us
 \begin{equation}
     \varepsilon_{n,rms} = \frac{1}{m_0c}\sqrt[]{\left\langle x^2 \right\rangle \left\langle p_x^2 \right\rangle - \left\langle xp_x \right\rangle}. \label{eq:Emittance}
 \end{equation}
-Using these equations, we generate a plot of the x- and y-emittance of the positrons against target width for both
-Tantalum and liquid Xenon targets.  As seen in Figure \ref{fig:Emittance}, both the x- and y-emittance of the positrons
-are lower in the Tantalum target than in the liquid Xenon target.  According to [], the emittance values associated
-with liquid Xenon are still comparable for use in linear colliders.
-\begin{figure}[h]
-    \includegraphics[width = .825\linewidth]{../images/CompEmittance.png}
-    \caption{\label{fig:Emittance}Normalized RMS positron emittance in a Tantalum and liquid Xenon target for differing target widths.
-    The positron energy cutoff was set to 100 MeV.}
-\end{figure}
+% Using this equation, we calculate the RMS emittance of the positrons for both Tantalum and liquid Xenon targets.  
+At max positron yield, the transverse emittance for Ta
+is $\sim 9\textrm{mm}\cdot\textrm{rad}$ while the transverse emittance for LXe is $\sim 36\textrm{mm}\cdot\textrm{rad}$.
+According to~\cite{Tang1995, Sheppard2003}, the transverse emittance for LXe is comparable for use in Linear Colliders.
+
+% \begin{figure}[h]
+%     \includegraphics[width = .825\linewidth]{../images/CompEmittance.png}
+%     \caption{\label{fig:Emittance}Normalized RMS positron emittance in a Tantalum and liquid Xenon target for differing target widths.
+%     The positron energy cutoff was set to 100 MeV.}
+% \end{figure}
 % \begin{figure}[h]
 %     \includegraphics[width = \linewidth]{../images/XCompEmittance.png}
 %     \caption{\label{fig:Emittance}RMS positron x-emittance in a Tantalum and liquid Xenon target for differing target widths.
@@ -234,77 +301,94 @@ with liquid Xenon are still comparable for use in linear colliders.
 %     The positron energy cutoff was set to 100 MeV.}
 % \end{figure}
 
-\begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .5\linewidth]{../images/CompYield.png}
-        \caption{\label{fig:Yield} Positron yield per incident electron at 10 GeV.}
-        \includegraphics[height = .5\linewidth]{../images/CompATW.png}
-        \caption{\label{fig:ATW}Positron shower spot size and diffraction angle at the exit of the target.}
-    \end{subfigure}
-    \caption{\label{fig:Comps}Positron yield per incident $e^-$ at 10 GeV, 
-    shower spot size, and angular divergence of positrons upon exiting the target.}
-\end{figure}
-From Figure \ref{fig:Yield}, the max positron yield for both Ta and lXe occurs at around 2.75 radiation lengths.
+% second fig
+\begin{figure*}
+    \includegraphics[width = \linewidth]{../images/CompYield.png}
+    \caption{\label{fig:Yield} Positron yield and RMS energy upon exiting the target 
+    per incident $e^-$ at 10 GeV.}
+\end{figure*}
+
+% \begin{figure*}[t]
+%     \begin{subfigure}{\linewidth}
+%         \includegraphics[width = .75\linewidth]{../images/CompYield.png}
+%         \caption{\label{fig:Yield} Positron yield and energy at target exit.}
+%         \includegraphics[width = .75\linewidth]{../images/CompATW.png}
+%         \caption{\label{fig:ATW}Positron shower spot size and diffraction angle at the exit of the target.}
+%     \end{subfigure}
+%     \caption{\label{fig:Comps}Positron yield and RMS energy, 
+%     shower spot size, and angular divergence of positrons upon exiting the target per incident $e^-$ at 10 GeV.}
+% \end{figure*}
+
+From Figure~\ref{fig:Yield}, the max positron yield for both Ta and LXe occurs at around 4.5 radiation lengths.
+Observe that both targets generate a similar yield distribution when normalizing by
+radiation lengths, as predicted.
 Despite having different radiation lengths, the energy of the positrons exiting the
-target at a given width are relatively equal for both target materials.
+target are relatively equal for both target materials.
 
 \begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .6\linewidth]{../images/TaHists.png}
+    \begin{subfigure}{\linewidth}
+        \includegraphics[width = \linewidth]{../images/TaHists.png}
         \caption{\label{fig:TaHists}Tantalum target.}
-        \includegraphics[height = .6\linewidth]{../images/XeHists.png}
+        \includegraphics[width = \linewidth]{../images/XeHists.png}
         \caption{\label{fig:XeHists}Liquid Xenon target.}
     \end{subfigure}
-    \caption{\label{fig:Hists}Traverse width and angular diffraction of positrons as a function
-    of their energy upon production.  Data is shown for widths of 2.75 radiation lengths (max e$^+$ yield).}
+    \caption{\label{fig:Hists}Transverse displacement and angular diffraction of positrons as a function
+    of their energy upon target exit.  Data is shown for widths of 4.5 radiation lengths (max $e^+$ yield).}
 \end{figure}
 
-Notice that in Figure \ref{fig:Hists}, the angular divergence of positrons is roughly the same for both targets,
-yet the traverse widths are more broadly distributed for the liquid Xenon target.  This can be explained by the 
-fact that the radiation length of liquid Xenon is roughly seven times that of Tantalum.
-\subsection{Setting a Cutoff Traverse Width}
-Although the max yield for liquid Xenon is on par with that of the Tantalum target
-according to Figures \ref{fig:ATW} and \ref{fig:Hists}, the physical spread of positrons produced
-from the liquid Xenon target is much larger than that of the Tantalum target.  As a result, only a
-fraction of the positrons that exit the target will have the right characteristics to make it down the rest of
-the accelerator.  In order to accurately assess the plausibility of using a liquid Xenon positron target,
-we set cutoffs for the traverse width of positrons created during the collision.
+Notice that in Figure~\ref{fig:Hists}, the angular divergence of positrons is roughly the same for both targets,
+yet the transverse widths are more broadly distributed for the liquid Xenon target.  This can be explained by the 
+fact that the radiation length of LXe is roughly seven times that of Tantalum.
+
+In simulation, we compare the energy deposited in the target for both materials per incident $e^-$.  Although
+these deposits seem large, as we indicate in Section~\ref{sub:Flow}, the flow of LXe
+can take into account the energy deposit without much concern.
 
 \begin{figure}[H]
-    \begin{subfigure}{.45\textwidth}
-        \includegraphics[height = .43\linewidth]{../images/XeYield1mmCutoff.png}
-        \caption{\label{fig:XeY1}1 mm cutoff}
-        \includegraphics[height = .43\linewidth]{../images/XeYield5mmCutoff.png}
-        \caption{\label{fig:XeY5}5 mm cutoff}
-    \end{subfigure}
-    \caption{\label{fig:YieldCut}Positron yield and energy using 
-    a liquid Xenon target with a 1 mm and 5 mm traverse width cutoff.}
+    \includegraphics[width = \linewidth]{../images/CompDeps.png}
+    \caption{\label{fig:EDep}Energy deposition in Ta and LXe targets per incident electron at 10 GeV.}
 \end{figure}
 
-\begin{figure}[H]
-    \begin{subfigure}{.5\textwidth}
-        \includegraphics[height = .445\linewidth]{../images/XeATW1mmCutoff.png}
-        \caption{\label{fig:XeATW1}1 mm cutoff}
-        \includegraphics[height = .5\linewidth]{../images/XeATW5mmCutoff.png}
-        \caption{\label{fig:XeATW5}5 mm cutoff}
-    \end{subfigure}
-    \caption{\label{fig:ATWCut}Positron spot size and angular diffraction using 
-    a liquid Xenon target with a 1 mm and 5 mm traverse width cutoff.}
-\end{figure}
-It is reassuring to see that even after removing the positrons from the dataset 
-with large transverse distances from the beam path, there are still a comparable number
-of positrons that we predict will be able to make it to the next stage of the accelerator [].
+% \subsection{Setting a Cutoff Traverse Width}
+% Although the max yield for liquid Xenon is on par with that of the Tantalum target
+% according to Figure~\ref{fig:Yield}, the physical spread of positrons produced
+% from the liquid Xenon target is much larger than that of the Tantalum target (Figure~\ref{fig:Hists}).
+% As a result, only a
+% fraction of the positrons that exit the target will have the right characteristics to make it down the rest of
+% the accelerator.  In order to accurately assess the plausibility of using a liquid Xenon positron target,
+% we set cutoffs for the traverse width of positrons created during the collision.
+
+% \begin{figure}[H]
+%     \begin{subfigure}{.45\textwidth}
+%         \includegraphics[height = .5\linewidth]{../images/XeYield1mmCutoff.png}
+%         \caption{\label{fig:XeY1}1 mm cutoff}
+%         \includegraphics[height = .5\linewidth]{../images/XeYield10mmCutoff.png}
+%         \caption{\label{fig:XeY5}10 mm cutoff}
+%     \end{subfigure}
+%     \caption{\label{fig:YieldCut}Positron yield and energy using 
+%     a liquid Xenon target with a 1 mm and 10 mm traverse width cutoff.}
+% \end{figure}
+
+% \begin{figure}[H]
+%     \begin{subfigure}{.5\textwidth}
+%         \includegraphics[height = .45\linewidth]{../images/XeATW1mmCutoff.png}
+%         \caption{\label{fig:XeATW1}1 mm cutoff}
+%         \includegraphics[height = .5\linewidth]{../images/XeATW10mmCutoff.png}
+%         \caption{\label{fig:XeATW5}10 mm cutoff}
+%     \end{subfigure}
+%     \caption{\label{fig:ATWCut}Positron spot size and angular diffraction using 
+%     a liquid Xenon target with a 1 mm and 10 mm traverse width cutoff.}
+% \end{figure}
+% It is reassuring to see that even after removing the positrons from the dataset 
+% with large transverse distances from the beam path, there are still a comparable number
+% of positrons that we predict will be able to make it to the next stage of the accelerator [].
 
 \section{Cryo-cooled Liquid Xenon Chamber}
-Figure \ref{fig:schem}, a basic schematic of how the liquid Xenon chamber will interact with the beam.
-\begin{figure}[H]
-    \includegraphics[width = .5\textwidth]{../images/Schematic4.png}
-    \caption{\label{fig:schem}Schematic of liquid Xenon setup.}
-\end{figure}
 
-\subsection{Calculating the Liquid Xenon Flow Rate}
-To calculate the flow rate of the liquid Xenon, we first calculate preliminary
-values using the information given in the table below.
+\subsection{Calculating the Liquid Xenon Flow Rate} \label{sub:Flow}
+To calculate the flow rate of the LXe, we first calculate preliminary
+values using the information given in Table~\ref{tab:XeInfo}.  To see resultant quantities,
+seek Table~\ref{tab:BeamInfo}.
 
 \begin{table}[H]
     \centering
@@ -316,21 +400,22 @@ values using the information given in the table below.
         % $\textrm{g}\cdot\textrm{mol}^{-1}$
         Molar Mass & M & 131.293 & u \\
         Density & $\rho$ & 2.953 & $\textrm{g} \cdot \textrm{cm}^{-3}$ \\
+        Vapor Pressure & $p$ & 300 & kPa \\
         Heat of Vaporization & $\Delta \textrm{H}$ & 12.636 & kJ$\cdot$mol$^{-1}$ \\
         Heat of Vap./Volume & $\Delta \textrm{H}_{\textrm{vol}}$ & 284.205 & J$\cdot \textrm{cm}^{-3}$ \\
         Radiation Length & $\textrm{L}_{\textrm{RL}}$ & 2.872 & cm \\
-        Width & $\frac{\textrm{d}}{\textrm{L}_{\textrm{RL}}}$ & 5.5 & $\textrm{L}_{\textrm{RL}}$ \\
+        Width & $\frac{\textrm{d}}{\textrm{L}_{\textrm{RL}}}$ & 4.5 & $\textrm{L}_{\textrm{RL}}$ \\
         % Volume & V & & cm$^3$ \\
         \hline \hline
     \end{tabular}
-    \caption{\label{tab:XeInfo}Important parameters associated with liquid Xenon target chamber.}
+    \caption{\label{tab:XeInfo}Important parameters associated with LXe target chamber.}
 \end{table}
 
 \begin{table*}
     \centering
     \begin{tabular}{lcccc}
         \hline \hline
-        \textbf{Beam Parameters} & \textbf{Symbol} & \textbf{FACET-II} & \textbf{ILC} & \textbf{Units} \\
+        \textbf{Beam Parameters} & \textbf{Symbol} & \textbf{FACET-II}~\cite{FACET2016} & \textbf{ILC}~\cite{Seimiya2015} & \textbf{Units} \\
         \hline
         Energy & $E$ & 10.0 & 6.0 & GeV \\
         Repetition Rate & $f$ & 10 & 300 & Hz \\
@@ -339,51 +424,54 @@ values using the information given in the table below.
         \hline \hline
         \textbf{Resultant Quantities} \\
         \hline
-        Energy Deposition/e$^-$ & E$_{\textrm{dep}}$ & .66581 & & GeV \\
-        Energy Deposit/Pulse & $\epsilon$ & 1.332 & 735.9 & J \\
-        Energy Deposit Density & $\epsilon_\rho$ & $1.63\times 10^{-3}$ & 3.10 & J$\cdot\textrm{g}^{-1}$ \\
-        Power Deposit & $P_\textrm{dep}$ & $3.86$ & $7.359\times 10^8$ & W \\
-        Flow Rate due to Vaporization & Q & $4.685 \times 10^{-2}$ & 776.8 & cm$^3\cdot \textrm{s}^{-1}$ \\
-        Main Shower Path Flow Rate & $Q_\textrm{vol}$ & 0.6318 & 18.96 & L$\cdot \textrm{s}^{-1}$ \\
+        Energy Deposition/$e^-$ & E$_{\textrm{dep}}$ & 1.9 & & GeV \\
+        Energy Deposit/Pulse & $\epsilon$ & 3.8 & 482.1 & J \\
+        Peak Energy Deposit Density & $\epsilon_\rho$ & $1.96\times 10^{-2}$ & 15.22 & J$\cdot\textrm{g}^{-1}$ \\
+        Power Deposit/Pulse & $P_\textrm{dep}$ & $38.0$ & $1.45\times 10^5$ & W \\
+        Flow Rate due to Vaporization & Q & $0.134$ & 508.9 & cm$^3\cdot \textrm{s}^{-1}$ \\
+        Main Shower Path Flow Rate & $Q_\textrm{vol}$ & 0.5170 & 15.51 & L$\cdot \textrm{s}^{-1}$ \\
         \hline \hline
     \end{tabular}
-    \caption{\label{tab:BeamInfo}Linear collider electron beam parameters and associated target quantities [].}
+    \caption{\label{tab:BeamInfo}Linear collider electron beam parameters and associated target quantities.}
 \end{table*}
 
-We first convert the heat of vaporization to units of Joules per unit volume (J$\cdot \textrm{cm}^{-3}$),
-which is given by Eq.~(\ref{subeq:HoV}).
-We then calculate the number of electrons per beam bunch (SLAC), by comparing the 
+We first convert the heat of vaporization to units of energy per unit volume (J$\cdot \textrm{cm}^{-3}$),
+\begin{equation}
+    \Delta \textrm{H}_\textrm{vol} = \frac{\Delta \textrm{H}\cdot \rho}{\textrm{M}}. \label{eq:HoV}
+\end{equation}
+Then, one can calculate the number of electrons per beam bunch, by comparing the 
 total charge of the beam bunch to the charge of an electron
-($e \approx 1.602 \times 10^{-10}$ nC), as follows from Eq.~(\ref{subeq:n}).
-From this, we calculate the total energy deposited in the liquid Xenon target, 
-as seen in Eq.~(\ref{subeq:Etot}).
-\begin{subequations}
-    \begin{eqnarray}
-        \Delta \textrm{H}_\textrm{vol} &=& \frac{\Delta \textrm{H}\cdot \rho}{\textrm{M}}, \label{subeq:HoV} \\
-        n &=& \frac{q}{e}, \label{subeq:n} \\
-        \epsilon &=& n \cdot E_{\textrm{dep}} \label{subeq:Etot}.
-    \end{eqnarray}
-\end{subequations}
-    
-Now we have everything we need in order to calculate the flow rate of liquid Xenon
-required to replace the vaporized Xenon due to the energy deposited by the beam,
+($e \approx 1.602 \times 10^{-10}$ nC).
+% , as follows from Eq.~(\ref{subeq:n}).
+From this, we calculate the total energy deposited in the LXe target.
+We can obtain the flow rate of LXe required to replace the vaporized Xenon due
+to the energy deposited by the beam,
 \begin{equation}
     Q = \frac{\epsilon \cdot f}{\Delta \textrm{H}_{\textrm{vol}}}.
 \label{eq:Q}
 \end{equation}
+% as seen in Eq.~(\ref{subeq:Etot}).
+% \begin{subequations}
+%     \begin{eqnarray}
+%         \Delta \textrm{H}_\textrm{vol} &=& \frac{\Delta \textrm{H}\cdot \rho}{\textrm{M}}, \label{subeq:HoV} \\
+%         n &=& \frac{q}{e}, \label{subeq:n} \\
+%         \epsilon &=& n \cdot E_{\textrm{dep}} \label{subeq:Etot}.
+%     \end{eqnarray}
+% \end{subequations}
+    
 
 In case one wants to calculate the flow rate required to move the entire volume encompassing the main
-part of the EM shower, one can approximate the volume with a rectangular prism with target width and other
+part of the EM shower, the volume can be approximated with a rectangular prism with target width and
 side lengths equal to the diameter of the Beryllium windows (see next section).  At max positron yield,
-this gives $\textrm{V} = (2 \textrm{ cm})^2 \cdot 5.5\textrm{L}_{\textrm{RL}} \approx 63.18 \textrm{ cm}^3$.
+this gives 
+\linebreak $\textrm{V} = (2 \textrm{ cm})^2 \cdot 4.5\textrm{L}_{\textrm{RL}} \approx 51.70 \textrm{ cm}^3$.
 As a result, the required flow rate to move volume V in the amount of time between beam pulses is
-shown in Table \ref{tab:BeamInfo} as $Q_\textrm{vol}$.
+shown in Table~\ref{tab:BeamInfo} as $Q_\textrm{vol}$.
 
 \subsection{Using Beryllium Windows to the Target Chamber}
-We explore using Beryllium windows for the beam to enter the target chamber.
-Below is some useful information about Beryllium.
+We explore using Beryllium (Be) windows for the beam to enter and exit the target chamber.
 
-\begin{table}[h]
+\begin{table}[H]
     \centering
     \begin{tabular}{lccc}
         \hline \hline
@@ -399,13 +487,13 @@ Below is some useful information about Beryllium.
         \hline \hline
         \textbf{Quantities} \\
         \hline
-        Height 
-        \footnote{Difference in height between the Beryllium window and the top of the liquid Xenon chamber.} 
+        Height
+        % \footnote{Difference in height between the Beryllium window and the top of the liquid Xenon chamber.} 
         & $h$ & 1.0 & m \\
         Radius & $r$ & 10.00 & mm \\
         Contact Area & $A$ & $100\pi$ & mm$^2$ \\
         % Cross Sectional Area & $A_c$ & $2\pi r t$ & mm$^2$ \\
-        Pressure & $P$ & 28.968 & kPa \\
+        Pressure & $P$ & 328.968 & kPa \\
         Force & $F$ & 9.100 & N \\
         Safety Factor & $S_F$ & 4 \\
         Empirical Constant & $K$ & 0.75 \\
@@ -416,48 +504,63 @@ Below is some useful information about Beryllium.
     The quantities are specific to a 10mm radius Beryllium disk.}
 \end{table}
 
-Utilizing Bernoulli's Equation for conservative force fields [], we can calculate the total
-pressure on a Beryllium window, which
-is of the form
+Utilizing Bernoulli's Equation for conservative force fields, we can calculate the total
+pressure on a Be window.
+% , which is of the form
+% \begin{equation}
+%     P = \frac{1}{2} \rho v^2 + \rho g h + p,
+% \label{eq:Bern}
+% \end{equation}
+% where $v$ is the fluid flow rate, $g$ is acceleration due to gravity, $h$ is the height of the Xenon chamber
+% relative to the height of the window,
+% and $p$ is the additional external pressure (in this case $p$ refers to the vapor pressure of LXe $\sim 300 \textrm{kPa}$).
+However, as seen in Table~\ref{tab:BeamInfo}, the flow rate for the LXe is quite small,
+so we can approximate the pressure to be
+% Additionally, the liquid Xenon chamber is in vacuum, and we are comparing differences in total pressures,
+% so we can ignore $p$ as well.  
 \begin{equation}
-    P = \frac{1}{2} \rho v^2 + \rho g h + p,
-\label{eq:Bern}
-\end{equation}
-where $v$ is the fluid flow rate, $g$ is acceleration due to gravity, $h$ is the height of the Xenon chamber
-relative to the height of the window,
-and $p$ is the additional pressure from, say, the atmosphere.
-However, as seen in Table \ref{tab:BeamInfo}, the flow rate for the liquid Xenon is quite small.  Additionally,
-the liquid Xenon chamber is in vacuum, and we are comparing differences in total pressures,
-so we can ignore $p$ as well.  Therefore,
-we can ignore the second order term and the point-pressure term to further simplify our approximation to
-\begin{equation}
-    P = \rho g h.
+    P = \rho g h + p,
     \label{eq:BernSimp}
 \end{equation}
+where $g$ is acceleration due to gravity, $h$ is the height of the Xenon chamber
+relative to the height of the window,
+and $p$ is the additional pressure (in this case $p$ refers to the vapor pressure of LXe $\sim 300 \textrm{kPa}$).
+From Eq.~(\ref{eq:BernSimp}), we can calculate the force on a Be window with contact area $A$ by 
+multiplying the area by the pressure.
+% : $F = P\cdot A$.
 
-From Eq.~(\ref{eq:BernSimp}), we can calculate the force on a Beryllium window with contact area $A$ by 
-multiplying the area by the pressure: $F = P\cdot A$.
-
-In order to determine the required thickness of the Beryllium window, we utilize the following [].
+In order to determine the required thickness of the Be windows, we utilize methods described in~\cite{Crystran2019}.
 First we calculate a constant related to the safety factor of our thickness, which takes into account
-the method with which the Beryllium window is inserted into the target chamber.
+the method with which the Be window is inserted into the target chamber.
 An empirical constant $K = 0.75$ is chosen if the window is clamped into the target chamber, and
 $K = 1.125$ if the window is unclamped in the target chamber.  For a given safety factor ($S_F$),
 we have a thickness of
 \begin{equation}
     T = r\cdot\sqrt{\frac{S_F\cdot K\cdot P}{F_a}}.
 \end{equation}
+For parameters chosen in Table~\ref{tab:BeInfo}, we get a required thickness of $496.701 \mu \textrm{m}$.
+Using the above thickness, we simulated the energy deposited in both of the Be windows, and found that
+the energy deposited in the entrance window is on the order of $10^{-1}$ MeV/incident~$e^-$ and the exit window
+on the order of 6 MeV/incident~$e^-$.
+%~\ref{fig:WinDeps}.
 
-\begin{figure}[H]
-    \includegraphics[width = .5\textwidth]{../images/WindowDeps.png}
-    \caption{\label{fig:WinDeps}Energy deposition on incident and exit Beryllium windows.}
-\end{figure}
+% \begin{figure}[H]
+%     \includegraphics[width = .5\textwidth]{../images/WindowDeps.png}
+%     \caption{\label{fig:WinDeps}Energy deposition on incident and exit Beryllium windows per incident $e^-$.}
+% \end{figure}
+% As depicted in Figure 
+%~\ref{fig:WinDeps}
+% , the energy deposited in both Beryllium windows is of no concern?
+\textbf{TODO}
+Explore how much heat Be windows can take in given amount of time like done above for LXe??
+Energy transfer from windows to LXe??
 
 \section{Conclusion}
 \subsection{Design of Liquid Xenon Chamber}
-Here we explore how one could design a chamber for the liquid Xenon target.
+% discuss practicalities and cost stuff
 
-Source code and sample data for GEANT4 simulations can be found at 
+
+Source code and sample data from GEANT4 simulations can be found at 
 \url{https://github.com/MaxVarverakis/LiquidXenonSims.git}.
 
 
@@ -469,74 +572,74 @@ Source code and sample data for GEANT4 simulations can be found at
 
 
 
-\begin{acknowledgments}
-We wish to acknowledge the support of the author community in using
-REV\TeX{}, offering suggestions and encouragement, testing new versions,
-\dots.
-\end{acknowledgments}
+% \begin{acknowledgments}
+% We wish to acknowledge the support of the author community in using
+% REV\TeX{}, offering suggestions and encouragement, testing new versions,
+% \dots.
+% \end{acknowledgments}
 
-\appendix
-\section{Appendixes}
+% \appendix
+% \section{Appendixes}
 
-To start the appendixes, use the \verb+\appendix+ command.
-This signals that all following section commands refer to appendixes
-instead of regular sections. Therefore, the \verb+\appendix+ command
-should be used only once---to setup the section commands to act as
-appendixes. Thereafter normal section commands are used. The heading
-for a section can be left empty. For example,
-\begin{verbatim}
-\appendix
-\section{}
-\end{verbatim}
-will produce an appendix heading that says ``APPENDIX A'' and
-\begin{verbatim}
-\appendix
-\section{Background}
-\end{verbatim}
-will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
-(note that the colon is set automatically).
+% To start the appendixes, use the \verb+\appendix+ command.
+% This signals that all following section commands refer to appendixes
+% instead of regular sections. Therefore, the \verb+\appendix+ command
+% should be used only once---to setup the section commands to act as
+% appendixes. Thereafter normal section commands are used. The heading
+% for a section can be left empty. For example,
+% \begin{verbatim}
+% \appendix
+% \section{}
+% \end{verbatim}
+% will produce an appendix heading that says ``APPENDIX A'' and
+% \begin{verbatim}
+% \appendix
+% \section{Background}
+% \end{verbatim}
+% will produce an appendix heading that says ``APPENDIX A: BACKGROUND''
+% (note that the colon is set automatically).
 
-If there is only one appendix, then the letter ``A'' should not
-appear. This is suppressed by using the star version of the appendix
-command (\verb+\appendix*+ in the place of \verb+\appendix+).
+% If there is only one appendix, then the letter ``A'' should not
+% appear. This is suppressed by using the star version of the appendix
+% command (\verb+\appendix*+ in the place of \verb+\appendix+).
 
-\section{A little more on appendixes}
+% \section{A little more on appendixes}
 
-Observe that this appendix was started by using
-\begin{verbatim}
-\section{A little more on appendixes}
-\end{verbatim}
+% Observe that this appendix was started by using
+% \begin{verbatim}
+% \section{A little more on appendixes}
+% \end{verbatim}
 
-Note the equation number in an appendix:
-\begin{equation}
-E=mc^2.
-\end{equation}
+% Note the equation number in an appendix:
+% \begin{equation}
+% E=mc^2.
+% \end{equation}
 
-\subsection{\label{app:subsec}A subsection in an appendix}
+% \subsection{\label{app:subsec}A subsection in an appendix}
 
-You can use a subsection or subsubsection in an appendix. Note the
-numbering: we are now in Appendix~\ref{app:subsec}.
+% You can use a subsection or subsubsection in an appendix. Note the
+% numbering: we are now in Appendix~\ref{app:subsec}.
 
-Note the equation numbers in this appendix, produced with the
-subequations environment:
-\begin{subequations}
-\begin{eqnarray}
-E&=&mc, \label{appa}
-\\
-E&=&mc^2, \label{appb}
-\\
-E&\agt& mc^3. \label{appc}
-\end{eqnarray}
-\end{subequations}
-They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
+% Note the equation numbers in this appendix, produced with the
+% subequations environment:
+% \begin{subequations}
+% \begin{eqnarray}
+% E&=&mc, \label{appa}
+% \\
+% E&=&mc^2, \label{appb}
+% \\
+% E&\agt& mc^3. \label{appc}
+% \end{eqnarray}
+% \end{subequations}
+% They turn out to be Eqs.~(\ref{appa}), (\ref{appb}), and (\ref{appc}).
 
-% The \nocite command causes all entries in a bibliography to be printed out
-% whether or not they are actually referenced in the text. This is appropriate
-% for the sample file to show the different styles of references, but authors
-% most likely will not want to use it.
-\nocite{*}
+% % The \nocite command causes all entries in a bibliography to be printed out
+% % whether or not they are actually referenced in the text. This is appropriate
+% % for the sample file to show the different styles of references, but authors
+% % most likely will not want to use it.
+% \nocite{*}
 
-% \bibliography{apssamp}% Produces the bibliography via BibTeX.
+\bibliography{LqdXePositronTarget}% Produces the bibliography via BibTeX.
 
 \end{document}
 %

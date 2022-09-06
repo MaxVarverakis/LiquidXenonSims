@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.26)  10 AUG 2022 10:46
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2021) (preloaded format=pdflatex 2021.9.26)  6 SEP 2022 15:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -304,162 +304,123 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 \openout3 = `LqdXePositronTargetNotes.bib'.
 
-LaTeX Font Info:    Trying to load font information for U+msa on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 122.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 124.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 122.
  (/usr/local/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Overfull \hbox (6.5752pt too wide) in paragraph at lines 186--195
+<../images/Schematic4.png, id=1, 554.07pt x 398.48875pt>
+File: ../images/Schematic4.png Graphic file (type png)
+<use ../images/Schematic4.png>
+Package pdftex.def Info: ../images/Schematic4.png  used on input line 223.
+(pdftex.def)             Requested size: 246.0pt x 176.92258pt.
+
+Overfull \hbox (10.30034pt too wide) in paragraph at lines 255--264
  []$[]$ 
  []
 
-<../images/CompDeps.png, id=1, 1040.688pt x 586.1097pt>
-File: ../images/CompDeps.png Graphic file (type png)
-<use ../images/CompDeps.png>
-Package pdftex.def Info: ../images/CompDeps.png  used on input line 199.
-(pdftex.def)             Requested size: 246.0pt x 138.5407pt.
-[1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompDeps.png>]
-<../images/CompEmittance.png, id=21, 462.528pt x 346.896pt>
-File: ../images/CompEmittance.png Graphic file (type png)
-<use ../images/CompEmittance.png>
-Package pdftex.def Info: ../images/CompEmittance.png  used on input line 222.
-(pdftex.def)             Requested size: 202.94925pt x 152.21124pt.
-<../images/CompYield.png, id=22, 854.2314pt x 493.6041pt>
+[1{/usr/local/texlive/2021/texmf-var/fonts/map/pdftex/updmap/pdftex.map} </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/Schematic4.png>]
+<../images/CompYield.png, id=22, 912.7701pt x 346.896pt>
 File: ../images/CompYield.png Graphic file (type png)
 <use ../images/CompYield.png>
-Package pdftex.def Info: ../images/CompYield.png  used on input line 239.
-(pdftex.def)             Requested size: 220.6481pt x 127.5pt.
-<../images/CompATW.png, id=23, 890.3664pt x 520.344pt>
-File: ../images/CompATW.png Graphic file (type png)
-<use ../images/CompATW.png>
-Package pdftex.def Info: ../images/CompATW.png  used on input line 241.
-(pdftex.def)             Requested size: 218.16205pt x 127.5pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 238--244
-[]$[]$ 
- []
-
-<../images/TaHists.png, id=24, 1040.688pt x 586.1097pt>
+Package pdftex.def Info: ../images/CompYield.png  used on input line 306.
+(pdftex.def)             Requested size: 510.0pt x 193.82639pt.
+<../images/TaHists.png, id=23, 694.5147pt x 346.896pt>
 File: ../images/TaHists.png Graphic file (type png)
 <use ../images/TaHists.png>
-Package pdftex.def Info: ../images/TaHists.png  used on input line 253.
-(pdftex.def)             Requested size: 271.6682pt x 153.00156pt.
-
-Overfull \hbox (16.6682pt too wide) in paragraph at lines 253--254
-[][] 
- []
-
-<../images/XeHists.png, id=25, 1040.688pt x 586.1097pt>
+Package pdftex.def Info: ../images/TaHists.png  used on input line 330.
+(pdftex.def)             Requested size: 246.0pt x 122.87103pt.
+<../images/XeHists.png, id=24, 718.3638pt x 346.896pt>
 File: ../images/XeHists.png Graphic file (type png)
 <use ../images/XeHists.png>
-Package pdftex.def Info: ../images/XeHists.png  used on input line 255.
-(pdftex.def)             Requested size: 271.6682pt x 153.00156pt.
+Package pdftex.def Info: ../images/XeHists.png  used on input line 332.
+(pdftex.def)             Requested size: 246.0pt x 118.78998pt.
+<../images/CompDeps.png, id=25, 462.528pt x 346.896pt>
+File: ../images/CompDeps.png Graphic file (type png)
+<use ../images/CompDeps.png>
+Package pdftex.def Info: ../images/CompDeps.png  used on input line 348.
+(pdftex.def)             Requested size: 246.0pt x 184.49977pt.
 
-Overfull \hbox (16.6682pt too wide) in paragraph at lines 255--256
-[][] 
+Underfull \hbox (badness 1281) in paragraph at lines 389--392
+[]\T1/cmr/m/n/10 To calculate the flow rate of the LXe, we first
  []
 
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 252--258
-[]$[]$ 
- []
-
-
-Underfull \hbox (badness 1087) in paragraph at lines 259--259
-[]\T1/cmr/m/n/10 FIG. 4: |[]Traverse width and angular diffraction of
- []
-
-[2 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompEmittance.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompYield.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompATW.png>]
-<../images/XeYield1mmCutoff.png, id=39, 758.835pt x 351.9549pt>
-File: ../images/XeYield1mmCutoff.png Graphic file (type png)
-<use ../images/XeYield1mmCutoff.png>
-Package pdftex.def Info: ../images/XeYield1mmCutoff.png  used on input line 275.
-(pdftex.def)             Requested size: 212.76183pt x 98.68265pt.
-<../images/XeYield5mmCutoff.png, id=40, 695.9601pt x 375.0813pt>
-File: ../images/XeYield5mmCutoff.png Graphic file (type png)
-<use ../images/XeYield5mmCutoff.png>
-Package pdftex.def Info: ../images/XeYield5mmCutoff.png  used on input line 277.
-(pdftex.def)             Requested size: 183.1011pt x 98.68265pt.
-<../images/XeATW1mmCutoff.png, id=41, 708.9687pt x 372.9132pt>
-File: ../images/XeATW1mmCutoff.png Graphic file (type png)
-<use ../images/XeATW1mmCutoff.png>
-Package pdftex.def Info: ../images/XeATW1mmCutoff.png  used on input line 286.
-(pdftex.def)             Requested size: 215.7321pt x 113.47687pt.
-<../images/XeATW5mmCutoff.png, id=42, 706.0779pt x 345.4506pt>
-File: ../images/XeATW5mmCutoff.png Graphic file (type png)
-<use ../images/XeATW5mmCutoff.png>
-Package pdftex.def Info: ../images/XeATW5mmCutoff.png  used on input line 288.
-(pdftex.def)             Requested size: 260.5983pt x 127.5pt.
-
-Overfull \hbox (5.5983pt too wide) in paragraph at lines 288--289
-[][] 
- []
-
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 285--291
-[]$[]$ 
- []
-
-[3 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/TaHists.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeHists.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeYield1mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeYield5mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeATW1mmCutoff.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeATW5mmCutoff.png>]
-<../images/Schematic4.png, id=52, 554.07pt x 398.48875pt>
-File: ../images/Schematic4.png Graphic file (type png)
-<use ../images/Schematic4.png>
-Package pdftex.def Info: ../images/Schematic4.png  used on input line 301.
-(pdftex.def)             Requested size: 255.0pt x 183.39825pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 301--302
-[][] 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Underfull \hbox (badness 1168) in paragraph at lines 419--422
-\T1/cmr/m/n/10 fields [], we can calculate the total pressure on a
- []
-
-[4 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/Schematic4.png>]
-<../images/WindowDeps.png, id=62, 716.1957pt x 532.6299pt>
-File: ../images/WindowDeps.png Graphic file (type png)
-<use ../images/WindowDeps.png>
-Package pdftex.def Info: ../images/WindowDeps.png  used on input line 452.
-(pdftex.def)             Requested size: 255.0pt x 189.64165pt.
-
-Overfull \hbox (9.0pt too wide) in paragraph at lines 452--453
-[][] 
- []
-
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 461.
-(/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
+[2 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/TaHists.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/XeHists.png> </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompDeps.png>] [3 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/CompYield.png>]
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 564.
+ (/usr/local/texlive/2021/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-) [5 </Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/../images/WindowDeps.png>]
-Underfull \hbox (badness 3219) in paragraph at lines 496--498
-\T1/cmr/m/n/10 A: BACKGROUND'' (note that the colon is set
+)
+Underfull \hbox (badness 6204) in paragraph at lines 563--565
+[]\T1/cmr/m/n/10 Source code and sample data from GEANT4
  []
 
 
-Underfull \hbox (badness 1742) in paragraph at lines 517--519
-\T1/cmr/m/n/10 appendix. Note the numbering: we are now in
+Underfull \hbox (badness 1708) in paragraph at lines 563--565
+\T1/cmr/m/n/10 simulations can be found at $\T1/cmtt/m/n/10 https : / / github . com /
  []
 
-(/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.bbl) [6] (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.aux) ) 
+(/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.bbl
+Underfull \hbox (badness 2119) in paragraph at lines 65--76
+ []\T1/cmr/m/n/9 Y. Seimiya, M. Kuriki, T. Takahashi, T. Omori,
+ []
+
+
+Underfull \hbox (badness 2875) in paragraph at lines 65--76
+ \T1/cmr/m/n/9 Positron capture simulation for the ILC electron-
+ []
+
+
+Underfull \hbox (badness 1102) in paragraph at lines 65--76
+ \T1/cmr/m/n/9 driven positron source, Progress of Theoretical and
+ []
+
+
+Underfull \hbox (badness 2961) in paragraph at lines 90--96
+ \T1/cmr/m/n/9 the slc positron production target, in \T1/cmr/m/it/9 PACS2001.
+ []
+
+
+Underfull \hbox (badness 1655) in paragraph at lines 136--145
+ []\T1/cmr/m/n/9 H. Okita, Y. Ishi, and Y. Mori, Beam emittance
+ []
+
+
+Underfull \hbox (badness 3396) in paragraph at lines 136--145
+ \T1/cmr/m/n/9 Detectors and Associated Equipment \T1/cmr/bx/n/9 982\T1/cmr/m/n/9 , 164565
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 165--174
+ \T1/cmr/m/n/9 from an electron-beam-driven plasma wakefield
+ []
+
+
+Underfull \hbox (badness 2846) in paragraph at lines 181--186
+ []\T1/cmr/m/n/9 H. Tang, A. Kulikov, J. Clendenin, S. Ecklund,
+ []
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 196--201
+ []\T1/cmr/m/n/9 K. Floettmann, Some basic features of the beam
+ []
+
+) [4] (/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.aux) ) 
 Here is how much of TeX's memory you used:
- 6999 strings out of 478994
- 101908 string characters out of 5858184
- 436533 words of memory out of 5000000
- 24368 multiletter control sequences out of 15000+600000
- 423208 words of font info for 82 fonts, out of 8000000 for 9000
+ 6989 strings out of 478994
+ 101447 string characters out of 5858184
+ 441024 words of memory out of 5000000
+ 24362 multiletter control sequences out of 15000+600000
+ 423984 words of font info for 83 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 82i,14n,88p,405b,488s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
-Output written on "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.pdf" (6 pages, 991323 bytes).
+ 82i,12n,88p,414b,481s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/local/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfbx1200.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0500.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0600.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0700.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0800.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfti0900.pfb></usr/local/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb>
+Output written on "/Users/max/Library/CloudStorage/OneDrive-CalPoly/Research/E-320 Summer 2022 Max/LiquidXenonSims/latex/LqdXePositronTarget.pdf" (4 pages, 639647 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
- 97 compressed objects within 1 object stream
+ 125 PDF objects out of 1000 (max. 8388607)
+ 84 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 61 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 26 words of extra memory for PDF output out of 10000 (max. 10000000)
 

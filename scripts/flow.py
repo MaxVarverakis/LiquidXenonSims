@@ -1,6 +1,7 @@
 import numpy as np
 
-def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
+# def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
+def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = 1.9, T = 4, spot = 5.14):
     '''
     Calculate the required flow rate due to energy deposition from electron beam pulse
 
@@ -20,6 +21,10 @@ def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .
         Frequency of the electron beam (Hz)
     Edep : float
         Energy deposited in the target per electron (GeV)
+    T : float
+        Thickness of the target in Radiation Lengths
+    spot : float
+        Spot size of e+ shower (mm)
     '''
 
     # Conversion factors
@@ -34,34 +39,36 @@ def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .
     else:
         E = n * Edep * GeV_to_J # J
 
-        T = 15.796 # cm
-        spot = 12.73 * 1e-1 # cm
+        T *= 2.872 # Rad lengths to cm
+        spot *= 1e-1 # cm
         V = spot ** 2 * np.pi * T # cm^3
         m = V * rho # g
         # m = 116620 # g
         
-        print(f'FACET-II Power Dep : {.29 * E * f} W')
-        print(f'FACET-II Energy Dep Density : {.29 * E / m} J/g')
+        print(f'FACET-II Power Dep : {E * f} W')
+        print(f'FACET-II Energy Dep Density : {E / m} J/g')
 
     Q = E * f / HoV # cm^3 / s
 
-    # print(f'HoV : {HoV} J/cm3\nE : {E} J\n')
-    print(f'Flow rate : {Q} cm^3/s\n')
+    # print(f'HoV : {HoV} J/cm3')
+    print(f'E : {E} J')
+    print(f'Flow rate : {Q} cm^3/s')
 
     return Q
 
-def altFlow(f = 10, r = 10, T = 15.796):
+def altFlow(f = 10, r = 10, T = 4.5):
     '''
     Calculate flow rate required to move rectangular prism in a given time
     '''
     mm = 1e-1 # mm to cm
 
+    T *= 2.872 # Rad lengths to cm
     V = (2 * r * mm) ** 2 * T
 
     print(f'Volume : {V} cm^3')
     print(f'Flow rate : {V * f * 1e-3} L/s')
 
-def ILC(t, nBunch, rho = 2.953, T = 15.796, spot = 12.73):
+def ILC(t, nBunch, rho = 2.953, T = 4.5, spot = 5.14, PropDep = .19):
     '''
     Calculate energy deposition stuff for ILC
 
@@ -80,17 +87,17 @@ def ILC(t, nBunch, rho = 2.953, T = 15.796, spot = 12.73):
     microsecond = 1e-6 # s to µs
     mm = 1e-1 # mm to cm
 
-    PropDep = .29
-
     spot *= mm # mm to cm
     t *= microsecond # µs to s
 
     bunchEnergy = 6 * GeV_to_J * 2e10 # J
     # print(f'Bunch Energy : {bunchEnergy} J')
     Etot = nBunch * bunchEnergy # J
-    Power = Etot / t # W
+    # Power = Etot / t # W
+    Power = 300 * Etot # 300 Hz frequency times Etot gives total Power
 
     # m = 116620 # g
+    T *= 2.872 # Rad lengths to cm
     V = spot ** 2 * np.pi * T # cm^3
     m = V * rho # g
     # print(m)
@@ -98,12 +105,11 @@ def ILC(t, nBunch, rho = 2.953, T = 15.796, spot = 12.73):
 
     
     # print(f'ILC Q : {e * 2e10} nC')
-    print(f'ILC Power Dep : {PropDep * Power * 1e-6} MW')
+    print(f'ILC Power Dep : {PropDep * Power * 1e-3} kW')
     print(f'ILC Energy Dep Density : {PropDep * Etot / m} J/g')
     print(f'ILC Energy Dep : {PropDep * Etot} J')
 
     return PropDep * Etot
-
 
 def force(r = 10, h = 1., rho = 2.953, g = 9.81):
     '''
@@ -122,9 +128,11 @@ def force(r = 10, h = 1., rho = 2.953, g = 9.81):
     '''
     r *= 1e-3 # mm to m
     rho *= 1e3 # g / cm^3 to kg / m^3
+    offset = 3e5 # Pa
 
     A = np.pi * r ** 2 # m^2
     p =  h * rho * g # kg / m s^2 = Pa
+    p += offset # Pa
     F = p * A # N
     
     F_A = 400 * 1e6 # Pa
@@ -146,13 +154,14 @@ if __name__ == '__main__':
     E = ILC(1, 132)
     flow(E, f = 300)
     flow()
-    print('---------------')
-    print('Tungsten Target')
-    print('---------------')
-    E = ILC(1, 132, rho = 20, T = 1.4, spot = 4)
-    flow(E, f = 300)
-    E = ILC(63, 2640)
-    flow(E)
+    # force()
+    # print('---------------')
+    # print('Tungsten Target')
+    # print('---------------')
+    # E = ILC(1, 132, rho = 20, T = 1.4, spot = 4)
+    # flow(E, f = 300)
+    # E = ILC(63, 2640)
+    # flow(E)
 
-    altFlow()
-    altFlow(f = 300)
+    # altFlow()
+    # altFlow(f = 300)

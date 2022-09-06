@@ -6,7 +6,7 @@
 %Control: page (0) single
 %Control: year (1) truncated
 %Control: production of eprint (0) enabled
-\begin{thebibliography}{0}%
+\begin{thebibliography}{13}%
 \makeatletter
 \providecommand \@ifxundefined [1]{%
  \@ifx{#1\undefined}
@@ -50,4 +50,165 @@
 \providecommand \BibitemShut  [1]{\csname bibitem#1\endcsname}%
 \let\auto@bib@innerbib\@empty
 %</preamble>
+\bibitem [{\citenamefont {Seimiya}\ \emph {et~al.}(2015)\citenamefont
+  {Seimiya}, \citenamefont {Kuriki}, \citenamefont {Takahashi}, \citenamefont
+  {Omori}, \citenamefont {Okugi}, \citenamefont {Satoh}, \citenamefont
+  {Urakawa},\ and\ \citenamefont {Kashiwagi}}]{Seimiya2015}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont
+  {Seimiya}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Kuriki}},
+  \bibinfo {author} {\bibfnamefont {T.}~\bibnamefont {Takahashi}}, \bibinfo
+  {author} {\bibfnamefont {T.}~\bibnamefont {Omori}}, \bibinfo {author}
+  {\bibfnamefont {T.}~\bibnamefont {Okugi}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Satoh}}, \bibinfo {author} {\bibfnamefont
+  {J.}~\bibnamefont {Urakawa}},\ and\ \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Kashiwagi}},\ }\bibfield  {title} {\bibinfo {title}
+  {Positron capture simulation for the {ILC} electron-driven positron source},\
+  }\href {https://doi.org/10.1093/ptep/ptv136} {\bibfield  {journal} {\bibinfo
+  {journal} {Progress of Theoretical and Experimental Physics}\ }\textbf
+  {\bibinfo {volume} {2015}},\ \bibinfo {pages} {103G01} (\bibinfo {year}
+  {2015})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Bharadwaj}\ \emph {et~al.}(2001)\citenamefont
+  {Bharadwaj}, \citenamefont {Batygin}, \citenamefont {Sheppard}, \citenamefont
+  {Schultz}, \citenamefont {Bodenstein}, \citenamefont {Gallegos},
+  \citenamefont {Gonzales}, \citenamefont {Ledbetter}, \citenamefont {Lopez},
+  \citenamefont {Romero}, \citenamefont {Romero}, \citenamefont {Rutherford},\
+  and\ \citenamefont {Maloy}}]{Bharadwaj2001}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {V.}~\bibnamefont
+  {Bharadwaj}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Batygin}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Sheppard}}, \bibinfo
+  {author} {\bibfnamefont {D.}~\bibnamefont {Schultz}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Bodenstein}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Gallegos}}, \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Gonzales}}, \bibinfo {author}
+  {\bibfnamefont {J.}~\bibnamefont {Ledbetter}}, \bibinfo {author}
+  {\bibfnamefont {M.}~\bibnamefont {Lopez}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Romero}}, \bibinfo {author} {\bibfnamefont
+  {T.}~\bibnamefont {Romero}}, \bibinfo {author} {\bibfnamefont
+  {R.}~\bibnamefont {Rutherford}},\ and\ \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Maloy}},\ }\bibfield  {title} {\bibinfo {title} {Analysis
+  of beam-induced damage to the slc positron production target},\ }in\ \href
+  {https://doi.org/10.1109/PAC.2001.987297} {\emph {\bibinfo {booktitle}
+  {PACS2001. Proceedings of the 2001 Particle Accelerator Conference (Cat.
+  No.01CH37268)}}},\ Vol.~\bibinfo {volume} {3}\ (\bibinfo {year} {2001})\ pp.\
+  \bibinfo {pages} {2123--2125 vol.3}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Mikhailichenko}(2006)}]{Mikhailichenko2006}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {A.~A.}\ \bibnamefont
+  {Mikhailichenko}},\ }\bibfield  {title} {\bibinfo {title} {Liquid metal
+  target for ilc},\ }in\ \href {https://cds.cern.ch/record/1078563} {\emph
+  {\bibinfo {booktitle} {Proceedings of EPAC 2006, Edinburgh, Scotland}}}\
+  (\bibinfo {year} {2006})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sheppard}(2002)}]{Sheppard2002}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.~C.}\ \bibnamefont
+  {Sheppard}},\ }\href {https://doi.org/10.2172/800036} {\emph {\bibinfo
+  {title} {Liquid Metal Target for {NLC} Positron Source}}},\ \bibinfo {type}
+  {Tech. Rep.}\ (\bibinfo {year} {2002})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Feinberg}\ \emph {et~al.}(2011)\citenamefont
+  {Feinberg}, \citenamefont {Paul}, \citenamefont {Arenshtam}, \citenamefont
+  {Berkovits}, \citenamefont {Eisen}, \citenamefont {Friedman}, \citenamefont
+  {Halfon}, \citenamefont {Kijel}, \citenamefont {Nagler}, \citenamefont
+  {Shor},\ and\ \citenamefont {Silverman}}]{Feinberg2011}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {G.}~\bibnamefont
+  {Feinberg}}, \bibinfo {author} {\bibfnamefont {M.}~\bibnamefont {Paul}},
+  \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Arenshtam}}, \bibinfo
+  {author} {\bibfnamefont {D.}~\bibnamefont {Berkovits}}, \bibinfo {author}
+  {\bibfnamefont {Y.}~\bibnamefont {Eisen}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Friedman}}, \bibinfo {author} {\bibfnamefont
+  {S.}~\bibnamefont {Halfon}}, \bibinfo {author} {\bibfnamefont
+  {D.}~\bibnamefont {Kijel}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Nagler}}, \bibinfo {author} {\bibfnamefont
+  {A.}~\bibnamefont {Shor}},\ and\ \bibinfo {author} {\bibfnamefont
+  {I.}~\bibnamefont {Silverman}},\ }\bibfield  {title} {\bibinfo {title} {A
+  liquid-lithium target project for production of high-intensity quasi-stellar
+  neutrons},\ }in\ \href {https://doi.org/10.22323/1.100.0188} {\emph {\bibinfo
+  {booktitle} {Proceedings of 11th Symposium on Nuclei in the Cosmos
+  {\textemdash} {PoS}({NIC} {XI})}}}\ (\bibinfo  {publisher} {Sissa Medialab},\
+  \bibinfo {year} {2011})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Okita}\ \emph {et~al.}(2020)\citenamefont {Okita},
+  \citenamefont {Ishi},\ and\ \citenamefont {Mori}}]{Okita2020}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Okita}}, \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Ishi}},\ and\
+  \bibinfo {author} {\bibfnamefont {Y.}~\bibnamefont {Mori}},\ }\bibfield
+  {title} {\bibinfo {title} {Beam emittance growth in the proposed gaseous
+  target {ERIT} ring for muon production},\ }\href
+  {https://doi.org/10.1016/j.nima.2020.164565} {\bibfield  {journal} {\bibinfo
+  {journal} {Nuclear Instruments and Methods in Physics Research Section A:
+  Accelerators, Spectrometers, Detectors and Associated Equipment}\ }\textbf
+  {\bibinfo {volume} {982}},\ \bibinfo {pages} {164565} (\bibinfo {year}
+  {2020})}\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Agostinelli}\ \emph {et~al.}(2003)\citenamefont
+  {Agostinelli} \emph {et~al.}}]{Geant4}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {S.}~\bibnamefont
+  {Agostinelli}} \emph {et~al.} (\bibinfo {collaboration} {GEANT4}),\
+  }\bibfield  {title} {\bibinfo {title} {{GEANT4--a simulation toolkit}},\
+  }\href {https://doi.org/10.1016/S0168-9002(03)01368-8} {\bibfield  {journal}
+  {\bibinfo  {journal} {Nucl. Instrum. Meth. A}\ }\textbf {\bibinfo {volume}
+  {506}},\ \bibinfo {pages} {250} (\bibinfo {year} {2003})}\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Fujii}\ \emph {et~al.}(2019)\citenamefont {Fujii},
+  \citenamefont {Marsh}, \citenamefont {An}, \citenamefont {Corde},
+  \citenamefont {Hogan}, \citenamefont {Yakimenko},\ and\ \citenamefont
+  {Joshi}}]{Fujii2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Fujii}}, \bibinfo {author} {\bibfnamefont {K.}~\bibnamefont {Marsh}},
+  \bibinfo {author} {\bibfnamefont {W.}~\bibnamefont {An}}, \bibinfo {author}
+  {\bibfnamefont {S.}~\bibnamefont {Corde}}, \bibinfo {author} {\bibfnamefont
+  {M.}~\bibnamefont {Hogan}}, \bibinfo {author} {\bibfnamefont
+  {V.}~\bibnamefont {Yakimenko}},\ and\ \bibinfo {author} {\bibfnamefont
+  {C.}~\bibnamefont {Joshi}},\ }\bibfield  {title} {\bibinfo {title} {Positron
+  beam extraction from an electron-beam-driven plasma wakefield accelerator},\
+  }\bibfield  {journal} {\bibinfo  {journal} {Physical Review Accelerators and
+  Beams}\ }\textbf {\bibinfo {volume} {22}},\ \href
+  {https://doi.org/10.1103/physrevaccelbeams.22.091301}
+  {10.1103/physrevaccelbeams.22.091301} (\bibinfo {year} {2019})\BibitemShut
+  {NoStop}%
+\bibitem [{\citenamefont {Tang}\ \emph {et~al.}(1995)\citenamefont {Tang},
+  \citenamefont {Kulikov}, \citenamefont {Clendenin}, \citenamefont {Ecklund},
+  \citenamefont {Miller},\ and\ \citenamefont {Yeremian}}]{Tang1995}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {H.}~\bibnamefont
+  {Tang}}, \bibinfo {author} {\bibfnamefont {A.}~\bibnamefont {Kulikov}},
+  \bibinfo {author} {\bibfnamefont {J.}~\bibnamefont {Clendenin}}, \bibinfo
+  {author} {\bibfnamefont {S.}~\bibnamefont {Ecklund}}, \bibinfo {author}
+  {\bibfnamefont {R.}~\bibnamefont {Miller}},\ and\ \bibinfo {author}
+  {\bibfnamefont {A.}~\bibnamefont {Yeremian}},\ }\bibfield  {title} {\bibinfo
+  {title} {The {NLC} positron source},\ }in\ \href
+  {https://doi.org/10.1109/pac.1995.505120} {\emph {\bibinfo {booktitle}
+  {Proceedings Particle Accelerator Conference}}}\ (\bibinfo  {publisher}
+  {{IEEE}},\ \bibinfo {year} {1995})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Sheppard}(2003)}]{Sheppard2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {J.}~\bibnamefont
+  {Sheppard}},\ }\href {https://doi.org/10.2172/826573} {\emph {\bibinfo
+  {title} {Conventional Positron Target for a Tesla Formatted
+  Beam({LCC}-0133)}}},\ \bibinfo {type} {Tech. Rep.}\ (\bibinfo {year}
+  {2003})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Floettmann}(2003)}]{Floettmann2003}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {K.}~\bibnamefont
+  {Floettmann}},\ }\bibfield  {title} {\bibinfo {title} {Some basic features of
+  the beam emittance},\ }\bibfield  {journal} {\bibinfo  {journal} {Physical
+  Review Special Topics - Accelerators and Beams}\ }\textbf {\bibinfo {volume}
+  {6}},\ \href {https://doi.org/10.1103/physrevstab.6.034202}
+  {10.1103/physrevstab.6.034202} (\bibinfo {year} {2003})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Author}(2016)}]{FACET2016}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {N.~G.}\ \bibnamefont
+  {Author}},\ }\href {https://doi.org/10.2172/1340171} {\emph {\bibinfo {title}
+  {Technical Design Report for the {FACET}-{II} Project at {SLAC} National
+  Accelerator Laboratory}}},\ \bibinfo {type} {Tech. Rep.}\ (\bibinfo {year}
+  {2016})\BibitemShut {NoStop}%
+\bibitem [{\citenamefont {Ltd}(2019)}]{Crystran2019}%
+  \BibitemOpen
+  \bibfield  {author} {\bibinfo {author} {\bibfnamefont {C.}~\bibnamefont
+  {Ltd}},\ }\href {https://www.crystran.co.uk/handbook} {\emph {\bibinfo
+  {title} {The CRYSTRAN HANDBOOK of Infra-Red and Ultra-Violet OPTICAL
+  MATERIALS}}} (\bibinfo {year} {2019})\BibitemShut {NoStop}%
 \end{thebibliography}%
