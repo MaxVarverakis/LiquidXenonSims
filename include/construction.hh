@@ -35,7 +35,8 @@ private:
     G4VPhysicalVolume *physWorld, *physTarget;
     G4GenericMessenger *target;
 
-    G4bool liquidXenon, windows;
+    G4bool liquidXenon;
+    G4bool windows = true; // throws error if false
 
     // G4Element *elXe;
     G4Material *air, *windowMaterial, *targetMaterial;

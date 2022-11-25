@@ -6,8 +6,8 @@
 /gps/direction 0 0 1
 /gps/pos/type Beam
 /gps/pos/centre 0 0 -0.5 m
-/gps/pos/halfx 4. micrometer
-/gps/pos/halfy 4. micrometer
+/gps/pos/halfx 4. millimeter
+/gps/pos/halfy 4. millimeter
 
 /gps/number 1
 

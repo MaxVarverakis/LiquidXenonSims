@@ -8,9 +8,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     target -> DeclareProperty("xenon", liquidXenon, "Use liquid Xenon target");
     target -> DeclareProperty("window", windows, "Use Beryllium windows around target");
     
-    liquidXenon = false;
-    
-    windows = true; // throws error if false
+    liquidXenon = true;
 
     targetPos = G4ThreeVector(0., 0., 0.);
     n = .250;
@@ -38,7 +36,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 void MyDetectorConstruction::ConstructWindows(G4double targetWidth)
 {
-    G4double windowWidth = 496.701 * micrometer;
+    G4double windowWidth = 2.5 * mm; // 500 micron minimum
     G4double offset = targetWidth + windowWidth / 2.;
     G4NistManager *nist = G4NistManager::Instance();
     windowMaterial = nist -> FindOrBuildMaterial("G4_Be");
@@ -47,11 +45,11 @@ void MyDetectorConstruction::ConstructWindows(G4double targetWidth)
     G4double zIn = targetPos.z() - offset;
     G4double zOut = targetPos.z() + offset;
 
-    solidWindowIn = new G4Tubs("solidWindowIn", 0., 10. * mm, windowWidth / 2., 0., twopi); // r: 0 -> 1 m, z: 0 -> 147 µm, phi: 0 -> 2 pi
+    solidWindowIn = new G4Tubs("solidWindowIn", 0., 50. * mm, windowWidth / 2., 0., twopi); // r: 0 -> 1 m, z: 0 -> 147 µm, phi: 0 -> 2 pi
     logicWindowIn = new G4LogicalVolume(solidWindowIn, windowMaterial, "logicWindowIn");
     new G4PVPlacement(0, G4ThreeVector(0., 0., zIn), logicWindowIn, "physWindowIn", logicWorld, false, 0, true);
     
-    solidWindowOut = new G4Tubs("solidWindowOut", 0., 10. * mm, windowWidth / 2., 0., twopi); // r: 0 -> 1 m, z: 0 -> 147 µm, phi: 0 -> 2 pi
+    solidWindowOut = new G4Tubs("solidWindowOut", 0., 50. * mm, windowWidth / 2., 0., twopi); // r: 0 -> 1 m, z: 0 -> 147 µm, phi: 0 -> 2 pi
     logicWindowOut = new G4LogicalVolume(solidWindowOut, windowMaterial, "logicWindowOut");
     new G4PVPlacement(0, G4ThreeVector(0., 0., zOut), logicWindowOut, "physWindowOut", logicWorld, false, 0, true);
 }
@@ -88,10 +86,10 @@ void MyDetectorConstruction::ConstructTarget()
     }
 
     L_RL = targetMaterial -> GetRadlen();
-    // G4cout << "L_RL: " << L_RL / cm << " cm" << G4endl;
+    // G4cout << "L_RL: " << L_RL * cm << " cm" << G4endl;
     dLRL = n * L_RL;
 
-    solidTarget = new G4Box("solidTarget", 5. * cm, 5. * cm, dLRL);
+    solidTarget = new G4Box("solidTarget", 5. * cm, 5. * cm, dLRL); // note that dimensions are given in half-lengths (so 2 * dLRL = 4 rad lengths!)
     logicTarget = new G4LogicalVolume(solidTarget, targetMaterial, "logicTarget");
     physTarget = new G4PVPlacement(0, targetPos, logicTarget, "physTarget", logicWorld, false, 0, true);
 
