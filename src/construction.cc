@@ -8,7 +8,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     target -> DeclareProperty("xenon", liquidXenon, "Use liquid Xenon target");
     target -> DeclareProperty("window", windows, "Use Beryllium windows around target");
     
-    liquidXenon = true;
+    liquidXenon = false;
 
     targetPos = G4ThreeVector(0., 0., 0.);
     n = .250;
@@ -36,7 +36,7 @@ G4VPhysicalVolume *MyDetectorConstruction::Construct()
 
 void MyDetectorConstruction::ConstructWindows(G4double targetWidth)
 {
-    G4double windowWidth = 2.5 * mm; // 500 micron minimum
+    G4double windowWidth = 0.5 * mm; // 500 micron minimum
     G4double offset = targetWidth + windowWidth / 2.;
     G4NistManager *nist = G4NistManager::Instance();
     windowMaterial = nist -> FindOrBuildMaterial("G4_Be");

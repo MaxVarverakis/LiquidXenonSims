@@ -18,7 +18,7 @@ MyPrimaryGenerator::MyPrimaryGenerator()
         
         fParticleGun -> SetParticleDefinition(particleTable);
         fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-        fParticleGun -> SetParticleEnergy(6.0 * GeV);
+        fParticleGun -> SetParticleEnergy(3.0 * GeV);
         fParticleGun -> SetParticlePosition(G4ThreeVector(0., 0., -0.5 * m));
         
     }
