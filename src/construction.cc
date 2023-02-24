@@ -8,7 +8,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     target -> DeclareProperty("xenon", liquidXenon, "Use liquid Xenon target");
     target -> DeclareProperty("window", windows, "Use Beryllium windows around target");
     
-    liquidXenon = false;
+    liquidXenon = true;
 
     targetPos = G4ThreeVector(0., 0., 0.);
     n = .250;

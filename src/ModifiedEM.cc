@@ -232,7 +232,7 @@ void G4EmModifiedPhysics::ConstructProcess()
 
       // ph->RegisterProcess(msc, particle);
       ph->RegisterProcess(new G4eIonisation(), particle);
-      // ph->RegisterProcess(new G4eBremsstrahlung(), particle);
+      ph->RegisterProcess(new G4eBremsstrahlung(), particle);
       // ph->RegisterProcess(ss, particle);
 
     } else if (particleName == "e+") {

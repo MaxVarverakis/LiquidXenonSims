@@ -1,7 +1,14 @@
 import numpy as np
 
+def VolMass(rho = 2.953, T = 5.5, spot = .6):
+    T *= 2.872 # Rad lengths to cm
+    V = spot ** 2 * np.pi * T # cm^3
+    m = V * rho # g
+
+    return V, m
+
 # def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
-def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 300, Edep = 2.3, T = 4.5, spot = 6):
+def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, PropDep = .27, T = 5.5, spot = 6):
     '''
     Calculate the required flow rate due to energy deposition from electron beam pulse
 
@@ -11,7 +18,7 @@ def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 300, Edep = 
         Total energy deposited (J)
     H : float
         Heat of vaporization (kJ / mol)
-    p : float
+    rho : float
         Density of target (g / cm^3)
     M : float
         molecular weight of target (g / mol)
@@ -30,14 +37,15 @@ def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 300, Edep = 
     # Conversion factors
     e = 1.602e-10 # nC
     GeV_to_J = 1.602e-10 # GeV to J
-    kJ = 1e3 # kJ to J
+    J = 1e3 # kJ to J
 
-    n = q / e # number of electrons per beam pulse
-    HoV = H / M * rho * kJ # J / cm^3
+    HoV = H / M * rho * J # J / cm^3
+
     if Etot:
         E = Etot # J
     else:
-        E = n * Edep * GeV_to_J # J
+        n = q / e # number of electrons per beam pulse
+        E = n * PropDep * 10 * GeV_to_J # J
 
         T *= 2.872 # Rad lengths to cm
         spot *= 1e-1 # cm
@@ -47,13 +55,13 @@ def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 300, Edep = 
         # print(f'Mass : {m} g')
         
         # print(f'FACET-II Power Dep : {E * f} W')
-        print(f'FACET-II Energy Dep Density : {E / m} J/g')
+        print(f'Energy Dep Density : {E / m} J/g')
 
     Q = E * f / HoV # cm^3 / s
 
-    # print(f'HoV : {HoV} J/cm3')
-    # print(f'E : {E} J')
-    print(f'Flow rate : {Q} cm^3/s')
+    print(f'HoV : {HoV} J/cm3')
+    print(f'E : {E} J')
+    print(f'Flow rate : {Q} cm^3/s\n')
     # \n----------------------------------------\n----------------------------------------\n\
 
     return Q
@@ -70,14 +78,22 @@ def altFlow(f = 10, r = 10, T = 4.5):
     print(f'Volume : {V} cm^3')
     print(f'Flow rate : {V * f * 1e-3} L/s')
 
-def ILC(t, nBunch, rho = 2.953, T = 4.5, spot = 6, PropDep = .18):
+def bunchFlow(f, T):
+    '''
+    f = frequency (Hz)
+    T = thickness (Rad Lengths)
+    '''
+    v, _ = VolMass(T = T)
+    print(f'Flow rate : {v * f} cm^3/s\n')
+
+def bunchEnergy(nBunch, rho = 2.953, T = 4.5, spot = 6, n = 2.5e10, PropDep = .22):
     '''
     Calculate energy deposition stuff for ILC
 
     Parameters
     ----------
     t : float
-        Time of the pulse (µs) 
+        Time of the pulse (µs)
     nBunch : int
         Number of bunches
     '''
@@ -85,18 +101,20 @@ def ILC(t, nBunch, rho = 2.953, T = 4.5, spot = 6, PropDep = .18):
     # Conversion factors
     # e = 1.602e-10 # nC
     GeV_to_J = 1.602e-10 # GeV to J
-    kJ = 1e3 # kJ to J
+    # kJ = 1e3 # kJ to J
     # microsecond = 1e-6 # µs to s
     mm = 1e-1 # mm to cm
 
     spot *= mm # mm to cm
     # t *= microsecond # µs to s
+    
+    Edep = 3 * PropDep * n * GeV_to_J # J
 
-    bunchEnergy = 3 * GeV_to_J * 7.8e9 # J
+    # bunchEnergy = 3 * GeV_to_J * 7.8e9 # J
     # print(f'Bunch Energy : {bunchEnergy} J')
-    Etot = nBunch * bunchEnergy # J
+    Etot = nBunch * Edep # J
     # Power = Etot / t # W
-    Power = Etot / t
+    # Power = Etot * t
     # Power = 300 * Etot # 300 Hz frequency times Etot gives total Power
 
     # m = 116620 # g
@@ -104,16 +122,22 @@ def ILC(t, nBunch, rho = 2.953, T = 4.5, spot = 6, PropDep = .18):
     V = spot ** 2 * np.pi * T # cm^3
     # print(V)
     m = V * rho # g
-    print(f'Mass : {m} g')
+    # print(f'Mass : {m} g')
 
 
     
     # print(f'ILC Q : {e * 2e10} nC')
     # print(f'Power Dep : {PropDep * Power * 1e-3} kW')
-    print(f'Energy Dep Density : {PropDep * Etot / m} J/g')
-    # print(f'Energy Dep : {PropDep * Etot} J\n')
+    print(f'Energy Dep Density per Train : {Etot / m} J/g')
+    print(f'Energy Dep per Train: {Etot} J\n')
 
-    return PropDep * Etot
+    return Etot
+
+def trains_to_vaporize(T, Edep_per_train, HoV = 284.2):
+    v, _ = VolMass(T = T)
+    E_to_vap = v * HoV
+    trains_to_vap = E_to_vap / Edep_per_train
+    print(f'Number of trains to vaporize : {trains_to_vap}')
 
 def force(r = 10., h = 1., rho = 2.953, g = 9.81):
     '''
@@ -151,17 +175,15 @@ def force(r = 10., h = 1., rho = 2.953, g = 9.81):
 
     return p, F, T
 
-def be(Edep_per_electron = 6.76, T = .05, n = 1.25, bunches = 1, f = 10):
+def be(Edep_per_electron = 9.21, T = .05, n = 1.25, bunches = 1, f = 10):
     '''
     Calculate the temperature change of Be windows due to energy deposition
     
-    Entrance : 0.15 MeV / electron
-    Exit : 6.76 MeV / electron
+    Exit : 9.21 MeV / electron at 10 GeV
+    Exit : 3.04 MeV / electron at 3 GeV
 
     Parameters
     ----------
-    E : float
-        Drive beam energy (GeV)
     Edep_per_electron : float
         Energy deposited per electron (MeV)
     T : float
@@ -191,15 +213,17 @@ def be(Edep_per_electron = 6.76, T = .05, n = 1.25, bunches = 1, f = 10):
     Edep = Edep_per_electron * 1.602e-13 * n * bunches # J
 
     # print(f'Mass : {m} g')
+    print('#########################\n')
     print(f'Energy/train : {Edep:.3f} J')
     print(f'Delta T/train : {Edep / (m * specificHeat):.3f} K')
     print(f'Delta T : {f * Edep / (m * specificHeat):.3f} K/s\n')
+    # print('#########################\n')
 
 if __name__ == '__main__':
     # print('-------------------')
     # print('Liquid Xenon Target')
     # print('-------------------')
-    # E = ILC(1, 132)
+    # E = bunchEnergy(1, 132)
     # flow(E, f = 300)
     # flow()
     # force(r = 50.)
@@ -207,15 +231,15 @@ if __name__ == '__main__':
     # print('Tungsten Target')
     # print('---------------')
     # print('')
-    # E = ILC(1, 132)
+    # E = bunchEnergy(1, 132)
     # flow(E, f = 300)
     
     # print('')
-    # E = ILC(2e5, 66)
+    # E = bunchEnergy(2e5, 66)
     # flow(E)
 
     # print('C3')
-    # E = ILC(8.33e3, 133)
+    # E = bunchEnergy(8.33e3, 133)
     # flow(E, f = 120)
     
     # print('FACET-II')
@@ -232,7 +256,27 @@ if __name__ == '__main__':
     # print('Exit Window')
     # print('-----------')
 
-    be()
-    be(n = 2.5, bunches = 1312, f = 5)
-    be(n = 0.78, bunches = 133, f = 120)
-    be(n = 1.125, bunches = 1000, f = 11.1)
+
+    # FACET-II
+    # flow(PropDep = .02, T = 2)
+    
+    # ILC
+
+    # bunchEnergy(1312, T = 2.5, PropDep = .08)
+    # bunchFlow(5, 2.5)
+
+    # C3
+    # bunchEnergy(133, T = 2.5, PropDep = .08, n = .78e10)
+    # trains_to_vaporize(T = 2.5, Edep_per_train = 39.886)
+    # bunchFlow(120 / 33, 2.5)
+
+    # print(VolMass())
+    # flow()
+    be(Edep_per_electron = 2.66)
+    be(2.14, n = 2.5, bunches = 1312, f = 5)
+    be(2.14, n = 0.78, bunches = 133, f = 120)
+    
+    # be(3.04, n = 2.5, bunches = 1312, f = 5)
+    # be(3.04, n = 0.78, bunches = 133, f = 120)
+    
+    # be(3.04, n = 1.125, bunches = 1000, f = 11.1)
