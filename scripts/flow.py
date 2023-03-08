@@ -1,6 +1,6 @@
 import numpy as np
 
-def VolMass(rho = 2.953, T = 5.5, spot = .6):
+def VolMass(rho = 2.953, T = 4.5, spot = .6):
     T *= 2.872 # Rad lengths to cm
     V = spot ** 2 * np.pi * T # cm^3
     m = V * rho # g
@@ -8,7 +8,7 @@ def VolMass(rho = 2.953, T = 5.5, spot = .6):
     return V, m
 
 # def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, Edep = .66581):
-def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, PropDep = .27, T = 5.5, spot = 6):
+def flow(Etot = 0, H = 12.636, rho = 2.953, M = 131.293, q = 2, f = 10, PropDep = .1721, T = 4.5, spot = 6):
     '''
     Calculate the required flow rate due to energy deposition from electron beam pulse
 
@@ -175,12 +175,20 @@ def force(r = 10., h = 1., rho = 2.953, g = 9.81):
 
     return p, F, T
 
-def be(Edep_per_electron = 9.21, T = .05, n = 1.25, bunches = 1, f = 10):
+def be(Edep_per_electron = 8.44, T = .05, n = 1.25, bunches = 1, f = 10):
     '''
     Calculate the temperature change of Be windows due to energy deposition
     
+    10 GeV @ 4.5 RL = 8.44355802637 MeV / e-
+    3 GeV @ 3.5 RL = 2.86251915724 MeV / e-
+
+    @ Max Yield:
     Exit : 9.21 MeV / electron at 10 GeV
     Exit : 3.04 MeV / electron at 3 GeV
+    
+    @ Minimum Required Yield:
+    Exit : 2.66 MeV / electron at 10 GeV
+    Exit : 2.14 MeV / electron at 3 GeV
 
     Parameters
     ----------
@@ -212,70 +220,45 @@ def be(Edep_per_electron = 9.21, T = .05, n = 1.25, bunches = 1, f = 10):
     # E *= 1.602e-13 # MeV to J
     Edep = Edep_per_electron * 1.602e-13 * n * bunches # J
 
-    # print(f'Mass : {m} g')
     print('#########################\n')
+    # print(f'Mass : {m} g')
     print(f'Energy/train : {Edep:.3f} J')
     print(f'Delta T/train : {Edep / (m * specificHeat):.3f} K')
-    print(f'Delta T : {f * Edep / (m * specificHeat):.3f} K/s\n')
+    print(f'Delta T : {f * Edep / (m * specificHeat):.3f} K/s')
+    print(f'PEDD : {Edep / m:.3f} J/g\n')
     # print('#########################\n')
 
 if __name__ == '__main__':
-    # print('-------------------')
-    # print('Liquid Xenon Target')
-    # print('-------------------')
-    # E = bunchEnergy(1, 132)
-    # flow(E, f = 300)
+    #  3 GeV Yield : 1.67      Prop Dep : 0.1679       RL : 3.5        EDep Reduction : 24.04 %        Yield Reduction : 6.03 %
+    #  6 GeV Yield : 3.06      Prop Dep : 0.1635       RL : 4.0        EDep Reduction : 38.78 %        Yield Reduction : 6.30 %
+    # 10 GeV Yield : 4.84      Prop Dep : 0.1721       RL : 4.5        EDep Reduction : 36.16 %        Yield Reduction : 4.76 %
+    
+    # # FACET-II
     # flow()
-    # force(r = 50.)
-    # print('---------------')
-    # print('Tungsten Target')
-    # print('---------------')
-    # print('')
-    # E = bunchEnergy(1, 132)
-    # flow(E, f = 300)
     
-    # print('')
-    # E = bunchEnergy(2e5, 66)
-    # flow(E)
+    # # ILC
+    # bunchEnergy(1312, T = 3.5, PropDep = 0.1679)
+    # bunchFlow(5, 3.5)
 
-    # print('C3')
-    # E = bunchEnergy(8.33e3, 133)
-    # flow(E, f = 120)
+    # # C3
+    # bunchEnergy(133, T = 3.5, PropDep = 0.1679, n = .78e10)
+    # trains_to_vaporize(T = 3.5, Edep_per_train = 83.711)
+    # bunchFlow(120 / 38, 3.5)
     
-    # print('FACET-II')
-    # flow()
+    be()
+    # be(2.86, n = 2.5, bunches = 1312, f = 5)
+    # be(2.86, n = 0.78, bunches = 133, f = 120)
 
-    # altFlow()
-    # altFlow(f = 300)
-    # print('-----------')
-    # print('Entrance Window')
-    # print('-----------')
-    # be(E = .1)
-    # be(E = .1, bunches = 132, t = 1e-6)
-    # print('-----------')
-    # print('Exit Window')
-    # print('-----------')
-
-
-    # FACET-II
-    # flow(PropDep = .02, T = 2)
+    # Max yield
+    # be()
+    # be(3.04, n = 2.5, bunches = 1312, f = 5)
+    # be(3.04, n = 0.78, bunches = 133, f = 120)
     
-    # ILC
+    # Min req yield
+    # be(Edep_per_electron = 2.66)
+    # be(2.14, n = 2.5, bunches = 1312, f = 5)
+    # be(2.14, n = 0.78, bunches = 133, f = 120)
 
-    # bunchEnergy(1312, T = 2.5, PropDep = .08)
-    # bunchFlow(5, 2.5)
-
-    # C3
-    # bunchEnergy(133, T = 2.5, PropDep = .08, n = .78e10)
-    # trains_to_vaporize(T = 2.5, Edep_per_train = 39.886)
-    # bunchFlow(120 / 33, 2.5)
-
-    # print(VolMass())
-    # flow()
-    be(Edep_per_electron = 2.66)
-    be(2.14, n = 2.5, bunches = 1312, f = 5)
-    be(2.14, n = 0.78, bunches = 133, f = 120)
-    
     # be(3.04, n = 2.5, bunches = 1312, f = 5)
     # be(3.04, n = 0.78, bunches = 133, f = 120)
     
