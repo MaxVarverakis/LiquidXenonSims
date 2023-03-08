@@ -302,7 +302,7 @@ sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4readout.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4physicslists.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4tasking.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4parmodels.dylib
-sim: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
+sim: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd
 sim: /opt/homebrew/opt/qt@5/lib/QtOpenGL.framework/QtOpenGL
 sim: /opt/homebrew/opt/qt@5/lib/QtPrintSupport.framework/QtPrintSupport
 sim: /opt/homebrew/opt/qt@5/lib/QtWidgets.framework/QtWidgets
@@ -321,7 +321,7 @@ sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4tracking.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4processes.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4analysis.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4tools.dylib
-sim: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.0.sdk/usr/lib/libexpat.tbd
+sim: /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX13.1.sdk/usr/lib/libexpat.tbd
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4digits_hits.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4track.dylib
 sim: /Users/max/Geant4/source/geant4-11.0.1-install/lib/libG4particles.dylib
