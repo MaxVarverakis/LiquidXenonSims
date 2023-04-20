@@ -7,6 +7,7 @@ from scipy.optimize import curve_fit as cf
 
 LXe = 2.8720
 LTa = 0.4094
+WRe = .3430
 manual = 0.3504
 L_RL = np.arange(.5, 8.5, .5)
 iterations = 1e4 # number of electrons simulated
@@ -16,6 +17,7 @@ E0 = .511 # MeV // Rest energy of positron
 
 tick_spacing = 1.
 
+# cutoffs
 lowE_filter = 2 # MeV
 E_filter = 22 # MeV
 trans_filter = 10 # mm
@@ -26,7 +28,7 @@ cutoff = False
 disp = False
 plot = True
 beam = False
-wBool = True
+wBool = False
 
 plt.rcParams.update({'font.size': 15})
 
@@ -217,40 +219,49 @@ def plotArgs(windows = False):
 
     # print(emittance)
 
-    print(WOutEDep_RMS[6], L_RL[6])
+    # print(WOutEDep_RMS[6], L_RL[6])
 
     return dfs, ps, edeps, pYield, EDep_RMS, WInEDep_RMS, WOutEDep_RMS, E_RMS, TW_RMS, A_RMS, idx, data, P, mask, pX, pY, pZ, pE, E, TW, A, R, ttlStr, xlbl, cm, bn, scale, conv_emittance, TW_Conv
 
 def compare(ts2 = ''):
     if disp:
-        xlbl = 'Radiation Lengths [$L_{RL}(Ta) = 0.4094$ cm | $L_{RL}(Xe) = 2.8720$ cm]'
+        xlbl = 'Radiation Lengths [$L_{RL}(Ta) = 0.4094$ cm | $L_{RL}(Xe) = 2.8720$ cm \ $L_{RL}(W_{75}Re_{25}) = 2.8720$ cm]'
     else:
         xlbl = 'Radiation Lengths'
 
 
     raw_Xedfs = [Xe0, Xe1, Xe2, Xe3, Xe4, Xe5, Xe6, Xe7, Xe8, Xe9, Xe10, Xe11, Xe12, Xe13, Xe14, Xe15]
     raw_Tadfs = [Ta0, Ta1, Ta2, Ta3, Ta4, Ta5, Ta6, Ta7, Ta8, Ta9, Ta10, Ta11, Ta12, Ta13, Ta14, Ta15]
+    raw_WRedfs = [WRe0, WRe1, WRe2, WRe3, WRe4, WRe5, WRe6, WRe7, WRe8, WRe9, WRe10, WRe11, WRe12, WRe13, WRe14, WRe15]
     raw_Xeps = [Xep0, Xep1, Xep2, Xep3, Xep4, Xep5, Xep6, Xep7, Xep8, Xep9, Xep10, Xep11, Xep12, Xep13, Xep14, Xep15]
     raw_Taps = [Tap0, Tap1, Tap2, Tap3, Tap4, Tap5, Tap6, Tap7, Tap8, Tap9, Tap10, Tap11, Tap12, Tap13, Tap14, Tap15]
+    raw_WReps = [WRep0, WRep1, WRep2, WRep3, WRep4, WRep5, WRep6, WRep7, WRep8, WRep9, WRep10, WRep11, WRep12, WRep13, WRep14, WRep15]
     Xeedeps = [xedep0, xedep1, xedep2, xedep3, xedep4, xedep5, xedep6, xedep7, xedep8, 
                                                         xedep9, xedep10, xedep11, xedep12, xedep13, xedep14, xedep15]
     Taedeps = [tadep0, tadep1, tadep2, tadep3, tadep4, tadep5, tadep6, tadep7, tadep8, 
                                                         tadep9, tadep10, tadep11, tadep12, tadep13, tadep14, tadep15]
+    WReedeps = [wreedep0, wreedep1, wreedep2, wreedep3, wreedep4, wreedep5, wreedep6, wreedep7, wreedep8, 
+                                                        wreedep9, wreedep10, wreedep11, wreedep12, wreedep13, wreedep14, wreedep15]
 
     Xeconvolved_trans = [transverse_convolution(df) for df in raw_Xedfs]
     Taconvolved_trans = [transverse_convolution(df) for df in raw_Tadfs]
+    WReconvolved_trans = [transverse_convolution(df) for df in raw_WRedfs]
     # print(np.shape(Xeconvolved_trans[0][0]))
     # print(Xeconvolved_trans[:][0][0])
     rawXeTW = [np.mean(trans[0]) for trans in Xeconvolved_trans]
     rawTaTW = [np.mean(trans[0]) for trans in Taconvolved_trans]
+    rawWReTW = [np.mean(trans[0]) for trans in WReconvolved_trans]
 
     XeMask = [(df[:, 0] > lowE_filter) & (df[:, 0] < E_filter) & (Xeconvolved_trans[idx][0] < trans_filter) for idx,df in enumerate(raw_Xedfs)]
     TaMask = [(df[:, 0] > lowE_filter) & (df[:, 0] < E_filter) & (Taconvolved_trans[idx][0] < trans_filter) for idx,df in enumerate(raw_Tadfs)]
+    WReMask = [(df[:, 0] > lowE_filter) & (df[:, 0] < E_filter) & (WReconvolved_trans[idx][0] < trans_filter) for idx,df in enumerate(raw_WRedfs)]
     
     Xects = [[ct[0][include], ct[1][include], ct[2][include]] for ct,include in zip(Xeconvolved_trans, XeMask)]
     Tacts = [[ct[0][include], ct[1][include], ct[2][include]] for ct,include in zip(Taconvolved_trans, TaMask)]
+    WRects = [[ct[0][include], ct[1][include], ct[2][include]] for ct,include in zip(WReconvolved_trans, WReMask)]
     XeTW = [np.mean(trans[0]) for trans in Xects]
     TaTW = [np.mean(trans[0]) for trans in Tacts]
+    WReTW = [np.mean(trans[0]) for trans in WRects]
     # print(np.shape(Xects[0]))
     # print(np.shape(Xects[0][0]))
     # print(rawTaTW)
@@ -261,28 +272,36 @@ def compare(ts2 = ''):
     
     Xedfs = [df[include] for df,include in zip(raw_Xedfs, XeMask)]
     Tadfs = [df[include] for df,include in zip(raw_Tadfs, TaMask)]
+    WRedfs = [df[include] for df,include in zip(raw_WRedfs, WReMask)]
     Xeps = [p[include] for p,include in zip(raw_Xeps, XeMask)]
     Taps = [p[include] for p,include in zip(raw_Taps, TaMask)]
+    WReps = [p[include] for p,include in zip(raw_WReps, WReMask)]
 
     Xeconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(Xects, Xeps)]
     Taconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(Tacts, Taps)]
+    WReconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(WRects, WReps)]
     rawXeconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(Xeconvolved_trans, raw_Xeps)]
     rawTaconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(Taconvolved_trans, raw_Taps)]
+    rawWReconv_emittance = [calc_conv_emittance(x[1], px[:, 0]) for x, px in zip(WReconvolved_trans, raw_WReps)]
     # print(f'Xe: {Xeconv_emittance}\n')
     # print(f'Ta: {Taconv_emittance}\n')
 
     rawXepYield = [len(df[:, 0]) / iterations for df in raw_Xedfs]
     rawTapYield = [len(df[:, 0]) / iterations for df in raw_Tadfs]
+    rawWRepYield = [len(df[:, 0]) / iterations for df in raw_WRedfs]
     rawXeidx = np.argmax(rawXepYield)
     rawTaidx = np.argmax(rawTapYield)
+    rawWReidx = np.argmax(rawWRepYield)
 
     XepYield = [len(df[:, 0]) / iterations for df in Xedfs]
     TapYield = [len(df[:, 0]) / iterations for df in Tadfs]
+    WRepYield = [len(df[:, 0]) / iterations for df in WRedfs]
     # print('Xe:', XepYield)
     # print('Ta: ', TapYield)
     idx = np.argmax(XepYield)
     Xeidx = np.argmax(XepYield)
     Taidx = np.argmax(TapYield)
+    WReidx = np.argmax(WRepYield)
 
     XeE = [np.mean(df[:, 0]) for df in Xedfs]
     # print(np.subtract(XeE_RMS, [np.sqrt(np.mean(df[:, 0]**2)) for df in Xedfs]))
@@ -294,41 +313,49 @@ def compare(ts2 = ''):
     TaTW_RMS = [np.mean(df[:, 1]) for df in Tadfs]
     cutTaA = [np.mean(df[:, 2]) for df in Tadfs]
     TaA = [np.mean(df[:, 2]) for df in raw_Tadfs]
+    
+    WReE = [np.mean(df[:, 0]) for df in WRedfs]
+    WReTW_RMS = [np.mean(df[:, 1]) for df in WRedfs]
+    cutWReA = [np.mean(df[:, 2]) for df in WRedfs]
+    WReA = [np.mean(df[:, 2]) for df in raw_WRedfs]
 
     rawXeE = [np.mean(df[:, 0]) for df in raw_Xedfs]
     rawTaE = [np.mean(df[:, 0]) for df in raw_Tadfs]
+    rawWReE = [np.mean(df[:, 0]) for df in raw_WRedfs]
 
     # XeEDep_RMS = [np.mean(edep[:, 0]) / E_drive for edep in Xeedeps]
     XeEDep_RMS = [np.mean(edep[:, 0]) for edep in Xeedeps]
     
     TaEDep_RMS = [np.mean(edep[:, 0]) / E_drive for edep in Taedeps]
+    
+    WReEDep_RMS = [np.mean(edep[:, 0]) / E_drive for edep in WReedeps]
 
     # xXeEmittance = [calc_emittance(p, data, 'X') for p, data in zip(Xeps, Xedfs)]
     # xTaEmittance = [calc_emittance(p, data, 'X') for p, data in zip(Taps, Tadfs)]
     # yXeEmittance = [calc_emittance(p, data, 'Y') for p, data in zip(Xeps, Xedfs)]
     # yTaEmittance = [calc_emittance(p, data, 'Y') for p, data in zip(Taps, Tadfs)]
     
-    rawyieldLim = max(max(rawXepYield), max(rawTapYield)) * 1.15
-    yieldLim = max(max(XepYield), max(TapYield)) * 1.15
-    ELim = max(max(rawXeE), max(rawTaE)) * 1.05
-    rawELim = max(max(rawXeE), max(rawTaE)) * 1.05
-    TWLim = max(max(rawXeTW), max(rawTaTW)) * 1.05
-    ALim = max(max(XeA), max(TaA)) * 1.05
-    EmitLim = max(max(rawXeconv_emittance), max(rawTaconv_emittance)) * 1.05
+    rawyieldLim = max(max(rawXepYield), max(rawTapYield), max(rawWRepYield)) * 1.15
+    yieldLim = max(max(XepYield), max(TapYield), max(WRepYield)) * 1.15
+    ELim = max(max(rawXeE), max(rawTaE), max(rawWReE)) * 1.05
+    rawELim = max(max(rawXeE), max(rawTaE), max(rawWReE)) * 1.05
+    TWLim = max(max(rawXeTW), max(rawTaTW), max(rawWReTW)) * 1.05
+    ALim = max(max(XeA), max(TaA), max(WReA)) * 1.05
+    EmitLim = max(max(rawXeconv_emittance), max(rawTaconv_emittance), max(rawWReconv_emittance)) * 1.05
 
     # print(L_RL[Xeidx], Xeidx)
     # print(Xe10[0:5, 0])
     # print(max(Xe10[:, 0]))
-    _, bins, _ = plt.hist(Ta10[:, 0], bins = 75, range = (0, 200), label = 'Ta')
-    plt.hist(Xe10[:, 0], bins = 75, range = (0, 200), label = 'LXe', alpha = 1)
+    nTa, bins, _ = plt.hist(Ta10[:, 0], bins = 75, range = (0, 200), label = 'Ta', facecolor = 'tab:blue', edgecolor = 'tab:blue')
+    n_LXe, _, _ = plt.hist(Xe10[:, 0], bins = 75, range = (0, 200), label = 'LXe', alpha = .85, facecolor = 'tab:orange', edgecolor = 'tab:orange')
+    n_WRe, _, _ = plt.hist(WRe10[:, 0], bins = 75, range = (0, 200), label = 'W$_{75}$Re$_{25}$', alpha = 1, facecolor = 'none', edgecolor = 'k')
     plt.ticklabel_format(style = 'sci', axis = 'y', scilimits = (0, 0))
     plt.legend()
     plt.xlim(0, 200)
     plt.xlabel('Outgoing $e^+$ Energy [MeV]')
     plt.ylabel('$e^+$ per $N_0$ Incident $e^-$')
-    plt.close()
+    plt.show()
     # print(bins[1] - bins[0])
-
 
     # ax = plt.figure().add_subplot(projection = '3d')
     # # ax.scatter(xTaEmittance, yTaEmittance, L_RL, label = 'Tantalum')
@@ -366,6 +393,7 @@ def compare(ts2 = ''):
     # print(f'Ta EDep @ Max Yield: {TaEDep_RMS[Taidx] * E_drive :.2f} MeV')
     
     plt.scatter(L_RL, XeEDep_RMS, color = 'k', marker = 'o', facecolor = 'none', label = '__nolegend__')
+    # plt.scatter(L_RL, WReEDep_RMS, color = 'tab:orange', marker = '^', facecolor = 'none', label = '__nolegend__')
     # plt.scatter(L_RL[Xeidx], XeEDep_RMS[Xeidx], color = 'k', marker = 'o', label = f'EDep@ Max Yield: ~{XeEDep_RMS[Xeidx]:.2f}')
     plt.xlabel(xlbl)
     plt.ylabel('Energy Deposition [MeV]')
@@ -391,6 +419,7 @@ def compare(ts2 = ''):
 
     plt.scatter(L_RL, TaA, color = 'b', marker = 'o', facecolor = 'none', label = 'Ta')
     plt.scatter(L_RL, XeA, color = 'r', marker = 'v', facecolor = 'none', label = 'Xe')
+    plt.scatter(L_RL, WReA, color = 'g', marker = 's', facecolor = 'none', label = 'W$_{75}$Re$_{25}$')
     plt.xlabel(xlbl)
     plt.ylabel('Angular Divergence [rad]')
     plt.legend(loc = 'upper left')
@@ -402,6 +431,7 @@ def compare(ts2 = ''):
     plt.scatter(L_RL, TaEDep_RMS, color = 'b', marker = 'o', facecolor = 'none', label = 'Ta')
     # plt.scatter(L_RL[Taidx], TaEDep_RMS[Taidx], color = 'b', marker = 'o', label = f'Ta @ Max Yield: ~{TaEDep_RMS[Taidx]:.2f}')
     plt.scatter(L_RL, XeEDep_RMS, color = 'r', marker = 'v', facecolor = 'none', label = 'Xe')
+    plt.scatter(L_RL, WReEDep_RMS, color = 'g', marker = '^', facecolor = 'none', label = 'W$_{75}$Re$_{25}$')
     # plt.scatter(L_RL[Xeidx], XeEDep_RMS[Xeidx], color = 'r', marker = 'v', label = f'Xe @ Max Yield: ~{XeEDep_RMS[Xeidx]:.2f}')
     # plt.plot(L_RL[Taidx], TaEDep_RMS[Taidx], 'b.', label = f'Ta @ Max Yield: ~{TaEDep_RMS[Taidx]:.2f}')
     # plt.vlines(L_RL[Xeidx], 0, XeEDep_RMS[Xeidx], colors = 'k', ls = ':', label = '__nolegend__')
@@ -416,17 +446,21 @@ def compare(ts2 = ''):
     plt.close()
 
     plt.scatter(L_RL, rawTapYield, color = 'b', marker = 'o', facecolors = 'none', label = '__nolegend__')
-    plt.scatter(L_RL, rawXepYield, color = 'r', marker = 'v', facecolors = 'none', label = '__nolegend__')
+    plt.scatter(L_RL, rawXepYield, color = 'tab:orange', marker = 'v', facecolors = 'none', label = '__nolegend__')
+    plt.scatter(L_RL, rawWRepYield, color = 'g', marker = '^', facecolors = 'none', label = '__nolegend__')
     # plt.vlines(L_RL[rawTaidx], 0, rawTapYield[rawTaidx], colors = 'b', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[rawXeidx], 0, rawXepYield[rawXeidx], colors = 'r', ls = ':', label = '__nolegend__')
     plt.scatter(L_RL[rawTaidx], rawTapYield[rawTaidx], color = 'b', marker = 'o', facecolors = 'none', label = f'Ta @ Max Yield: {rawTapYield[rawTaidx]:.2f}')
-    plt.scatter(L_RL[rawXeidx], rawXepYield[rawXeidx], color = 'r', marker = 'v', facecolors = 'none', label = f'LXe @ Max Yield: {rawXepYield[rawXeidx]:.2f}')
+    plt.scatter(L_RL[rawWReidx], rawWRepYield[rawWReidx], color = 'g', marker = '^', facecolors = 'none', label = f'WRe @ Max Yield: {rawWRepYield[rawWReidx]:.2f}')
+    plt.scatter(L_RL[rawXeidx], rawXepYield[rawXeidx], color = 'tab:orange', marker = 'v', facecolors = 'none', label = f'LXe @ Max Yield: {rawXepYield[rawXeidx]:.2f}')
 
-    plt.scatter(L_RL, TapYield, color = 'g', marker = 's', facecolors = 'none', label = '__nolegend__')
+    plt.scatter(L_RL, TapYield, color = 'm', marker = 's', facecolors = 'none', label = '__nolegend__')
     plt.scatter(L_RL, XepYield, color = 'k', facecolors = 'none', marker = 'D', label = '__nolegend__')
+    plt.scatter(L_RL, WRepYield, color = 'r', facecolors = 'none', marker = 'P', label = '__nolegend__')
     # plt.vlines(L_RL[Taidx], 0, TapYield[Taidx], colors = 'g', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[Xeidx], 0, XepYield[Xeidx], colors = 'k', ls = ':', label = '__nolegend__')
-    plt.scatter(L_RL[Taidx], TapYield[Taidx], color = 'g', marker = 's', facecolors = 'none', label = f'Cut Ta @ Max Yield: {TapYield[Taidx]:.2f}')
+    plt.scatter(L_RL[Taidx], TapYield[Taidx], color = 'm', marker = 's', facecolors = 'none', label = f'Cut Ta @ Max Yield: {TapYield[Taidx]:.2f}')
+    plt.scatter(L_RL[WReidx], WRepYield[WReidx], color = 'r', facecolors = 'none', marker = 'P', label = f'Cut WRe @ Max Yield: {WRepYield[WReidx]:.2f}')
     plt.scatter(L_RL[Xeidx], XepYield[Xeidx], color = 'k', facecolors = 'none', marker = 'D', label = f'Cut LXe @ Max Yield: {XepYield[Xeidx]:.2f}')
     # plt.vlines([L_RL[rawTaidx], L_RL[Taidx]], [0, 0], [rawTapYield[rawTaidx], TapYield[Taidx]], colors = 'k', alpha = .65, ls = ':', label = '__nolegend__')
 
@@ -444,7 +478,7 @@ def compare(ts2 = ''):
     )
 
     # plt.title('$e^+$ Yield vs Target Width')
-    plt.close()
+    plt.show()
 
 
     ThreeYield = [0.0734, 0.2795, 0.5555, 0.8958, 1.2182, 1.4917, 1.6664, 1.7734, 1.7268, 1.6523, 1.5122, 1.3387, 1.2015, 1.0226, 0.8517, 0.7052]
@@ -687,13 +721,15 @@ def compare(ts2 = ''):
 
     plt.scatter(L_RL, rawTaTW, color = 'b', marker = 'o', facecolors = 'none', label = 'Ta')
     plt.scatter(L_RL, rawXeTW, color = 'r', marker = 'v', facecolors = 'none', label = 'Xe')
+    plt.scatter(L_RL, rawWReTW, color = 'g', marker = '^', facecolors = 'none', label = '$W_{75}Re_{25}$')
     # plt.vlines(L_RL[rawTaidx], 0, rawTapYield[rawTaidx], colors = 'b', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[rawXeidx], 0, rawXepYield[rawXeidx], colors = 'r', ls = ':', label = '__nolegend__')
     # plt.scatter(L_RL[rawTaidx], Taconvolved_trans[rawTaidx], color = 'b', marker = 'o', facecolors = 'none', label = f'Ta @ Max Yield: {Taconvolved_trans[rawTaidx]:.2f} mm')
     # plt.scatter(L_RL[rawXeidx], Xeconvolved_trans[rawXeidx], color = 'r', marker = 'v', facecolors = 'none', label = f'LXe @ Max Yield: {Xeconvolved_trans[rawXeidx]:.2f} mm')
 
-    plt.scatter(L_RL, TaTW, color = 'g', marker = 's', facecolors = 'none', label = 'Cut Ta')
+    plt.scatter(L_RL, TaTW, color = 'm', marker = 's', facecolors = 'none', label = 'Cut Ta')
     plt.scatter(L_RL, XeTW, color = 'k', facecolors = 'none', marker = 'D', label = 'Cut Xe')
+    plt.scatter(L_RL, WReTW, color = 'tab:orange', facecolors = 'none', marker = 'X', label = 'Cut $W_{75}Re_{25}$')
     # plt.vlines(L_RL[Taidx], 0, TapYield[Taidx], colors = 'g', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[Xeidx], 0, XepYield[Xeidx], colors = 'k', ls = ':', label = '__nolegend__')
     # plt.scatter(L_RL[Taidx], Tacts[0][Taidx], color = 'g', marker = 's', facecolors = 'none', label = f'Cut Ta @ Max Yield: {Tacts[0][Taidx]:.2f} mm')
@@ -714,13 +750,15 @@ def compare(ts2 = ''):
     plt.subplot(1, 2, 2)
     plt.scatter(L_RL, rawTaconv_emittance, color = 'b', marker = 'o', facecolors = 'none', label = '__nolegend__')
     plt.scatter(L_RL, rawXeconv_emittance, color = 'r', marker = 'v', facecolors = 'none', label = '__nolegend__')
+    plt.scatter(L_RL, rawWReconv_emittance, color = 'g', marker = '^', facecolors = 'none', label = '__nolegend__')
     # plt.vlines(L_RL[rawTaidx], 0, rawTapYield[rawTaidx], colors = 'b', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[rawXeidx], 0, rawXepYield[rawXeidx], colors = 'r', ls = ':', label = '__nolegend__')
     # plt.scatter(L_RL[rawTaidx], rawTaconv_emittance[rawTaidx], color = 'b', marker = 'o', facecolors = 'none', label = f'Ta @ Max Yield: {rawTaconv_emittance[rawTaidx]:.2f} mm\cdot rad')
     # plt.scatter(L_RL[rawXeidx], rawXeconv_emittance[rawXeidx], color = 'r', marker = 'v', facecolors = 'none', label = f'LXe @ Max Yield: {rawXeconv_emittance[rawXeidx]:.2f} mm\cdot rad')
 
-    plt.scatter(L_RL, Taconv_emittance, color = 'g', marker = 's', facecolors = 'none', label = '__nolegend__')
+    plt.scatter(L_RL, Taconv_emittance, color = 'm', marker = 's', facecolors = 'none', label = '__nolegend__')
     plt.scatter(L_RL, Xeconv_emittance, color = 'k', facecolors = 'none', marker = 'D', label = '__nolegend__')
+    plt.scatter(L_RL, WReconv_emittance, color = 'tab:orange', facecolors = 'none', marker = 'X', label = '__nolegend__')
     # plt.vlines(L_RL[Taidx], 0, TapYield[Taidx], colors = 'g', ls = ':', label = '__nolegend__')
     # plt.vlines(L_RL[Xeidx], 0, XepYield[Xeidx], colors = 'k', ls = ':', label = '__nolegend__')
     # plt.scatter(L_RL[Taidx], Taconv_emittance[Taidx], color = 'g', marker = 's', facecolors = 'none', label = f'Cut Ta @ Max Yield: {Taconv_emittance[Taidx]:.2f} mm\cdot rad')
@@ -905,7 +943,7 @@ def plots(ts2 = '', spot = 'upper left', windows = False):
     #     # , bbox_to_anchor = (0, .95)
     # )
     plt.title('$e^+$ Yield vs Target Width')
-    plt.close()
+    plt.show()
 
     plt.subplot(1, 2, 1)
     plt.scatter(L_RL, pYield, label = '__nolegend__')
@@ -1158,6 +1196,117 @@ if __name__ == '__main__':
             plots()
         else:
             plotArgs()
+    elif mode == 'WRe':
+        LTarget = WRe
+        # ttlStr = '$L_{RL}(Ta) = 0.4094 cm \\quad \\vert \\quad \\frac{d}{L_{LR}(Ta)} \\approx 2.75$ \n Energy Cutoff: 100 MeV'
+        pltStr = 'Radiation Lengths [$L_{RL}(W_{75}Re_{25}) = 0.343$ cm]'
+
+        edep0 = pd.read_csv('10GeVData/WreDep0.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep1 = pd.read_csv('10GeVData/WreDep1.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep2 = pd.read_csv('10GeVData/WreDep2.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep3 = pd.read_csv('10GeVData/WreDep3.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep4 = pd.read_csv('10GeVData/WreDep4.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep5 = pd.read_csv('10GeVData/WreDep5.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep6 = pd.read_csv('10GeVData/WreDep6.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep7 = pd.read_csv('10GeVData/WreDep7.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep8 = pd.read_csv('10GeVData/WreDep8.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep9 = pd.read_csv('10GeVData/WreDep9.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep10 = pd.read_csv('10GeVData/WReDep10.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep11 = pd.read_csv('10GeVData/WReDep11.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep12 = pd.read_csv('10GeVData/WReDep12.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep13 = pd.read_csv('10GeVData/WReDep13.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep14 = pd.read_csv('10GeVData/WReDep14.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        edep15 = pd.read_csv('10GeVData/WReDep15.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+
+        df0 = pd.read_csv('10GeVData/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df1 = pd.read_csv('10GeVData/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df2 = pd.read_csv('10GeVData/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df3 = pd.read_csv('10GeVData/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df4 = pd.read_csv('10GeVData/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df5 = pd.read_csv('10GeVData/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df6 = pd.read_csv('10GeVData/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df7 = pd.read_csv('10GeVData/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df8 = pd.read_csv('10GeVData/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df9 = pd.read_csv('10GeVData/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df10 = pd.read_csv('10GeVData/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df11 = pd.read_csv('10GeVData/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df12 = pd.read_csv('10GeVData/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df13 = pd.read_csv('10GeVData/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df14 = pd.read_csv('10GeVData/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        df15 = pd.read_csv('10GeVData/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        
+        p0 = pd.read_csv('10GeVData/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p1 = pd.read_csv('10GeVData/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p2 = pd.read_csv('10GeVData/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p3 = pd.read_csv('10GeVData/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p4 = pd.read_csv('10GeVData/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p5 = pd.read_csv('10GeVData/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p6 = pd.read_csv('10GeVData/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p7 = pd.read_csv('10GeVData/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p8 = pd.read_csv('10GeVData/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p9 = pd.read_csv('10GeVData/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p10 = pd.read_csv('10GeVData/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p11 = pd.read_csv('10GeVData/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p12 = pd.read_csv('10GeVData/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p13 = pd.read_csv('10GeVData/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p14 = pd.read_csv('10GeVData/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        p15 = pd.read_csv('10GeVData/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+
+        # edep0 = pd.read_csv('data/WReDep0.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep1 = pd.read_csv('data/WReDep1.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep2 = pd.read_csv('data/WReDep2.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep3 = pd.read_csv('data/WReDep3.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep4 = pd.read_csv('data/WReDep4.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep5 = pd.read_csv('data/WReDep5.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep6 = pd.read_csv('data/WReDep6.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep7 = pd.read_csv('data/WReDep7.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep8 = pd.read_csv('data/WReDep8.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep9 = pd.read_csv('data/WReDep9.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep10 = pd.read_csv('data/WReDep10.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep11 = pd.read_csv('data/WReDep11.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep12 = pd.read_csv('data/WReDep12.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep13 = pd.read_csv('data/WReDep13.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep14 = pd.read_csv('data/WReDep14.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # edep15 = pd.read_csv('data/WReDep15.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+
+        # df0 = pd.read_csv('data/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df1 = pd.read_csv('data/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df2 = pd.read_csv('data/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df3 = pd.read_csv('data/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df4 = pd.read_csv('data/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df5 = pd.read_csv('data/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df6 = pd.read_csv('data/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df7 = pd.read_csv('data/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df8 = pd.read_csv('data/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df9 = pd.read_csv('data/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df10 = pd.read_csv('data/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df11 = pd.read_csv('data/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df12 = pd.read_csv('data/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df13 = pd.read_csv('data/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df14 = pd.read_csv('data/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        # df15 = pd.read_csv('data/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        
+        # p0 = pd.read_csv('data/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p1 = pd.read_csv('data/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p2 = pd.read_csv('data/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p3 = pd.read_csv('data/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p4 = pd.read_csv('data/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p5 = pd.read_csv('data/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p6 = pd.read_csv('data/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p7 = pd.read_csv('data/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p8 = pd.read_csv('data/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p9 = pd.read_csv('data/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p10 = pd.read_csv('data/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p11 = pd.read_csv('data/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p12 = pd.read_csv('data/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p13 = pd.read_csv('data/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p14 = pd.read_csv('data/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        # p15 = pd.read_csv('data/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        
+        if plot:
+            plots()
+        else:
+            plotArgs()
     elif mode == 'comp':
         if disp:
             # ttlStr = '$L_{RL}(Ta) = 0.4094 cm \\quad \\vert \\quad \\frac{d}{L_{LR}(Ta)} \\approx 2.75$ \n Energy Cutoff: 100 MeV'
@@ -1192,12 +1341,32 @@ if __name__ == '__main__':
         tadep7 = pd.read_csv('10GeVData/TaDep7.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep8 = pd.read_csv('10GeVData/TaDep8.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep9 = pd.read_csv('10GeVData/TaDep9.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # tadep10 = np.zeros((1, 3))
         tadep10 = pd.read_csv('10GeVData/TaDep10.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep11 = pd.read_csv('10GeVData/TaDep11.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep12 = pd.read_csv('10GeVData/TaDep12.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep13 = pd.read_csv('10GeVData/TaDep13.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         tadep14 = pd.read_csv('10GeVData/TaDep14.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        # tadep15 = np.zeros((1, 3))
         tadep15 = pd.read_csv('10GeVData/TaDep15.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+
+        wreedep0 = pd.read_csv('10GeVData/WreDep0.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep1 = pd.read_csv('10GeVData/WreDep1.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep2 = pd.read_csv('10GeVData/WreDep2.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep3 = pd.read_csv('10GeVData/WreDep3.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep4 = pd.read_csv('10GeVData/WreDep4.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep5 = pd.read_csv('10GeVData/WreDep5.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep6 = pd.read_csv('10GeVData/WreDep6.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep7 = pd.read_csv('10GeVData/WreDep7.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep8 = pd.read_csv('10GeVData/WreDep8.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep9 = pd.read_csv('10GeVData/WreDep9.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep10 = pd.read_csv('10GeVData/WReDep10.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep11 = pd.read_csv('10GeVData/WReDep11.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep12 = pd.read_csv('10GeVData/WReDep12.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep13 = pd.read_csv('10GeVData/WReDep13.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep14 = pd.read_csv('10GeVData/WReDep14.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+        wreedep15 = pd.read_csv('10GeVData/WReDep15.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
+
 
         # tadep0 = pd.read_csv('10GeVData/TaDep0.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
         # tadep1 = pd.read_csv('10GeVData/TaDep1.csv', header = 4, names = ['Energy Deposition [MeV]']).to_numpy()
@@ -1250,6 +1419,23 @@ if __name__ == '__main__':
         Xe14 = pd.read_csv('10GeVData/Xe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
         Xe15 = pd.read_csv('10GeVData/Xe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
         
+        WRe0 = pd.read_csv('10GeVData/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe1 = pd.read_csv('10GeVData/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe2 = pd.read_csv('10GeVData/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe3 = pd.read_csv('10GeVData/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe4 = pd.read_csv('10GeVData/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe5 = pd.read_csv('10GeVData/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe6 = pd.read_csv('10GeVData/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe7 = pd.read_csv('10GeVData/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe8 = pd.read_csv('10GeVData/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe9 = pd.read_csv('10GeVData/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe10 = pd.read_csv('10GeVData/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe11 = pd.read_csv('10GeVData/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe12 = pd.read_csv('10GeVData/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe13 = pd.read_csv('10GeVData/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe14 = pd.read_csv('10GeVData/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+        WRe15 = pd.read_csv('10GeVData/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, :4]
+
 
         Tap0 = pd.read_csv('10GeVData/Ta0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
         Tap1 = pd.read_csv('10GeVData/Ta1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
@@ -1285,9 +1471,26 @@ if __name__ == '__main__':
         Xep14 = pd.read_csv('10GeVData/Xe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
         Xep15 = pd.read_csv('10GeVData/Xe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]    
 
+        WRep0 = pd.read_csv('10GeVData/WRe0.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep1 = pd.read_csv('10GeVData/WRe1.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep2 = pd.read_csv('10GeVData/WRe2.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep3 = pd.read_csv('10GeVData/WRe3.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep4 = pd.read_csv('10GeVData/WRe4.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep5 = pd.read_csv('10GeVData/WRe5.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep6 = pd.read_csv('10GeVData/WRe6.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep7 = pd.read_csv('10GeVData/WRe7.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep8 = pd.read_csv('10GeVData/WRe8.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep9 = pd.read_csv('10GeVData/WRe9.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep10 = pd.read_csv('10GeVData/WRe10.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep11 = pd.read_csv('10GeVData/WRe11.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep12 = pd.read_csv('10GeVData/WRe12.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep13 = pd.read_csv('10GeVData/WRe13.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep14 = pd.read_csv('10GeVData/WRe14.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+        WRep15 = pd.read_csv('10GeVData/WRe15.csv', header = 12, names = ['Energy [MeV]', 'Traverse Width [mm]', 'Angle [rad]', 'Rotational Angle [rad]', 'Px', 'Py', 'Pz', 'E [MeV]', 'Minkowski']).to_numpy()[:, 4:]
+
         compare(ttlStr)
     else:
-        LTarget = LXe
+        LTarget = .343 # cm
 
         edep0 = pd.read_csv('build/out0_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()
         edep1 = pd.read_csv('build/out1_nt_Data.csv', header = 6, names = ['Energy Deposition [MeV]', 'In Window Dep [MeV]','Out Window Dep [MeV]']).to_numpy()

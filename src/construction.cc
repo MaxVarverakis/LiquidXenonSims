@@ -8,7 +8,7 @@ MyDetectorConstruction::MyDetectorConstruction()
     target -> DeclareProperty("xenon", liquidXenon, "Use liquid Xenon target");
     target -> DeclareProperty("window", windows, "Use Beryllium windows around target");
     
-    liquidXenon = true;
+    liquidXenon = false;
 
     targetPos = G4ThreeVector(0., 0., 0.);
     n = .250;
@@ -39,7 +39,9 @@ void MyDetectorConstruction::ConstructWindows(G4double targetWidth)
     G4double windowWidth = 0.5 * mm; // 500 micron minimum
     G4double offset = targetWidth + windowWidth / 2.;
     G4NistManager *nist = G4NistManager::Instance();
+    
     windowMaterial = nist -> FindOrBuildMaterial("G4_Be");
+    // windowMaterial = air; // If you want to "remove" the windows, just change the window material to air
 
     // calculate where to place windows on z-axis
     G4double zIn = targetPos.z() - offset;
@@ -81,13 +83,27 @@ void MyDetectorConstruction::ConstructTarget()
 
         // G4NistManager *nist = G4NistManager::Instance();
         
-        targetMaterial = nist -> FindOrBuildMaterial("G4_Ta");
+        // targetMaterial = nist -> FindOrBuildMaterial("G4_Ta");
         // targetMaterial = nist -> FindOrBuildMaterial("G4_W");
+        
+        // Construct W75Re25 alloy
+        W = nist -> FindOrBuildMaterial("G4_W");
+        Re = nist -> FindOrBuildMaterial("G4_Re");
+        L_RL = 3.43 * mm;
+        WReDensity = 19.65 * g / cm3;
+        // WReDensity = 19.7 * g / cm3;
+        nComp = 2; // alloy is made of 2 materials
+        WRe = new G4Material("WRe", WReDensity, nComp);
+        
+        WRe -> AddMaterial(W, fracMass = 75 * perCent);
+        WRe -> AddMaterial(Re, fracMass = 25 * perCent);
+        targetMaterial = WRe;
     }
 
-    L_RL = targetMaterial -> GetRadlen();
-    // G4cout << "L_RL: " << L_RL * cm << " cm" << G4endl;
+    // L_RL = targetMaterial -> GetRadlen();
     dLRL = n * L_RL;
+
+    // G4cout << "L_RL: " << L_RL * cm << " cm" << G4endl;
 
     solidTarget = new G4Box("solidTarget", 5. * cm, 5. * cm, dLRL); // note that dimensions are given in half-lengths (so 2 * dLRL = 4 rad lengths!)
     logicTarget = new G4LogicalVolume(solidTarget, targetMaterial, "logicTarget");

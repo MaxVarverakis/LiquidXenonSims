@@ -39,10 +39,10 @@ private:
     G4bool windows = true; // throws error if false
 
     // G4Element *elXe;
-    G4Material *air, *windowMaterial, *targetMaterial;
+    G4Material *air, *windowMaterial, *targetMaterial, *W, *Re, *WRe;
     // , *lqdXe
 
-    G4double L_RL, n, dLRL;
+    G4double L_RL, n, dLRL, WReDensity, nComp, fracMass;
     G4ThreeVector targetPos;
 };
 

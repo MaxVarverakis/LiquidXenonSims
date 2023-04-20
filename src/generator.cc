@@ -7,7 +7,7 @@ MyPrimaryGenerator::MyPrimaryGenerator()
 
     if (isBeamDist)
     {
-        // if using beam distribution, must use macro on startup to initialize beam info! (e.g., beam.mac)
+        // if using beam distribution, use macro on startup to initialize beam info! (e.g., beam.mac)
         fBeamGun = new G4GeneralParticleSource();
 
     }
@@ -18,7 +18,7 @@ MyPrimaryGenerator::MyPrimaryGenerator()
         
         fParticleGun -> SetParticleDefinition(particleTable);
         fParticleGun -> SetParticleMomentumDirection(G4ThreeVector(0., 0., 1.));
-        fParticleGun -> SetParticleEnergy(3.0 * GeV);
+        fParticleGun -> SetParticleEnergy(10.0 * GeV);
         fParticleGun -> SetParticlePosition(G4ThreeVector(0., 0., -0.5 * m));
         
     }
